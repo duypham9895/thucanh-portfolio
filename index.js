@@ -239,6 +239,17 @@ navLinks.forEach((link) => {
 // Function to get the current section
 function getCurrentSection() {
   const scrollPosition = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const documentHeight = document.documentElement.scrollHeight;
+
+  // Check if we're at the bottom of the page
+  const isAtBottom =
+    Math.ceil(scrollPosition + windowHeight) >= documentHeight - 10;
+
+  // If at bottom, return the last section (contact)
+  if (isAtBottom && sections.length > 0) {
+    return sections[sections.length - 1].id;
+  }
 
   for (const section of sections) {
     const sectionTop = section.offsetTop - 100; // Offset for better detection
@@ -381,9 +392,16 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Hamburger button initialized as inactive");
   }
 
+  // Store current scroll position to prevent unwanted scrolling
+  let currentScrollPosition = 0;
+
   // Function to open sidebar - Performance Optimized
   function openSidebar() {
     console.log("Opening sidebar...");
+
+    // Store current scroll position before fixing body
+    currentScrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
 
     // Use requestAnimationFrame for smooth animation
     requestAnimationFrame(() => {
@@ -395,8 +413,14 @@ document.addEventListener("DOMContentLoaded", function () {
         hamburgerBtn.classList.add("active");
         console.log("Added 'active' class to hamburger");
       }
+
+      // Set the body position to maintain scroll position
+      body.style.top = `-${currentScrollPosition}px`;
       body.classList.add("sidebar-open");
-      console.log("Sidebar opened successfully");
+      console.log(
+        "Sidebar opened successfully, scroll position preserved:",
+        currentScrollPosition
+      );
     });
   }
 
@@ -414,47 +438,90 @@ document.addEventListener("DOMContentLoaded", function () {
         hamburgerBtn.classList.remove("active");
         console.log("Removed 'active' class from hamburger");
       }
+
       body.classList.remove("sidebar-open");
-      console.log("Sidebar closed successfully");
+      body.style.top = "";
+
+      // Restore scroll position without triggering scroll behavior
+      if (currentScrollPosition > 0) {
+        window.scrollTo(0, currentScrollPosition);
+      }
+
+      console.log(
+        "Sidebar closed successfully, scroll position restored:",
+        currentScrollPosition
+      );
     });
   }
 
   // Toggle sidebar when hamburger button is clicked - Performance Optimized
   if (hamburgerBtn) {
-    // Use passive event listener for better performance
-    hamburgerBtn.addEventListener(
-      "click",
+    // Remove any existing event listeners first
+    hamburgerBtn.replaceWith(hamburgerBtn.cloneNode(true));
+    const newHamburgerBtn = document.getElementById("hamburger-btn");
+
+    // Add multiple event listeners to catch all possible events
+    const handleHamburgerClick = function (e) {
+      // Prevent any default behavior that might cause navigation
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+
+      // Store current scroll position immediately
+      const currentScroll =
+        window.pageYOffset || document.documentElement.scrollTop;
+      console.log("Current scroll position before click:", currentScroll);
+
+      const isActive = mobileSidebar?.classList.contains("active");
+      console.log(
+        "Hamburger clicked, current sidebar state:",
+        isActive ? "open" : "closed"
+      );
+
+      // Debounce rapid clicks to prevent animation conflicts
+      if (newHamburgerBtn.dataset.animating === "true") {
+        console.log("Animation in progress, ignoring click");
+        return false;
+      }
+
+      newHamburgerBtn.dataset.animating = "true";
+
+      if (isActive) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+
+      // Reset animation flag after animation completes
+      setTimeout(() => {
+        newHamburgerBtn.dataset.animating = "false";
+      }, 300);
+
+      return false; // Explicitly return false to prevent any navigation
+    };
+
+    // Add event listeners for multiple event types
+    newHamburgerBtn.addEventListener("click", handleHamburgerClick, {
+      passive: false,
+      capture: true,
+    });
+    newHamburgerBtn.addEventListener("touchstart", handleHamburgerClick, {
+      passive: false,
+      capture: true,
+    });
+    newHamburgerBtn.addEventListener(
+      "touchend",
       function (e) {
         e.preventDefault();
         e.stopPropagation();
-
-        const isActive = mobileSidebar?.classList.contains("active");
-        console.log(
-          "Hamburger clicked, current sidebar state:",
-          isActive ? "open" : "closed"
-        );
-
-        // Debounce rapid clicks to prevent animation conflicts
-        if (hamburgerBtn.dataset.animating === "true") {
-          return;
-        }
-
-        hamburgerBtn.dataset.animating = "true";
-
-        if (isActive) {
-          closeSidebar();
-        } else {
-          openSidebar();
-        }
-
-        // Reset animation flag after animation completes
-        setTimeout(() => {
-          hamburgerBtn.dataset.animating = "false";
-        }, 300);
+        e.stopImmediatePropagation();
+        return false;
       },
-      { passive: false }
+      { passive: false, capture: true }
     );
-    console.log("Hamburger button event listener attached");
+    console.log(
+      "Hamburger button event listener attached with navigation prevention"
+    );
   } else {
     console.error(
       "Hamburger button not found! Check element ID 'hamburger-btn'"
@@ -514,6 +581,9 @@ document.addEventListener("DOMContentLoaded", function () {
       "click",
       (e) => {
         e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+
         const targetId = link.getAttribute("href");
         const targetSection = document.querySelector(targetId);
         console.log(
@@ -530,12 +600,14 @@ document.addEventListener("DOMContentLoaded", function () {
               behavior: "smooth",
               block: "start",
             });
-          }, 100);
+          }, 200);
         } else {
           console.warn(`Target section not found: ${targetId}`);
         }
+
+        return false; // Prevent any default navigation
       },
-      { passive: false }
+      { passive: false, capture: true }
     );
   });
 
@@ -567,7 +639,57 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Sidebar content click prevention attached");
   }
 
-  console.log("Mobile navigation initialization complete");
+  // Global scroll prevention during hamburger interaction
+  let preventScroll = false;
+
+  // Override the openSidebar function to enable scroll prevention
+  const originalOpenSidebar = openSidebar;
+  openSidebar = function () {
+    preventScroll = true;
+    originalOpenSidebar();
+    setTimeout(() => {
+      preventScroll = false;
+    }, 500);
+  };
+
+  // Override the closeSidebar function to enable scroll prevention
+  const originalCloseSidebar = closeSidebar;
+  closeSidebar = function () {
+    preventScroll = true;
+    originalCloseSidebar();
+    setTimeout(() => {
+      preventScroll = false;
+    }, 500);
+  };
+
+  // Prevent any unwanted scroll events during menu interaction
+  window.addEventListener(
+    "scroll",
+    function (e) {
+      if (preventScroll) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        window.scrollTo(0, currentScrollPosition);
+        return false;
+      }
+    },
+    { passive: false, capture: true }
+  );
+
+  // Override any smooth scroll behavior during menu operations
+  const originalScrollTo = window.scrollTo;
+  window.scrollTo = function (x, y) {
+    if (preventScroll && y === 0) {
+      console.log("Prevented scroll to top during menu interaction");
+      return;
+    }
+    originalScrollTo.call(window, x, y);
+  };
+
+  console.log(
+    "Mobile navigation initialization complete with scroll prevention"
+  );
 });
 
 // Contact form submission function (also defined inline in HTML for compatibility)
