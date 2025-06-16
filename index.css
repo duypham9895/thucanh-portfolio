@@ -1694,8 +1694,8 @@ body.sidebar-open {
   }
 
   main {
-    margin-left: 0;
-    width: 100%;
+    margin-left: 80px;
+    width: calc(100% - 80px);
     padding: 0;
   }
 
