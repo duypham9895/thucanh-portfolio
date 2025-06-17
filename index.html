@@ -6,18 +6,20 @@
     <title>Thục Anh's Portfolio</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="/icons/favicon.ico" sizes="any">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="index.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <!-- Theme initialization -->
     <script>
-      // Check for saved theme preference, otherwise use light theme
       const theme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", theme);
     </script>
@@ -26,7 +28,12 @@
     <!-- Mobile Navigation -->
     <nav class="mobile-nav">
       <div class="mobile-nav-header">
-        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu">
+        <button
+          type="button"
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-label="Toggle navigation menu"
+        >
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
@@ -47,52 +54,44 @@
         </div>
         <ul class="mobile-menu">
           <li>
-            <a href="#about" class="mobile-menu-link">
-              <i class="fas fa-user"></i>
-              <span>About</span>
-            </a>
+            <a href="#about" class="mobile-menu-link"
+              ><i class="fas fa-user"></i><span>About</span></a
+            >
           </li>
           <li>
-            <a href="#education" class="mobile-menu-link">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Education</span>
-            </a>
+            <a href="#education" class="mobile-menu-link"
+              ><i class="fas fa-graduation-cap"></i><span>Education</span></a
+            >
           </li>
           <li>
-            <a href="#portfolio" class="mobile-menu-link">
-              <i class="fas fa-briefcase"></i>
-              <span>Portfolio</span>
-            </a>
+            <a href="#portfolio" class="mobile-menu-link"
+              ><i class="fas fa-briefcase"></i><span>Portfolio</span></a
+            >
           </li>
           <li>
-            <a href="#experience" class="mobile-menu-link">
-              <i class="fas fa-history"></i>
-              <span>Experience</span>
-            </a>
+            <a href="#experience" class="mobile-menu-link"
+              ><i class="fas fa-history"></i><span>Experience</span></a
+            >
           </li>
           <li>
-            <a href="#skills" class="mobile-menu-link">
-              <i class="fas fa-tools"></i>
-              <span>Skills</span>
-            </a>
+            <a href="#skills" class="mobile-menu-link"
+              ><i class="fas fa-tools"></i><span>Skills</span></a
+            >
           </li>
           <li>
-            <a href="#activities" class="mobile-menu-link">
-              <i class="fas fa-tasks"></i>
-              <span>Activities</span>
-            </a>
+            <a href="#activities" class="mobile-menu-link"
+              ><i class="fas fa-tasks"></i><span>Activities</span></a
+            >
           </li>
           <li>
-            <a href="#achievements" class="mobile-menu-link">
-              <i class="fas fa-trophy"></i>
-              <span>Achievements</span>
-            </a>
+            <a href="#achievements" class="mobile-menu-link"
+              ><i class="fas fa-trophy"></i><span>Achievements</span></a
+            >
           </li>
           <li>
-            <a href="#contact" class="mobile-menu-link">
-              <i class="fas fa-envelope"></i>
-              <span>Contact</span>
-            </a>
+            <a href="#contact" class="mobile-menu-link"
+              ><i class="fas fa-envelope"></i><span>Contact</span></a
+            >
           </li>
         </ul>
       </div>
@@ -136,16 +135,18 @@
           <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
         </li>
       </ul>
-      <div class="menu-btn">
-        <div class="menu-btn__burger"></div>
-      </div>
     </nav>
+
+    <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
+
+    <!-- Theme Toggle -->
     <button class="theme-toggle" id="theme-toggle">
       <i class="fas fa-moon"></i>
     </button>
 
+    <!-- Header Section -->
     <header class="header">
       <div class="animated-bg"></div>
       <div class="hero">
@@ -166,454 +167,479 @@
     </header>
 
     <main>
+      <!-- About Section -->
       <section id="about" class="section">
         <div class="content">
           <h2 data-aos="fade-right">About Me</h2>
           <div class="about-grid" data-aos="fade-up">
-          <div class="about-image">
-            <div class="image-container">
-              <img src="images/avatar.jpg" alt="Thục Anh's Profile Picture" />
+            <div class="about-image">
+              <div class="image-container">
+                <img src="images/avatar.jpg" alt="Thục Anh's Profile Picture" />
+              </div>
             </div>
-          </div>
-          <div class="about-text">
-            <h3>Driving Success Through People and Innovation</h3>
-            <p>
-              I'm a dynamic marketing professional with diverse experience across digital marketing, content creation, and brand management. Currently pursuing my Bachelor of Business Administration with a 3.68 GPA while gaining hands-on expertise with global brands like L'Oréal and Estée Lauder, where I consistently exceeded KPIs by 100-130%.
-            </p>
-            <p>
-              From co-founding Drunky 3D Studio to managing international collaborations in Japan, I thrive at the intersection of creativity and strategy. I'm passionate about building meaningful connections between brands and audiences through innovative digital marketing solutions.
-            </p>
-          </div>
+            <div class="about-text">
+              <h3>Driving Success Through People and Innovation</h3>
+              <p>
+                I'm a dynamic marketing professional with diverse experience
+                across digital marketing, content creation, and brand
+                management. Currently pursuing my Bachelor of Business
+                Administration with a 3.68 GPA while gaining hands-on expertise
+                with global brands like L'Oréal and Estée Lauder, where I
+                consistently exceeded KPIs by 100-130%.
+              </p>
+              <p>
+                From co-founding Drunky 3D Studio to managing international
+                collaborations in Japan, I thrive at the intersection of
+                creativity and strategy. I'm passionate about building
+                meaningful connections between brands and audiences through
+                innovative digital marketing solutions.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Education Section -->
       <section id="education" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Education</h2>
           <div class="education-container" data-aos="fade-up">
-          <div class="education-card">
-            <div class="education-header">
-              <i class="fas fa-graduation-cap"></i>
-              <div class="education-title">
-                <h3>University of Economics and Finance Ho Chi Minh City</h3>
-                <span class="education-year">2021 - 2025</span>
+            <div class="education-card">
+              <div class="education-header">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="education-title">
+                  <h3>University of Economics and Finance Ho Chi Minh City</h3>
+                  <span class="education-year">2021 - 2025</span>
+                </div>
+              </div>
+              <div class="education-content">
+                <h4>Bachelor of Business Administration</h4>
+                <ul class="education-achievements">
+                  <li><i class="fas fa-star"></i> GPA: 3.68/4.0</li>
+                  <li>
+                    <i class="fas fa-award"></i> 50% scholarship for 4
+                    consecutive years
+                  </li>
+                  <li>
+                    <i class="fas fa-trophy"></i> Top 1 Merit Scholarship
+                    2023-2024: GPA 4.0/4.0
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="education-content">
-              <h4>Bachelor of Business Administration</h4>
-              <ul class="education-achievements">
-                <li><i class="fas fa-star"></i> GPA: 3.68/4.0</li>
-                <li>
-                  <i class="fas fa-award"></i> 50% scholarship for 4 consecutive
-                  years
-                </li>
-                <li>
-                  <i class="fas fa-trophy"></i> Top 1 Merit Scholarship
-                  2023-2024: GPA 4.0/4.0
-                </li>
-              </ul>
-            </div>
-          </div>
           </div>
         </div>
       </section>
 
+      <!-- Portfolio Section -->
       <section id="portfolio" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Portfolio</h2>
           <div class="campaigns-container">
-          <div class="campaign-card" data-aos="flip-left">
-            <div class="campaign-image">
-              <div class="overlay">
-                <div class="campaign-details">
-                  <h4>Team Efficiency Enhancement</h4>
-                  <p>
-                    Improved team productivity by 40% through process
-                    optimization
-                  </p>
-                  <a href="#" class="view-details">View Details</a>
+            <div class="campaign-card" data-aos="flip-left">
+              <div class="campaign-image">
+                <div class="overlay">
+                  <div class="campaign-details">
+                    <h4>Team Efficiency Enhancement</h4>
+                    <p>
+                      Improved team productivity by 40% through process
+                      optimization
+                    </p>
+                    <a href="#" class="view-details">View Details</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="campaign-info">
-              <span class="category">Leadership</span>
-              <h3>Performance Optimization</h3>
-            </div>
-          </div>
-          <div class="campaign-card" data-aos="flip-left" data-aos-delay="100">
-            <div class="campaign-image">
-              <div class="overlay">
-                <div class="campaign-details">
-                  <h4>Cross-functional Collaboration</h4>
-                  <p>
-                    Successfully managed 5 concurrent projects across
-                    departments
-                  </p>
-                  <a href="#" class="view-details">View Details</a>
-                </div>
+              <div class="campaign-info">
+                <span class="category">Leadership</span>
+                <h3>Performance Optimization</h3>
               </div>
             </div>
-            <div class="campaign-info">
-              <span class="category">Project Management</span>
-              <h3>Team Synergy</h3>
-            </div>
-          </div>
-          <div class="campaign-card" data-aos="flip-left" data-aos-delay="200">
-            <div class="campaign-image">
-              <div class="overlay">
-                <div class="campaign-details">
-                  <h4>Process Innovation</h4>
-                  <p>Implemented new workflow reducing delivery time by 30%</p>
-                  <a href="#" class="view-details">View Details</a>
+            <div
+              class="campaign-card"
+              data-aos="flip-left"
+              data-aos-delay="100"
+            >
+              <div class="campaign-image">
+                <div class="overlay">
+                  <div class="campaign-details">
+                    <h4>Cross-functional Collaboration</h4>
+                    <p>
+                      Successfully managed 5 concurrent projects across
+                      departments
+                    </p>
+                    <a href="#" class="view-details">View Details</a>
+                  </div>
                 </div>
               </div>
+              <div class="campaign-info">
+                <span class="category">Project Management</span>
+                <h3>Team Synergy</h3>
+              </div>
             </div>
-            <div class="campaign-info">
-              <span class="category">Innovation</span>
-              <h3>Workflow Enhancement</h3>
+            <div
+              class="campaign-card"
+              data-aos="flip-left"
+              data-aos-delay="200"
+            >
+              <div class="campaign-image">
+                <div class="overlay">
+                  <div class="campaign-details">
+                    <h4>Process Innovation</h4>
+                    <p>
+                      Implemented new workflow reducing delivery time by 30%
+                    </p>
+                    <a href="#" class="view-details">View Details</a>
+                  </div>
+                </div>
+              </div>
+              <div class="campaign-info">
+                <span class="category">Innovation</span>
+                <h3>Workflow Enhancement</h3>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </section>
 
+      <!-- Experience Section -->
       <section id="experience" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Experience Timeline</h2>
           <div class="timeline">
-          <div class="timeline-item current" data-aos="fade-right">
-            <div class="timeline-content">
-              <span class="date">Jun 2025 - Now</span>
-              <h3>L'OREAL VIETNAM - PPD</h3>
-              <h4>Online Marketing Intern</h4>
-              <ul>
-                <li>
-                  Supported digital marketing campaigns and assisted in online
-                  brand activations for L'Oréal's Professional Products
-                  Division.
-                </li>
-                <li>
-                  Coordinated with cross-functional teams to optimize social
-                  media presence and campaign performance.
-                </li>
-              </ul>
+            <div class="timeline-item current" data-aos="fade-right">
+              <div class="timeline-content">
+                <span class="date">Jun 2025 - Now</span>
+                <h3>L'OREAL VIETNAM - PPD</h3>
+                <h4>Online Marketing Intern</h4>
+                <ul>
+                  <li>
+                    Supported digital marketing campaigns and assisted in online
+                    brand activations for L'Oréal's Professional Products
+                    Division.
+                  </li>
+                  <li>
+                    Coordinated with cross-functional teams to optimize social
+                    media presence and campaign performance.
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-right">
-            <div class="timeline-content">
-              <span class="date">May 2024 - Nov 2024</span>
-              <h3>ESTÉE LAUDER COMPANIES</h3>
-              <h4>Cloud (Ecom) Beauty Advisor - Freelance BA</h4>
-              <ul>
-                <li>
-                  Hosted daily livestream sessions showcasing Estée Lauder's
-                  products through OBS Studio, consistently achieved 100–130% of
-                  monthly KPIs
-                </li>
-                <li>
-                  Collaborated with the Ecommerce and Marketing team to align
-                  livestream content with seasonal campaigns, holiday
-                  promotions, and new product launches
-                </li>
-              </ul>
+            <div class="timeline-item" data-aos="fade-right">
+              <div class="timeline-content">
+                <span class="date">May 2024 - Nov 2024</span>
+                <h3>ESTÉE LAUDER COMPANIES</h3>
+                <h4>Cloud (Ecom) Beauty Advisor - Freelance BA</h4>
+                <ul>
+                  <li>
+                    Hosted daily livestream sessions showcasing Estée Lauder's
+                    products through OBS Studio, consistently achieved 100–130%
+                    of monthly KPIs
+                  </li>
+                  <li>
+                    Collaborated with the Ecommerce and Marketing team to align
+                    livestream content with seasonal campaigns, holiday
+                    promotions, and new product launches
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-left">
-            <div class="timeline-content">
-              <span class="date">Nov 2024 - Apr 2025</span>
-              <h3>JOETSU SKIING RESORT (JAPAN)</h3>
-              <h4>Hospitality Intern</h4>
-              <ul>
-                <li>
-                  Streamlined dishwashing workflows by reorganizing kitchen
-                  stations
-                </li>
-                <li>
-                  Collaborated with the housekeeping team to prioritize room
-                  cleaning schedules during peak occupancy periods
-                </li>
-              </ul>
+            <div class="timeline-item" data-aos="fade-left">
+              <div class="timeline-content">
+                <span class="date">Nov 2024 - Apr 2025</span>
+                <h3>JOETSU SKIING RESORT (JAPAN)</h3>
+                <h4>Hospitality Intern</h4>
+                <ul>
+                  <li>
+                    Streamlined dishwashing workflows by reorganizing kitchen
+                    stations
+                  </li>
+                  <li>
+                    Collaborated with the housekeeping team to prioritize room
+                    cleaning schedules during peak occupancy periods
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-right">
-            <div class="timeline-content">
-              <span class="date">Nov 2023 - Feb 2024</span>
-              <h3>L'OREAL VIETNAM - CERAVE</h3>
-              <h4>Brand Ambassador Livestreamer - TikTok</h4>
-              <ul>
-                <li>
-                  Introduced, guide, answer, respond to customers through
-                  livestream
-                </li>
-                <li>
-                  Participated in content creation: Coordinate with Brand team
-                  to set content orientation
-                </li>
-                <li>
-                  Recorded videos to prepare for Livestream sessions/Videos for
-                  sales
-                </li>
-                <li>
-                  Coordinated with team to achieve the highest KPI: November
-                  (125%), December (120%)
-                </li>
-              </ul>
+            <div class="timeline-item" data-aos="fade-right">
+              <div class="timeline-content">
+                <span class="date">Nov 2023 - Feb 2024</span>
+                <h3>L'OREAL VIETNAM - CERAVE</h3>
+                <h4>Brand Ambassador Livestreamer - TikTok</h4>
+                <ul>
+                  <li>
+                    Introduced, guide, answer, respond to customers through
+                    livestream
+                  </li>
+                  <li>
+                    Participated in content creation: Coordinate with Brand team
+                    to set content orientation
+                  </li>
+                  <li>
+                    Recorded videos to prepare for Livestream sessions/Videos
+                    for sales
+                  </li>
+                  <li>
+                    Coordinated with team to achieve the highest KPI: November
+                    (125%), December (120%)
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-left">
-            <div class="timeline-content">
-              <span class="date">Nov 2022 - Oct 2023</span>
-              <h3>BARESOUL COSME</h3>
-              <h4>Content Creation & B2B Sales</h4>
-              <ul>
-                <li>
-                  <strong>Content Creation:</strong> Created marketing plan and
-                  weekly TikTok content (+9k followers)
-                </li>
-                <li>
-                  <strong>KOL Management:</strong> Managed campaigns with
-                  prominent KOLs like Giang Ơi, Gia Đình Hanna, Kimberly
-                </li>
-                <li>
-                  <strong>B2B Sales:</strong> Built B2B pool of 80-100 potential
-                  customers, managed relationships with major chains
-                </li>
-                <li>
-                  <strong>Livestreaming:</strong> Achieved 100% of monthly KPIs
-                  through TikTok and Shopee livestreams
-                </li>
-              </ul>
+            <div class="timeline-item" data-aos="fade-left">
+              <div class="timeline-content">
+                <span class="date">Nov 2022 - Oct 2023</span>
+                <h3>BARESOUL COSME</h3>
+                <h4>Content Creation & B2B Sales</h4>
+                <ul>
+                  <li>
+                    <strong>Content Creation:</strong> Created marketing plan
+                    and weekly TikTok content (+9k followers)
+                  </li>
+                  <li>
+                    <strong>KOL Management:</strong> Managed campaigns with
+                    prominent KOLs like Giang Ơi, Gia Đình Hanna, Kimberly
+                  </li>
+                  <li>
+                    <strong>B2B Sales:</strong> Built B2B pool of 80-100
+                    potential customers, managed relationships with major chains
+                  </li>
+                  <li>
+                    <strong>Livestreaming:</strong> Achieved 100% of monthly
+                    KPIs through TikTok and Shopee livestreams
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="timeline-item" data-aos="fade-right">
-            <div class="timeline-content">
-              <span class="date">Nov 2022 - June 2023</span>
-              <h3>DRUNKY 3D STUDIO</h3>
-              <h4>Co-founder</h4>
-              <ul>
-                <li>
-                  Oriented long-term and short-term strategies, implemented new
-                  ideas to increase brand awareness
-                </li>
-                <li>
-                  Created communication and marketing plans, resulting in 500+
-                  student registrations for 3 main courses
-                </li>
-                <li>Managed and coordinated team members effectively</li>
-              </ul>
+            <div class="timeline-item" data-aos="fade-right">
+              <div class="timeline-content">
+                <span class="date">Nov 2022 - June 2023</span>
+                <h3>DRUNKY 3D STUDIO</h3>
+                <h4>Co-founder</h4>
+                <ul>
+                  <li>
+                    Oriented long-term and short-term strategies, implemented
+                    new ideas to increase brand awareness
+                  </li>
+                  <li>
+                    Created communication and marketing plans, resulting in 500+
+                    student registrations for 3 main courses
+                  </li>
+                  <li>Managed and coordinated team members effectively</li>
+                </ul>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </section>
 
+      <!-- Skills Section -->
       <section id="skills" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Professional Skills</h2>
           <div class="skills-container" data-aos="fade-up">
-          <div class="skill-card">
-            <i class="fas fa-hands-helping"></i>
-            <h4>Leadership & Teamwork</h4>
-            <p>
-              Strong ability to lead teams, foster collaboration, and achieve
-              collective goals through effective team management
-            </p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-lightbulb"></i>
-            <h4>Problem-solving</h4>
-            <p>
-              Analytical approach to challenges, developing innovative solutions
-              and implementing effective strategies
-            </p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-comments"></i>
-            <h4>Communication</h4>
-            <p>
-              Excellence in verbal and written communication, with strong
-              presentation and interpersonal skills
-            </p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-sync-alt"></i>
-            <h4>Adaptability</h4>
-            <p>
-              Flexible approach to changing situations, quick to learn and
-              embrace new methodologies
-            </p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-brain"></i>
-            <h4>Creative Thinking</h4>
-            <p>
-              Innovative approach to challenges, thinking outside the box to
-              develop unique solutions
-            </p>
-          </div>
-          <div class="skill-card">
-            <i class="fas fa-tasks"></i>
-            <h4>Project Management</h4>
-            <p>
-              Skilled in planning, executing, and delivering projects on time
-              and within scope
-            </p>
-          </div>
+            <div class="skill-card">
+              <i class="fas fa-hands-helping"></i>
+              <h4>Leadership & Teamwork</h4>
+              <p>
+                Strong ability to lead teams, foster collaboration, and achieve
+                collective goals through effective team management
+              </p>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-lightbulb"></i>
+              <h4>Problem-solving</h4>
+              <p>
+                Analytical approach to challenges, developing innovative
+                solutions and implementing effective strategies
+              </p>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-comments"></i>
+              <h4>Communication</h4>
+              <p>
+                Excellence in verbal and written communication, with strong
+                presentation and interpersonal skills
+              </p>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-sync-alt"></i>
+              <h4>Adaptability</h4>
+              <p>
+                Flexible approach to changing situations, quick to learn and
+                embrace new methodologies
+              </p>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-brain"></i>
+              <h4>Creative Thinking</h4>
+              <p>
+                Innovative approach to challenges, thinking outside the box to
+                develop unique solutions
+              </p>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-tasks"></i>
+              <h4>Project Management</h4>
+              <p>
+                Skilled in planning, executing, and delivering projects on time
+                and within scope
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Activities Section -->
       <section id="activities" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Extracurricular Activities</h2>
           <div class="activities-container" data-aos="fade-up">
-          <div class="activity-card">
-            <div class="activity-header">
-              <i class="fas fa-globe"></i>
-              <div class="activity-title">
-                <h3>AIESEC - SOUTHERN YOUTHSPEAK 2022</h3>
-                <span class="activity-role">Student Brand Ambassador</span>
+            <div class="activity-card">
+              <div class="activity-header">
+                <i class="fas fa-globe"></i>
+                <div class="activity-title">
+                  <h3>AIESEC - SOUTHERN YOUTHSPEAK 2022</h3>
+                  <span class="activity-role">Student Brand Ambassador</span>
+                </div>
+              </div>
+              <div class="activity-content">
+                <ul class="activity-achievements">
+                  <li>
+                    <i class="fas fa-check-circle"></i>
+                    <p>
+                      Supported the organizers to engage the students in HCMC to
+                      the conference
+                    </p>
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle"></i>
+                    <p>
+                      Contributed to attracting the participants which led to
+                      increase to 1000+ participants
+                    </p>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div class="activity-content">
-              <ul class="activity-achievements">
-                <li>
-                  <i class="fas fa-check-circle"></i>
-                  <p>
-                    Supported the organizers to engage the students in HCMC to
-                    the conference
-                  </p>
-                </li>
-                <li>
-                  <i class="fas fa-check-circle"></i>
-                  <p>
-                    Contributed to attracting the participants which led to
-                    increase to 1000+ participants
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </div>
           </div>
         </div>
       </section>
 
+      <!-- Achievements Section -->
       <section id="achievements" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Achievements & Certifications</h2>
           <div class="achievements-grid" data-aos="fade-up">
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <i class="fas fa-trophy"></i>
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-trophy"></i>
+              </div>
+              <div class="achievement-content">
+                <h3>Academic Excellence</h3>
+                <ul class="achievement-list">
+                  <li>
+                    <i class="fas fa-trophy"></i> Top 1 Merit Scholarship
+                    2023-2024
+                  </li>
+                  <li>
+                    <i class="fas fa-medal"></i> Student of 5 Merits University
+                    2022-2023 & 2023-2024
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="achievement-content">
-              <h3>Academic Excellence</h3>
-              <ul class="achievement-list">
-                <li>
-                  <i class="fas fa-trophy"></i> Top 1 Merit Scholarship
-                  2023-2024
-                </li>
-                <li>
-                  <i class="fas fa-medal"></i> Student of 5 Merits University
-                  2022-2023 & 2023-2024
-                </li>
-              </ul>
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-award"></i>
+              </div>
+              <div class="achievement-content">
+                <h3>Competition Success</h3>
+                <ul class="achievement-list">
+                  <li>
+                    <i class="fas fa-star"></i> Top 20 48H Hackathon 2021
+                    RE-Organization
+                  </li>
+                  <li><i class="fas fa-star"></i> Top 20 Z-Marketer 2023</li>
+                </ul>
+              </div>
             </div>
-          </div>
-
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <i class="fas fa-award"></i>
+            <div class="achievement-card">
+              <div class="achievement-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="achievement-content">
+                <h3>Recognition & Projects</h3>
+                <ul class="achievement-list">
+                  <li>
+                    <i class="fas fa-check-circle"></i> Certificate of
+                    Outstanding contribution to UEF's extracurricular activities
+                    2021-2024
+                  </li>
+                  <li>
+                    <i class="fas fa-lightbulb"></i> Project Design UEF -
+                    Excellent Innovation Project 2023
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="achievement-content">
-              <h3>Competition Success</h3>
-              <ul class="achievement-list">
-                <li>
-                  <i class="fas fa-star"></i> Top 20 48H Hackathon 2021
-                  RE-Organization
-                </li>
-                <li><i class="fas fa-star"></i> Top 20 Z-Marketer 2023</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <i class="fas fa-certificate"></i>
-            </div>
-            <div class="achievement-content">
-              <h3>Recognition & Projects</h3>
-              <ul class="achievement-list">
-                <li>
-                  <i class="fas fa-check-circle"></i> Certificate of Outstanding
-                  contribution to UEF's extracurricular activities 2021-2024
-                </li>
-                <li>
-                  <i class="fas fa-lightbulb"></i> Project Design UEF -
-                  Excellent Innovation Project 2023
-                </li>
-              </ul>
-            </div>
-          </div>
           </div>
         </div>
       </section>
 
+      <!-- Contact Section -->
       <section id="contact" class="section">
         <div class="content">
           <h2 data-aos="fade-right">Let's Connect</h2>
           <div class="contact-content" data-aos="fade-up">
-          <div class="contact-info">
-            <h3>Get in Touch</h3>
-            <div class="contact-details">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <div class="detail">
-                  <h4>Phone</h4>
-                  <p>(+84) 797038080</p>
+            <div class="contact-info">
+              <h3>Get in Touch</h3>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="fas fa-phone"></i>
+                  <div class="detail">
+                    <h4>Phone</h4>
+                    <p>(+84) 797038080</p>
+                  </div>
                 </div>
-              </div>
-              <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div class="detail">
-                  <h4>Email</h4>
-                  <p>thucanh.ttn@gmail.com</p>
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <div class="detail">
+                    <h4>Email</h4>
+                    <p>thucanh.ttn@gmail.com</p>
+                  </div>
                 </div>
-              </div>
-              <div
-                class="contact-item"
-                onclick="window.open('https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222/', '_blank')"
-                style="cursor: pointer;"
-              >
-                <i class="fab fa-linkedin"></i>
-                <div class="detail">
-                  <h4>LinkedIn</h4>
-                  <p>thuc-anh-tran-ton-nu</p>
+                <div
+                  class="contact-item"
+                  onclick="window.open('https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222/', '_blank')"
+                  style="cursor: pointer"
+                >
+                  <i class="fab fa-linkedin"></i>
+                  <div class="detail">
+                    <h4>LinkedIn</h4>
+                    <p>thuc-anh-tran-ton-nu</p>
+                  </div>
                 </div>
-              </div>
-              <div
-                class="contact-item"
-                onclick="window.open('https://www.facebook.com/thucanhtrantonnu/', '_blank')"
-                style="cursor: pointer;"
-              >
-                <i class="fab fa-facebook"></i>
-                <div class="detail">
-                  <h4>Facebook</h4>
-                  <p>thucanhtrantonnu</p>
+                <div
+                  class="contact-item"
+                  onclick="window.open('https://www.facebook.com/thucanhtrantonnu/', '_blank')"
+                  style="cursor: pointer"
+                >
+                  <i class="fab fa-facebook"></i>
+                  <div class="detail">
+                    <h4>Facebook</h4>
+                    <p>thucanhtrantonnu</p>
+                  </div>
                 </div>
-              </div>
-              <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div class="detail">
-                  <h4>Location</h4>
-                  <p>Ho Chi Minh City, Vietnam</p>
+                <div class="contact-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div class="detail">
+                    <h4>Location</h4>
+                    <p>Ho Chi Minh City, Vietnam</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="contact-form-section">
+            <div class="contact-form-section">
               <h4>Send me a message</h4>
               <form
                 class="contact-form"
@@ -651,66 +677,13 @@
                 </button>
               </form>
             </div>
-            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <script>
-      function sendEmail(e) {
-        e.preventDefault();
-
-        const name = document.getElementById("name").value;
-        const subject = document.getElementById("subject").value;
-        const message = document.getElementById("message").value;
-
-        // Create mailto URL with all parameters
-        const mailtoLink = `mailto:thucanh.ttn@gmail.com?subject=${encodeURIComponent(
-          subject
-        )}&body=${encodeURIComponent(message)}`;
-
-        // Open the default mail client
-        window.location.href = mailtoLink;
-
-        // Reset the form
-        document.getElementById("contact-form").reset();
-
-        return false;
-      }
-    </script>
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      // Initialize AOS (Animate On Scroll) properly
-      document.addEventListener('DOMContentLoaded', function() {
-        AOS.init({
-          duration: 800,
-          easing: 'ease-in-out',
-          once: true,
-          mirror: false,
-          offset: 100,
-          delay: 0,
-          disable: false // Enable AOS on all devices
-        });
-
-        // Refresh AOS on window resize
-        window.addEventListener('resize', function() {
-          AOS.refresh();
-        });
-
-        // Fallback: If AOS fails to load, show content anyway
-        setTimeout(function() {
-          const hiddenElements = document.querySelectorAll('[data-aos]');
-          hiddenElements.forEach(function(element) {
-            if (element.style.opacity === '0' || element.style.visibility === 'hidden') {
-              element.style.opacity = '1';
-              element.style.visibility = 'visible';
-              element.style.transform = 'none';
-            }
-          });
-        }, 100);
-      });
-    </script>
     <script src="index.js"></script>
   </body>
 </html>
