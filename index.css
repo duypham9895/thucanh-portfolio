@@ -1552,8 +1552,8 @@ body.sidebar-open {
   .theme-toggle {
     bottom: 1.5rem;
     right: 1.5rem;
-    width: 45px;
-    height: 45px;
+    width: 52px;
+    height: 52px;
   }
 
   /* Disable hover effects on mobile */
@@ -1576,8 +1576,8 @@ body.sidebar-open {
   .theme-toggle {
     bottom: 1rem;
     right: 1rem;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
   }
 
   .mobile-sidebar-content {
