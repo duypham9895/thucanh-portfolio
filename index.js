@@ -1,3 +1,8 @@
+(function () {
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+})();
+
 /**
  * PORTFOLIO JAVASCRIPT - OPTIMIZED & ORGANIZED
  * Clean, maintainable, and well-documented code
@@ -60,17 +65,31 @@ const cursor = document.querySelector(".cursor");
 const follower = document.querySelector(".cursor-follower");
 
 if (!isMobileDevice() && cursor && follower) {
+  let mouseX = 0;
+  let mouseY = 0;
+  let followerX = 0;
+  let followerY = 0;
+  const lerpSpeed = 0.1; // Linear interpolation speed
+
   // Mouse movement handler
   document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-    // Delayed follower with smooth animation
-    setTimeout(() => {
-      follower.style.left = e.clientX + "px";
-      follower.style.top = e.clientY + "px";
-    }, 100);
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + "px";
+    cursor.style.top = mouseY + "px";
   });
+
+  // Smooth follower animation loop
+  function animateFollower() {
+    followerX += (mouseX - followerX) * lerpSpeed;
+    followerY += (mouseY - followerY) * lerpSpeed;
+
+    follower.style.left = followerX + "px";
+    follower.style.top = followerY + "px";
+
+    requestAnimationFrame(animateFollower);
+  }
+  animateFollower();
 
   // Interactive elements cursor effects
   const interactiveElements = document.querySelectorAll(
@@ -193,9 +212,12 @@ function initThemeToggle() {
    6. NAVIGATION & SCROLL HANDLING
    =================================== */
 
+const navElement = document.querySelector(".nav");
+const allNavLinks = document.querySelectorAll(".nav-menu a, .mobile-menu-link");
+const sections = document.querySelectorAll("section");
+
 // Get current active section based on scroll position
 function getCurrentSection() {
-  const sections = document.querySelectorAll("section");
   const scrollPosition = window.scrollY;
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
@@ -221,10 +243,16 @@ function getCurrentSection() {
 
 // Update active navigation items
 function updateActiveNavigation() {
+  // Handle navbar scroll styling
+  if (navElement) {
+    if (window.scrollY > 10) {
+      navElement.classList.add("scrolled");
+    } else {
+      navElement.classList.remove("scrolled");
+    }
+  }
+
   const currentSection = getCurrentSection();
-  const allNavLinks = document.querySelectorAll(
-    ".nav-menu a, .mobile-menu-link"
-  );
 
   allNavLinks.forEach((link) => {
     const href = link.getAttribute("href").substring(1); // Remove #
@@ -238,10 +266,8 @@ function updateActiveNavigation() {
 
 // Initialize navigation
 function initNavigation() {
-  const navLinks = document.querySelectorAll(".nav-menu a, .mobile-menu-link");
-
   // Add smooth scroll to all navigation links
-  navLinks.forEach((link) => {
+  allNavLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const targetId = link.getAttribute("href");
@@ -264,16 +290,6 @@ function initNavigation() {
   window.addEventListener("scroll", throttledScrollHandler);
 
   // Navbar scroll styling
-  const nav = document.querySelector(".nav");
-  if (nav) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 10) {
-        nav.classList.add("scrolled");
-      } else {
-        nav.classList.remove("scrolled");
-      }
-    });
-  }
 
   // Initial active section check
   updateActiveNavigation();
@@ -283,11 +299,14 @@ function initNavigation() {
    7. MOBILE NAVIGATION
    =================================== */
 
+const mobileSidebar = document.getElementById("mobile-sidebar");
+const hamburgerBtn = document.getElementById("hamburger-btn");
+const closeSidebarBtn = document.getElementById("close-btn");
+const sidebarOverlay = document.querySelector(".mobile-sidebar-overlay");
+const sidebarContent = document.querySelector(".mobile-sidebar-content");
 let scrollPosition = 0;
 
 function openMobileSidebar() {
-  const mobileSidebar = document.getElementById("mobile-sidebar");
-  const hamburgerBtn = document.getElementById("hamburger-btn");
   const body = document.body;
 
   if (!mobileSidebar || !hamburgerBtn) return;
@@ -307,8 +326,6 @@ function openMobileSidebar() {
 }
 
 function closeMobileSidebar() {
-  const mobileSidebar = document.getElementById("mobile-sidebar");
-  const hamburgerBtn = document.getElementById("hamburger-btn");
   const body = document.body;
 
   if (!mobileSidebar || !hamburgerBtn) return;
@@ -327,11 +344,6 @@ function closeMobileSidebar() {
 }
 
 function initMobileNavigation() {
-  const hamburgerBtn = document.getElementById("hamburger-btn");
-  const closeSidebarBtn = document.getElementById("close-btn");
-  const sidebarOverlay = document.querySelector(".mobile-sidebar-overlay");
-  const mobileSidebar = document.getElementById("mobile-sidebar");
-
   if (!hamburgerBtn || !mobileSidebar) return;
 
   // Hamburger button click handler
@@ -365,7 +377,6 @@ function initMobileNavigation() {
   }
 
   // Prevent sidebar content clicks from closing sidebar
-  const sidebarContent = document.querySelector(".mobile-sidebar-content");
   if (sidebarContent) {
     sidebarContent.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -474,4 +485,3 @@ window.addEventListener("load", function () {
 
 // Export functions for global access
 window.sendEmail = sendEmail;
-window.toggleTheme = toggleTheme;
