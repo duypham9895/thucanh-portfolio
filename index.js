@@ -313,19 +313,16 @@ function closeMobileSidebar() {
 
   if (!mobileSidebar || !hamburgerBtn) return;
 
-  // Close sidebar with animation
-  requestAnimationFrame(() => {
-    mobileSidebar.classList.remove("active");
-    hamburgerBtn.classList.remove("active");
+  mobileSidebar.classList.remove("active");
+  hamburgerBtn.classList.remove("active");
 
-    // Restore body scroll
-    body.classList.remove("sidebar-open");
-    body.style.top = "";
-
-    // Restore scroll position
-    if (scrollPosition > 0) {
-      window.scrollTo(0, scrollPosition);
-    }
+  // Restore body scroll and position
+  body.classList.remove("sidebar-open");
+  body.style.top = "";
+  window.scrollTo({
+    top: scrollPosition,
+    left: 0,
+    behavior: "instant",
   });
 }
 
