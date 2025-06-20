@@ -71,27 +71,26 @@ if (!isMobileDevice() && cursor && follower) {
   let mouseY = 0;
   let followerX = 0;
   let followerY = 0;
+  let cursorScale = 1;
+  let followerScale = 1;
   const lerpSpeed = 0.1; // Linear interpolation speed
 
-  // Mouse movement handler
   document.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    cursor.style.left = mouseX + "px";
-    cursor.style.top = mouseY + "px";
   });
 
-  // Smooth follower animation loop
-  function animateFollower() {
+  // Smooth animation loop for both cursor and follower
+  function animateCursors() {
     followerX += (mouseX - followerX) * lerpSpeed;
     followerY += (mouseY - followerY) * lerpSpeed;
 
-    follower.style.left = followerX + "px";
-    follower.style.top = followerY + "px";
+    cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
+    follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${followerScale})`;
 
-    requestAnimationFrame(animateFollower);
+    requestAnimationFrame(animateCursors);
   }
-  animateFollower();
+  animateCursors();
 
   // Interactive elements cursor effects
   const interactiveElements = document.querySelectorAll(
@@ -100,18 +99,18 @@ if (!isMobileDevice() && cursor && follower) {
 
   interactiveElements.forEach((element) => {
     element.addEventListener("mouseenter", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1.5)";
+      cursorScale = 1.5;
       cursor.style.backgroundColor = "var(--primary-color)";
       cursor.style.mixBlendMode = "difference";
-      follower.style.transform = "translate(-50%, -50%) scale(0.8)";
+      followerScale = 0.8;
       follower.style.opacity = "0.3";
     });
 
     element.addEventListener("mouseleave", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1)";
+      cursorScale = 1;
       cursor.style.backgroundColor = "var(--secondary-color)";
       cursor.style.mixBlendMode = "normal";
-      follower.style.transform = "translate(-50%, -50%) scale(1)";
+      followerScale = 1;
       follower.style.opacity = "0.7";
     });
   });
@@ -120,24 +119,24 @@ if (!isMobileDevice() && cursor && follower) {
   const themeToggle = document.querySelector(".theme-toggle");
   if (themeToggle) {
     themeToggle.addEventListener("mouseenter", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(2)";
+      cursorScale = 2;
       cursor.style.backgroundColor = "#ffffff";
       cursor.style.mixBlendMode = "difference";
       cursor.style.border = "2px solid var(--primary-color)";
       cursor.style.borderRadius = "50%";
-      follower.style.transform = "translate(-50%, -50%) scale(0.5)";
+      followerScale = 0.5;
       follower.style.opacity = "0.8";
       follower.style.borderColor = "#ffffff";
       follower.style.borderWidth = "3px";
     });
 
     themeToggle.addEventListener("mouseleave", () => {
-      cursor.style.transform = "translate(-50%, -50%) scale(1)";
+      cursorScale = 1;
       cursor.style.backgroundColor = "var(--secondary-color)";
       cursor.style.mixBlendMode = "normal";
       cursor.style.border = "none";
       cursor.style.borderRadius = "50%";
-      follower.style.transform = "translate(-50%, -50%) scale(1)";
+      followerScale = 1;
       follower.style.opacity = "0.7";
       follower.style.borderColor = "var(--secondary-color)";
       follower.style.borderWidth = "2px";
@@ -617,9 +616,9 @@ function renderExperience(experience) {
   container.innerHTML = experience.workHistory
     .map(
       (item, index) => `
-    <div class="timeline-item" data-aos="fade-${
-      index % 2 === 0 ? "right" : "left"
-    }">
+    <div class="timeline-item${index === 0 ? " current" : ""}" data-aos="fade-${
+        index % 2 === 0 ? "right" : "left"
+      }">
       <div class="timeline-content">
         <span class="date">${item.employmentPeriod}</span>
         <h3>${item.companyName}</h3>
@@ -690,18 +689,17 @@ function renderAchievements(achievements) {
   container.innerHTML = achievements.achievementList
     .map(
       (card) => `
-    <div class="education-card">
-      <div class="education-header">
+    <div class="achievement-card">
+      <div class="achievement-header">
         <i class="${card.achievementIcon}"></i>
-        <div class="education-title">
-          <h3>${card.achievementCategory}</h3>
-        </div>
+        <h3>${card.achievementCategory}</h3>
       </div>
-      <div class="education-content">
-        <ul class="education-achievements">
+      <div class="achievement-content">
+        <ul>
           ${card.accomplishments
             .map(
-              (ach) => `<li><i class="fas fa-star"></i><span>${ach}</span></li>`
+              (ach) =>
+                `<li><i class="fas fa-trophy"></i><span>${ach}</span></li>`
             )
             .join("")}
         </ul>
