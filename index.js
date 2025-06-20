@@ -46,6 +46,8 @@ function throttle(func, delay) {
   };
 }
 
+let contactEmail = "";
+
 /* ===================================
    2. DEVICE DETECTION & SETUP
    =================================== */
@@ -413,7 +415,12 @@ function sendEmail(e) {
   const emailBody = `Message from: ${name}\n\n${message}`;
 
   // Create mailto link
-  const mailtoLink = `mailto:thucanh.ttn@gmail.com?subject=${encodeURIComponent(
+  if (!contactEmail) {
+    console.error("Contact email is not configured.");
+    alert("The contact form is currently unavailable. Please try again later.");
+    return false;
+  }
+  const mailtoLink = `mailto:${contactEmail}?subject=${encodeURIComponent(
     subject
   )}&body=${encodeURIComponent(emailBody)}`;
 
@@ -470,12 +477,258 @@ function initAOS() {
    =================================== */
 
 // Initialize all functionality when DOM is ready
-document.addEventListener("DOMContentLoaded", function () {
+/* ===================================
+   11. DYNAMIC CONTENT LOADING
+   =================================== */
+
+async function loadConfig() {
+  try {
+    const response = await fetch("config.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const config = await response.json();
+    applyConfig(config);
+  } catch (error) {
+    console.error("Could not load configuration:", error);
+  }
+}
+
+function applyConfig(config) {
+  if (!config) return;
+
+  // Apply simple text and attribute configs
+  document.querySelectorAll("[data-config]").forEach((el) => {
+    const key = el.getAttribute("data-config");
+    const value = getNestedProperty(config, key);
+    if (value) {
+      el.textContent = value;
+    }
+  });
+
+  document.querySelectorAll("[data-config-src]").forEach((el) => {
+    const key = el.getAttribute("data-config-src");
+    const value = getNestedProperty(config, key);
+    if (value) {
+      el.src = value;
+    }
+  });
+
+  document.querySelectorAll("[data-config-alt]").forEach((el) => {
+    const key = el.getAttribute("data-config-alt");
+    const value = getNestedProperty(config, key);
+    if (value) {
+      el.alt = value;
+    }
+  });
+
+  // Set glitch effect text
+  const glitchElement = document.querySelector(".glitch");
+  if (glitchElement && config.hero && config.hero.glitchText) {
+    glitchElement.setAttribute("data-text", config.hero.glitchText);
+  }
+
+  // Render dynamic sections
+  if (config.education) renderEducation(config.education);
+  if (config.portfolio) renderPortfolio(config.portfolio);
+  if (config.experience) renderExperience(config.experience);
+  if (config.skills) renderSkills(config.skills);
+  if (config.activities) renderActivities(config.activities);
+  if (config.achievements) renderAchievements(config.achievements);
+  if (config.contact) {
+    setupContactLinks(config.contact);
+    if (config.contact.emailAddress) {
+      contactEmail = config.contact.emailAddress;
+    }
+  }
+
+  // Re-initialize components that depend on dynamic content
   initTypingEffect();
+  initAOS();
+}
+
+function getNestedProperty(obj, path) {
+  return path.split(".").reduce((o, p) => (o ? o[p] : null), obj);
+}
+
+function renderEducation(education) {
+  const container = document.getElementById("education-container");
+  if (!container) return;
+  container.innerHTML = education.educationHistory
+    .map(
+      (card) => `
+    <div class="education-card">
+      <div class="education-header">
+        <i class="fas fa-graduation-cap"></i>
+        <div class="education-title">
+          <h3>${card.institutionName}</h3>
+          <span class="education-year">${card.duration}</span>
+        </div>
+      </div>
+      <div class="education-content">
+        <h4>${card.degreeName}</h4>
+        <ul class="education-achievements">
+          ${card.accomplishments
+            .map(
+              (ach) => `<li><i class="fas fa-star"></i><span>${ach}</span></li>`
+            )
+            .join("")}
+        </ul>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderPortfolio(portfolio) {
+  const container = document.getElementById("campaigns-container");
+  if (!container) return;
+  container.innerHTML = portfolio.projects
+    .map(
+      (project, index) => `
+    <div class="campaign-card" data-aos="flip-left" data-aos-delay="${
+      index * 100
+    }">
+      <div class="campaign-image">
+        <div class="overlay">
+          <div class="campaign-details">
+            <h4>${project.projectName}</h4>
+            <p>${project.projectDescription}</p>
+            <a href="${
+              project.projectLink
+            }" class="view-details">View Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="campaign-info">
+        <span class="category">${project.projectCategory}</span>
+        <h3>${project.projectName}</h3>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderExperience(experience) {
+  const container = document.getElementById("timeline-container");
+  if (!container) return;
+  container.innerHTML = experience.workHistory
+    .map(
+      (item, index) => `
+    <div class="timeline-item" data-aos="fade-${
+      index % 2 === 0 ? "right" : "left"
+    }">
+      <div class="timeline-content">
+        <span class="date">${item.employmentPeriod}</span>
+        <h3>${item.companyName}</h3>
+        <h4>${item.jobTitle}</h4>
+        <ul>
+          ${item.responsibilities.map((task) => `<li>${task}</li>`).join("")}
+        </ul>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderSkills(skills) {
+  const container = document.getElementById("skills-container");
+  if (!container) return;
+  container.innerHTML = skills.skillList
+    .map(
+      (skill) => `
+    <div class="skill-card">
+      <i class="${skill.skillIcon}"></i>
+      <h4>${skill.skillName}</h4>
+      <p>${skill.skillDescription}</p>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderActivities(activities) {
+  const container = document.getElementById("activities-container");
+  if (!container) return;
+  container.innerHTML = activities.activityList
+    .map(
+      (activity) => `
+    <div class="activity-card">
+      <div class="activity-header">
+        <i class="fas fa-globe"></i>
+        <div class="activity-title">
+          <h3>${activity.activityName}</h3>
+          <span class="activity-role">${activity.activityRole}</span>
+        </div>
+      </div>
+      <div class="activity-content">
+        <ul class="activity-achievements">
+          ${activity.activityAccomplishments
+            .map(
+              (ach) => `
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <p>${ach}</p>
+            </li>
+          `
+            )
+            .join("")}
+        </ul>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function renderAchievements(achievements) {
+  const container = document.getElementById("achievements-container");
+  if (!container) return;
+  container.innerHTML = achievements.achievementList
+    .map(
+      (card) => `
+    <div class="education-card">
+      <div class="education-header">
+        <i class="${card.achievementIcon}"></i>
+        <div class="education-title">
+          <h3>${card.achievementCategory}</h3>
+        </div>
+      </div>
+      <div class="education-content">
+        <ul class="education-achievements">
+          ${card.accomplishments
+            .map(
+              (ach) => `<li><i class="fas fa-star"></i><span>${ach}</span></li>`
+            )
+            .join("")}
+        </ul>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function setupContactLinks(contact) {
+  const linkedin = document.getElementById("linkedin-contact");
+  const facebook = document.getElementById("facebook-contact");
+
+  if (linkedin && contact.linkedin && contact.linkedin.profileUrl) {
+    linkedin.onclick = () => window.open(contact.linkedin.profileUrl, "_blank");
+  }
+  if (facebook && contact.facebook && contact.facebook.profileUrl) {
+    facebook.onclick = () => window.open(contact.facebook.profileUrl, "_blank");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadConfig();
   initThemeToggle();
   initNavigation();
   initMobileNavigation();
-  initAOS();
 });
 
 // Initialize on window load as well for safety

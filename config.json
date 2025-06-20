@@ -1,0 +1,214 @@
+{
+  "fullName": "Trần Tôn Nữ Thục Anh",
+  "firstName": "Thục Anh",
+  "pageTitle": "Thục Anh's Portfolio",
+  "hero": {
+    "glitchText": "Team Leadership",
+    "tagline": "Driving Success Through People and Innovation",
+    "contactButton": "Get In Touch",
+    "workButton": "View My Work"
+  },
+  "about": {
+    "sectionTitle": "About Me",
+    "profileImage": "images/avatar.jpg",
+    "profileAltText": "Thục Anh's Profile Picture",
+    "intro": "Driving Success Through People and Innovation",
+    "bioParagraph1": "I'm a dynamic marketing professional with diverse experience across digital marketing, content creation, and brand management. Currently pursuing my Bachelor of Business Administration with a 3.68 GPA while gaining hands-on expertise with global brands like L'Oréal and Estée Lauder, where I consistently exceeded KPIs by 100-130%.",
+    "bioParagraph2": "From co-founding Drunky 3D Studio to managing international collaborations in Japan, I thrive at the intersection of creativity and strategy. I'm passionate about building meaningful connections between brands and audiences through innovative digital marketing solutions."
+  },
+  "education": {
+    "sectionTitle": "Education",
+    "educationHistory": [
+      {
+        "institutionName": "University of Economics and Finance Ho Chi Minh City",
+        "duration": "2021 - 2025",
+        "degreeName": "Bachelor of Business Administration",
+        "accomplishments": [
+          "GPA: 3.68/4.0",
+          "50% scholarship for 4 consecutive years",
+          "Top 1 Merit Scholarship 2023-2024: GPA 4.0/4.0"
+        ]
+      }
+    ]
+  },
+  "portfolio": {
+    "sectionTitle": "Portfolio",
+    "projects": [
+      {
+        "projectName": "Performance Optimization",
+        "projectCategory": "Leadership",
+        "projectDescription": "Improved team productivity by 40% through process optimization",
+        "projectLink": "#"
+      },
+      {
+        "projectName": "Team Synergy",
+        "projectCategory": "Project Management",
+        "projectDescription": "Successfully managed 5 concurrent projects across departments",
+        "projectLink": "#"
+      },
+      {
+        "projectName": "Workflow Enhancement",
+        "projectCategory": "Innovation",
+        "projectDescription": "Implemented new workflow reducing delivery time by 30%",
+        "projectLink": "#"
+      }
+    ]
+  },
+  "experience": {
+    "sectionTitle": "Experience Timeline",
+    "workHistory": [
+      {
+        "employmentPeriod": "Jun 2025 - Now",
+        "companyName": "L'OREAL VIETNAM - PPD",
+        "jobTitle": "Online Marketing Intern",
+        "responsibilities": [
+          "Supported digital marketing campaigns and assisted in online brand activations for L'Oréal's Professional Products Division.",
+          "Coordinated with cross-functional teams to optimize social media presence and campaign performance."
+        ]
+      },
+      {
+        "employmentPeriod": "May 2024 - Nov 2024",
+        "companyName": "ESTÉE LAUDER COMPANIES",
+        "jobTitle": "Cloud (Ecom) Beauty Advisor - Freelance BA",
+        "responsibilities": [
+          "Hosted daily livestream sessions showcasing Estée Lauder's products through OBS Studio, consistently achieved 100–130% of monthly KPIs",
+          "Collaborated with the Ecommerce and Marketing team to align livestream content with seasonal campaigns, holiday promotions, and new product launches"
+        ]
+      },
+      {
+        "employmentPeriod": "Nov 2024 - Apr 2025",
+        "companyName": "JOETSU SKIING RESORT (JAPAN)",
+        "jobTitle": "Hospitality Intern",
+        "responsibilities": [
+          "Streamlined dishwashing workflows by reorganizing kitchen stations",
+          "Collaborated with the housekeeping team to prioritize room cleaning schedules during peak occupancy periods"
+        ]
+      },
+      {
+        "employmentPeriod": "Nov 2023 - Feb 2024",
+        "companyName": "L'OREAL VIETNAM - CERAVE",
+        "jobTitle": "Brand Ambassador Livestreamer - TikTok",
+        "responsibilities": [
+          "Introduced, guide, answer, respond to customers through livestream",
+          "Participated in content creation: Coordinate with Brand team to set content orientation",
+          "Recorded videos to prepare for Livestream sessions/Videos for sales",
+          "Coordinated with team to achieve the highest KPI: November (125%), December (120%)"
+        ]
+      },
+      {
+        "employmentPeriod": "Nov 2022 - Oct 2023",
+        "companyName": "BARESOUL COSME",
+        "jobTitle": "Content Creation & B2B Sales",
+        "responsibilities": [
+          "<strong>Content Creation:</strong> Created marketing plan and weekly TikTok content (+9k followers)",
+          "<strong>KOL Management:</strong> Managed campaigns with prominent KOLs like Giang Ơi, Gia Đình Hanna, Kimberly",
+          "<strong>B2B Sales:</strong> Built B2B pool of 80-100 potential customers, managed relationships with major chains",
+          "<strong>Livestreaming:</strong> Achieved 100% of monthly KPIs through TikTok and Shopee livestreams"
+        ]
+      },
+      {
+        "employmentPeriod": "Nov 2022 - June 2023",
+        "companyName": "DRUNKY 3D STUDIO",
+        "jobTitle": "Co-founder",
+        "responsibilities": [
+          "Oriented long-term and short-term strategies, implemented new ideas to increase brand awareness",
+          "Created communication and marketing plans, resulting in 500+ student registrations for 3 main courses",
+          "Managed and coordinated team members effectively"
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "sectionTitle": "Professional Skills",
+    "skillList": [
+      {
+        "skillIcon": "fas fa-hands-helping",
+        "skillName": "Leadership & Teamwork",
+        "skillDescription": "Strong ability to lead teams, foster collaboration, and achieve collective goals through effective team management"
+      },
+      {
+        "skillIcon": "fas fa-lightbulb",
+        "skillName": "Problem-solving",
+        "skillDescription": "Analytical approach to challenges, developing innovative solutions and implementing effective strategies"
+      },
+      {
+        "skillIcon": "fas fa-comments",
+        "skillName": "Communication",
+        "skillDescription": "Excellence in verbal and written communication, with strong presentation and interpersonal skills"
+      },
+      {
+        "skillIcon": "fas fa-sync-alt",
+        "skillName": "Adaptability",
+        "skillDescription": "Flexible approach to changing situations, quick to learn and embrace new methodologies"
+      },
+      {
+        "skillIcon": "fas fa-brain",
+        "skillName": "Creative Thinking",
+        "skillDescription": "Innovative approach to challenges, thinking outside the box to develop unique solutions"
+      },
+      {
+        "skillIcon": "fas fa-tasks",
+        "skillName": "Project Management",
+        "skillDescription": "Skilled in planning, executing, and delivering projects on time and within scope"
+      }
+    ]
+  },
+  "activities": {
+    "sectionTitle": "Extracurricular Activities",
+    "activityList": [
+      {
+        "activityName": "AIESEC - SOUTHERN YOUTHSPEAK 2022",
+        "activityRole": "Student Brand Ambassador",
+        "activityAccomplishments": [
+          "Supported the organizers to engage the students in HCMC to the conference",
+          "Contributed to attracting the participants which led to increase to 1000+ participants"
+        ]
+      }
+    ]
+  },
+  "achievements": {
+    "sectionTitle": "Achievements & Certifications",
+    "achievementList": [
+      {
+        "achievementIcon": "fas fa-trophy",
+        "achievementCategory": "Academic Excellence",
+        "accomplishments": [
+          "Top 1 Merit Scholarship 2023-2024",
+          "Student of 5 Merits University 2022-2023 & 2023-2024"
+        ]
+      },
+      {
+        "achievementIcon": "fas fa-award",
+        "achievementCategory": "Competition Success",
+        "accomplishments": [
+          "Top 20 48H Hackathon 2021 RE-Organization",
+          "Top 20 Z-Marketer 2023"
+        ]
+      },
+      {
+        "achievementIcon": "fas fa-certificate",
+        "achievementCategory": "Recognition & Projects",
+        "accomplishments": [
+          "Certificate of Outstanding contribution to UEF's extracurricular activities 2021-2024",
+          "Project Design UEF - Excellent Innovation Project 2023"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "sectionTitle": "Let's Connect",
+    "greeting": "Get in Touch",
+    "formTitle": "Send me a message",
+    "phoneNumber": "(+84) 797038080",
+    "emailAddress": "thucanh.ttn@gmail.com",
+    "linkedin": {
+      "profileUrl": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222/",
+      "username": "thuc-anh-tran-ton-nu"
+    },
+    "facebook": {
+      "profileUrl": "https://www.facebook.com/thucanhtrantonnu/",
+      "username": "thucanhtrantonnu"
+    },
+    "physicalLocation": "Ho Chi Minh City, Vietnam"
+  }
+}
