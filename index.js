@@ -69,28 +69,16 @@ const follower = document.querySelector(".cursor-follower");
 if (!isMobileDevice() && cursor && follower) {
   let mouseX = 0;
   let mouseY = 0;
-  let followerX = 0;
-  let followerY = 0;
   let cursorScale = 1;
   let followerScale = 1;
-  const lerpSpeed = 0.1; // Linear interpolation speed
 
   document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  // Smooth animation loop for both cursor and follower
-  function animateCursors() {
-    followerX += (mouseX - followerX) * lerpSpeed;
-    followerY += (mouseY - followerY) * lerpSpeed;
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
 
     cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${cursorScale})`;
-    follower.style.transform = `translate3d(${followerX}px, ${followerY}px, 0) translate(-50%, -50%) scale(${followerScale})`;
-
-    requestAnimationFrame(animateCursors);
-  }
-  animateCursors();
+    follower.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${followerScale})`;
+  });
 
   // Interactive elements cursor effects
   const interactiveElements = document.querySelectorAll(
