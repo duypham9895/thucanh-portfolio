@@ -1,0 +1,13 @@
+{
+  "name": "thucanh-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio project with unit tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^30.0.2"
+  }
+}
