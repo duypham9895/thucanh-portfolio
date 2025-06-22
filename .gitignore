@@ -10,3 +10,39 @@ Thumbs.db
 # IconKitchen output files
 IconKitchen-Output/
 IconKitchen-Output.zip
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# VS Code
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Build output
+/dist/
+/build/
+
+# Test coverage
+coverage/
+
+# Misc
+.env
+*.local
+
+# Ignore test output
+__tests__/output/
+
+# Yarn v2+ (Berry) specific
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
