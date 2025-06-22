@@ -22,10 +22,11 @@ portfolio/
 ├── index.css           # Styles (organized into sections)
 ├── index.js            # JavaScript functionality (modular)
 ├── manifest.json       # PWA manifest
-├── CNAME              # GitHub Pages domain
-├── .gitignore         # Git ignore rules
-├── README.md          # Project documentation
-├── icons/             # PWA and favicon icons
+├── config.json         # Portfolio content and settings
+├── CNAME               # GitHub Pages domain
+├── .gitignore          # Git ignore rules
+├── README.md           # Project documentation
+├── icons/              # PWA and favicon icons
 │   ├── favicon.ico
 │   ├── apple-touch-icon.png
 │   ├── icon-192.png
@@ -178,6 +179,10 @@ Update the content sections in `index.html`:
 - Experience timeline
 - Skills and achievements
 
+### Content Configuration
+
+All text content, project details, and social media links are managed in `config.json`. Modify this file to update the portfolio's content without changing the HTML structure.
+
 ### Animations
 
 Modify AOS settings in `index.js`:
@@ -194,7 +199,7 @@ AOS.init({
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the MIT License.
 
 ## 👤 Contact
 
