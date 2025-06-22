@@ -1,8 +1,3 @@
-(function () {
-  const savedTheme = localStorage.getItem("theme") || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
-})();
-
 /**
  * PORTFOLIO JAVASCRIPT - OPTIMIZED & ORGANIZED
  * Clean, maintainable, and well-documented code
@@ -208,26 +203,20 @@ const sections = document.querySelectorAll("section");
 // Get current active section based on scroll position
 function getCurrentSection() {
   const scrollPosition = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const documentHeight = document.documentElement.scrollHeight;
+  let currentSectionId = null;
 
-  // Check if at bottom of page
-  const isAtBottom =
-    Math.ceil(scrollPosition + windowHeight) >= documentHeight - 10;
-  if (isAtBottom && sections.length > 0) {
-    return sections[sections.length - 1].id;
-  }
+  // Iterate backwards through sections
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const section = sections[i];
+    // Adjust the offset to be a bit more than the navbar height
+    const sectionTop = section.offsetTop - 150;
 
-  // Find current section
-  for (const section of sections) {
-    const sectionTop = section.offsetTop - 100;
-    const sectionBottom = sectionTop + section.offsetHeight;
-
-    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-      return section.id;
+    if (scrollPosition >= sectionTop) {
+      currentSectionId = section.id;
+      break; // Exit loop once the current section is found
     }
   }
-  return null;
+  return currentSectionId;
 }
 
 // Update active navigation items
@@ -263,13 +252,14 @@ function initNavigation() {
       const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        targetSection.scrollIntoView({ behavior: "smooth" });
-
         // Close mobile sidebar if open
         const mobileSidebar = document.getElementById("mobile-sidebar");
         if (mobileSidebar && mobileSidebar.classList.contains("active")) {
           closeMobileSidebar();
         }
+
+        // Scroll to the section
+        targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   });
@@ -277,8 +267,6 @@ function initNavigation() {
   // Add scroll event listener with throttling
   const throttledScrollHandler = throttle(updateActiveNavigation, 100);
   window.addEventListener("scroll", throttledScrollHandler);
-
-  // Navbar scroll styling
 
   // Initial active section check
   updateActiveNavigation();
@@ -296,40 +284,17 @@ const sidebarContent = document.querySelector(".mobile-sidebar-content");
 let scrollPosition = 0;
 
 function openMobileSidebar() {
-  const body = document.body;
-
   if (!mobileSidebar || !hamburgerBtn) return;
-
-  // Store current scroll position
-  scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-  // Open sidebar with animation
-  requestAnimationFrame(() => {
-    mobileSidebar.classList.add("active");
-    hamburgerBtn.classList.add("active");
-
-    // Prevent body scroll
-    body.style.top = `-${scrollPosition}px`;
-    body.classList.add("sidebar-open");
-  });
+  mobileSidebar.classList.add("active");
+  hamburgerBtn.classList.add("active");
+  bodyScrollLock.disableBodyScroll(mobileSidebar);
 }
 
 function closeMobileSidebar() {
-  const body = document.body;
-
   if (!mobileSidebar || !hamburgerBtn) return;
-
   mobileSidebar.classList.remove("active");
   hamburgerBtn.classList.remove("active");
-
-  // Restore body scroll and position
-  body.classList.remove("sidebar-open");
-  body.style.top = "";
-  window.scrollTo({
-    top: scrollPosition,
-    left: 0,
-    behavior: "instant",
-  });
+  bodyScrollLock.enableBodyScroll(mobileSidebar);
 }
 
 function initMobileNavigation() {
@@ -715,11 +680,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initThemeToggle();
   initNavigation();
   initMobileNavigation();
-});
-
-// Initialize on window load as well for safety
-window.addEventListener("load", function () {
-  updateActiveNavigation();
 });
 
 // Export functions for global access
