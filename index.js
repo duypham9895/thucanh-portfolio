@@ -9,8 +9,15 @@
 
 /**
  * Check if device is mobile
+ * Allows override for testing via window.__forceMobile
  */
+if (typeof window !== "undefined" && window.__forceMobile === undefined) {
+  window.__forceMobile = undefined;
+}
 function isMobileDevice() {
+  if (typeof window !== "undefined" && window.__forceMobile !== undefined) {
+    return window.__forceMobile;
+  }
   return (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
@@ -683,4 +690,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Export functions for global access
+
+// Export functions for testing (Node.js)
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { isMobileDevice, throttle };
+}
+
 window.sendEmail = sendEmail;
