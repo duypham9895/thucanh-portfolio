@@ -3,12 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title data-config="pageTitle">Thục Anh's Portfolio</title>
+    <title data-config="pageTitle">Thục Anh — Beauty Marketing Portfolio</title>
 
     <!-- Favicon -->
     <link rel="icon" href="/icons/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="index.css" />
@@ -38,7 +46,7 @@
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
-        <div class="mobile-nav-brand" data-config="firstName" />
+        <div class="mobile-nav-brand" data-config="firstName"></div>
       </div>
     </nav>
 
@@ -47,8 +55,8 @@
       <div class="mobile-sidebar-overlay"></div>
       <div class="mobile-sidebar-content">
         <div class="mobile-sidebar-header">
-          <h3>Navigation</h3>
-          <button class="close-btn" id="close-btn">
+          <h3>Menu</h3>
+          <button class="close-btn" id="close-btn" aria-label="Close menu">
             <i class="fas fa-times"></i>
           </button>
         </div>
@@ -75,12 +83,12 @@
           </li>
           <li>
             <a href="#skills" class="mobile-menu-link"
-              ><i class="fas fa-tools"></i><span>Skills</span></a
+              ><i class="fas fa-star"></i><span>Skills</span></a
             >
           </li>
           <li>
             <a href="#activities" class="mobile-menu-link"
-              ><i class="fas fa-tasks"></i><span>Activities</span></a
+              ><i class="fas fa-heart"></i><span>Activities</span></a
             >
           </li>
           <li>
@@ -119,11 +127,11 @@
           ></a>
         </li>
         <li>
-          <a href="#skills" title="Skills"><i class="fas fa-tools"></i></a>
+          <a href="#skills" title="Skills"><i class="fas fa-star"></i></a>
         </li>
         <li>
           <a href="#activities" title="Activities"
-            ><i class="fas fa-tasks"></i
+            ><i class="fas fa-heart"></i
           ></a>
         </li>
         <li>
@@ -132,7 +140,9 @@
           ></a>
         </li>
         <li>
-          <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+          <a href="#contact" title="Contact"
+            ><i class="fas fa-envelope"></i
+          ></a>
         </li>
       </ul>
     </nav>
@@ -142,35 +152,35 @@
     <div class="cursor-follower"></div>
 
     <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
       <i class="fas fa-moon"></i>
     </button>
 
     <!-- Header Section -->
     <header class="header">
-      <div class="animated-bg"></div>
+      <div class="hero-bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
       <div class="hero">
         <div class="hero-content" data-aos="fade-up">
-          <h1
-            class="glitch"
-            data-text="Team Leadership"
-            data-config="fullName"
-          ></h1>
+          <span class="hero-label">Beauty Marketing Professional</span>
+          <h1 class="hero-name" data-config="fullName"></h1>
           <p class="typing-text" data-config="hero.tagline"></p>
           <div class="hero-cta">
             <a
               href="#contact"
-              class="cta-button"
+              class="cta-button primary"
               data-config="hero.contactButton"
             ></a>
             <a
-              href="#experience"
+              href="#portfolio"
               class="cta-button secondary"
               data-config="hero.workButton"
             ></a>
           </div>
         </div>
-        <div class="hero-shape"></div>
       </div>
     </header>
 
@@ -288,9 +298,8 @@
                   </div>
                 </div>
                 <div
-                  class="contact-item"
+                  class="contact-item clickable"
                   id="linkedin-contact"
-                  style="cursor: pointer"
                 >
                   <i class="fab fa-linkedin"></i>
                   <div class="detail">
@@ -299,9 +308,8 @@
                   </div>
                 </div>
                 <div
-                  class="contact-item"
+                  class="contact-item clickable"
                   id="facebook-contact"
-                  style="cursor: pointer"
                 >
                   <i class="fab fa-facebook"></i>
                   <div class="detail">
@@ -360,6 +368,11 @@
         </div>
       </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Trần Tôn Nữ Thục Anh. Crafted with care.</p>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

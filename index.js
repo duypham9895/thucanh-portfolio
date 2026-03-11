@@ -1,15 +1,12 @@
 /**
- * PORTFOLIO JAVASCRIPT - OPTIMIZED & ORGANIZED
- * Clean, maintainable, and well-documented code
+ * THỤC ANH PORTFOLIO — JAVASCRIPT
+ * Clean, modular, well-organized
  */
 
 /* ===================================
    1. UTILITY FUNCTIONS
    =================================== */
 
-/**
- * Check if device is mobile
- */
 function isMobileDevice() {
   return (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -20,9 +17,6 @@ function isMobileDevice() {
   );
 }
 
-/**
- * Throttle function for performance optimization
- */
 function throttle(func, delay) {
   let timeoutId;
   let lastExecTime = 0;
@@ -47,7 +41,6 @@ let contactEmail = "";
    2. DEVICE DETECTION & SETUP
    =================================== */
 
-// Add device class to body
 if (isMobileDevice()) {
   document.body.classList.add("mobile");
 } else {
@@ -62,8 +55,6 @@ const cursor = document.querySelector(".cursor");
 const follower = document.querySelector(".cursor-follower");
 
 if (!isMobileDevice() && cursor && follower) {
-  let mouseX = 0;
-  let mouseY = 0;
   let cursorScale = 1;
   let followerScale = 1;
 
@@ -75,7 +66,6 @@ if (!isMobileDevice() && cursor && follower) {
     follower.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${followerScale})`;
   });
 
-  // Interactive elements cursor effects
   const interactiveElements = document.querySelectorAll(
     "a, button, .portfolio-link, .cta-button, .submit-btn"
   );
@@ -83,7 +73,7 @@ if (!isMobileDevice() && cursor && follower) {
   interactiveElements.forEach((element) => {
     element.addEventListener("mouseenter", () => {
       cursorScale = 1.5;
-      cursor.style.backgroundColor = "var(--primary-color)";
+      cursor.style.backgroundColor = "var(--primary)";
       cursor.style.mixBlendMode = "difference";
       followerScale = 0.8;
       follower.style.opacity = "0.3";
@@ -91,42 +81,30 @@ if (!isMobileDevice() && cursor && follower) {
 
     element.addEventListener("mouseleave", () => {
       cursorScale = 1;
-      cursor.style.backgroundColor = "var(--secondary-color)";
+      cursor.style.backgroundColor = "var(--primary)";
       cursor.style.mixBlendMode = "normal";
       followerScale = 1;
-      follower.style.opacity = "0.7";
+      follower.style.opacity = "0.5";
     });
   });
 
-  // Special theme toggle cursor effect
   const themeToggle = document.querySelector(".theme-toggle");
   if (themeToggle) {
     themeToggle.addEventListener("mouseenter", () => {
       cursorScale = 2;
-      cursor.style.backgroundColor = "#ffffff";
       cursor.style.mixBlendMode = "difference";
-      cursor.style.border = "2px solid var(--primary-color)";
-      cursor.style.borderRadius = "50%";
       followerScale = 0.5;
       follower.style.opacity = "0.8";
-      follower.style.borderColor = "#ffffff";
-      follower.style.borderWidth = "3px";
     });
 
     themeToggle.addEventListener("mouseleave", () => {
       cursorScale = 1;
-      cursor.style.backgroundColor = "var(--secondary-color)";
       cursor.style.mixBlendMode = "normal";
-      cursor.style.border = "none";
-      cursor.style.borderRadius = "50%";
       followerScale = 1;
-      follower.style.opacity = "0.7";
-      follower.style.borderColor = "var(--secondary-color)";
-      follower.style.borderWidth = "2px";
+      follower.style.opacity = "0.5";
     });
   }
 } else {
-  // Hide cursors on mobile
   if (cursor) cursor.style.display = "none";
   if (follower) follower.style.display = "none";
 }
@@ -147,12 +125,11 @@ function initTypingEffect() {
     if (charIndex < originalText.length) {
       text.textContent += originalText.charAt(charIndex);
       charIndex++;
-      setTimeout(typeCharacter, 100);
+      setTimeout(typeCharacter, 40);
     }
   }
 
-  // Start typing after a delay
-  setTimeout(typeCharacter, 1000);
+  setTimeout(typeCharacter, 800);
 }
 
 /* ===================================
@@ -164,11 +141,9 @@ function toggleTheme() {
     document.documentElement.getAttribute("data-theme") || "light";
   const newTheme = currentTheme === "light" ? "dark" : "light";
 
-  // Apply new theme
   document.documentElement.setAttribute("data-theme", newTheme);
   localStorage.setItem("theme", newTheme);
 
-  // Update toggle icon
   const themeIcon = document.querySelector("#theme-toggle i");
   if (themeIcon) {
     themeIcon.className = newTheme === "light" ? "fas fa-moon" : "fas fa-sun";
@@ -179,10 +154,8 @@ function initThemeToggle() {
   const themeToggleBtn = document.getElementById("theme-toggle");
   if (!themeToggleBtn) return;
 
-  // Add click event listener
   themeToggleBtn.addEventListener("click", toggleTheme);
 
-  // Set initial icon based on current theme
   const themeIcon = themeToggleBtn.querySelector("i");
   if (themeIcon) {
     const currentTheme =
@@ -200,28 +173,23 @@ const navElement = document.querySelector(".nav");
 const allNavLinks = document.querySelectorAll(".nav-menu a, .mobile-menu-link");
 const sections = document.querySelectorAll("section");
 
-// Get current active section based on scroll position
 function getCurrentSection() {
   const scrollPosition = window.scrollY;
   let currentSectionId = null;
 
-  // Iterate backwards through sections
   for (let i = sections.length - 1; i >= 0; i--) {
     const section = sections[i];
-    // Adjust the offset to be a bit more than the navbar height
     const sectionTop = section.offsetTop - 150;
 
     if (scrollPosition >= sectionTop) {
       currentSectionId = section.id;
-      break; // Exit loop once the current section is found
+      break;
     }
   }
   return currentSectionId;
 }
 
-// Update active navigation items
 function updateActiveNavigation() {
-  // Handle navbar scroll styling
   if (navElement) {
     if (window.scrollY > 10) {
       navElement.classList.add("scrolled");
@@ -233,7 +201,7 @@ function updateActiveNavigation() {
   const currentSection = getCurrentSection();
 
   allNavLinks.forEach((link) => {
-    const href = link.getAttribute("href").substring(1); // Remove #
+    const href = link.getAttribute("href").substring(1);
     if (href === currentSection) {
       link.classList.add("active");
     } else {
@@ -242,9 +210,7 @@ function updateActiveNavigation() {
   });
 }
 
-// Initialize navigation
 function initNavigation() {
-  // Add smooth scroll to all navigation links
   allNavLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -252,23 +218,19 @@ function initNavigation() {
       const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        // Close mobile sidebar if open
         const mobileSidebar = document.getElementById("mobile-sidebar");
         if (mobileSidebar && mobileSidebar.classList.contains("active")) {
           closeMobileSidebar();
         }
 
-        // Scroll to the section
         targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   });
 
-  // Add scroll event listener with throttling
   const throttledScrollHandler = throttle(updateActiveNavigation, 100);
   window.addEventListener("scroll", throttledScrollHandler);
 
-  // Initial active section check
   updateActiveNavigation();
 }
 
@@ -281,7 +243,6 @@ const hamburgerBtn = document.getElementById("hamburger-btn");
 const closeSidebarBtn = document.getElementById("close-btn");
 const sidebarOverlay = document.querySelector(".mobile-sidebar-overlay");
 const sidebarContent = document.querySelector(".mobile-sidebar-content");
-let scrollPosition = 0;
 
 function openMobileSidebar() {
   if (!mobileSidebar || !hamburgerBtn) return;
@@ -300,7 +261,6 @@ function closeMobileSidebar() {
 function initMobileNavigation() {
   if (!hamburgerBtn || !mobileSidebar) return;
 
-  // Hamburger button click handler
   hamburgerBtn.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -313,7 +273,6 @@ function initMobileNavigation() {
     }
   });
 
-  // Close button handler
   if (closeSidebarBtn) {
     closeSidebarBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -321,7 +280,6 @@ function initMobileNavigation() {
     });
   }
 
-  // Overlay click handler
   if (sidebarOverlay) {
     sidebarOverlay.addEventListener("click", (e) => {
       if (e.target === sidebarOverlay) {
@@ -330,21 +288,18 @@ function initMobileNavigation() {
     });
   }
 
-  // Prevent sidebar content clicks from closing sidebar
   if (sidebarContent) {
     sidebarContent.addEventListener("click", (e) => {
       e.stopPropagation();
     });
   }
 
-  // Close sidebar on escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && mobileSidebar.classList.contains("active")) {
       closeMobileSidebar();
     }
   });
 
-  // Close sidebar on window resize to desktop
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768 && mobileSidebar.classList.contains("active")) {
       closeMobileSidebar();
@@ -363,10 +318,8 @@ function sendEmail(e) {
   const subject = document.getElementById("subject").value;
   const message = document.getElementById("message").value;
 
-  // Create email body with sender info
   const emailBody = `Message from: ${name}\n\n${message}`;
 
-  // Create mailto link
   if (!contactEmail) {
     console.error("Contact email is not configured.");
     alert("The contact form is currently unavailable. Please try again later.");
@@ -376,10 +329,8 @@ function sendEmail(e) {
     subject
   )}&body=${encodeURIComponent(emailBody)}`;
 
-  // Open default mail client
   window.location.href = mailtoLink;
 
-  // Reset form
   document.getElementById("contact-form").reset();
 
   return false;
@@ -392,20 +343,18 @@ function sendEmail(e) {
 function initAOS() {
   if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: 1000,
+      duration: 800,
       once: true,
-      offset: 50,
-      delay: 100,
+      offset: 60,
+      delay: 50,
       easing: "ease-out-cubic",
     });
 
-    // Refresh AOS on window resize
     window.addEventListener("resize", () => {
       AOS.refresh();
     });
   }
 
-  // Fallback: Ensure all elements are visible if AOS fails
   setTimeout(() => {
     const aosElements = document.querySelectorAll("[data-aos]");
     aosElements.forEach((element) => {
@@ -425,12 +374,7 @@ function initAOS() {
 }
 
 /* ===================================
-   10. INITIALIZATION
-   =================================== */
-
-// Initialize all functionality when DOM is ready
-/* ===================================
-   11. DYNAMIC CONTENT LOADING
+   10. DYNAMIC CONTENT LOADING
    =================================== */
 
 async function loadConfig() {
@@ -449,12 +393,15 @@ async function loadConfig() {
 function applyConfig(config) {
   if (!config) return;
 
-  // Apply simple text and attribute configs
   document.querySelectorAll("[data-config]").forEach((el) => {
     const key = el.getAttribute("data-config");
     const value = getNestedProperty(config, key);
     if (value) {
-      el.textContent = value;
+      if (el.classList.contains("hero-name")) {
+        el.innerHTML = value.replace("Thục Anh", "<br>Thục Anh");
+      } else {
+        el.textContent = value;
+      }
     }
   });
 
@@ -474,13 +421,6 @@ function applyConfig(config) {
     }
   });
 
-  // Set glitch effect text
-  const glitchElement = document.querySelector(".glitch");
-  if (glitchElement && config.hero && config.hero.glitchText) {
-    glitchElement.setAttribute("data-text", config.hero.glitchText);
-  }
-
-  // Render dynamic sections
   if (config.education) renderEducation(config.education);
   if (config.portfolio) renderPortfolio(config.portfolio);
   if (config.experience) renderExperience(config.experience);
@@ -494,7 +434,6 @@ function applyConfig(config) {
     }
   }
 
-  // Re-initialize components that depend on dynamic content
   initTypingEffect();
   initAOS();
 }
@@ -539,7 +478,7 @@ function renderPortfolio(portfolio) {
   container.innerHTML = portfolio.projects
     .map(
       (project, index) => `
-    <div class="campaign-card" data-aos="flip-left" data-aos-delay="${
+    <div class="campaign-card" data-aos="fade-up" data-aos-delay="${
       index * 100
     }">
       <div class="campaign-image">
@@ -569,8 +508,8 @@ function renderExperience(experience) {
   container.innerHTML = experience.workHistory
     .map(
       (item, index) => `
-    <div class="timeline-item${index === 0 ? " current" : ""}" data-aos="fade-${
-        index % 2 === 0 ? "right" : "left"
+    <div class="timeline-item${index === 0 ? " current" : ""}" data-aos="fade-up" data-aos-delay="${
+        index * 80
       }">
       <div class="timeline-content">
         <span class="date">${item.employmentPeriod}</span>
@@ -652,7 +591,7 @@ function renderAchievements(achievements) {
           ${card.accomplishments
             .map(
               (ach) =>
-                `<li><i class="fas fa-trophy"></i><span>${ach}</span></li>`
+                `<li><i class="fas fa-check"></i><span>${ach}</span></li>`
             )
             .join("")}
         </ul>
@@ -675,6 +614,10 @@ function setupContactLinks(contact) {
   }
 }
 
+/* ===================================
+   11. INITIALIZATION
+   =================================== */
+
 document.addEventListener("DOMContentLoaded", function () {
   loadConfig();
   initThemeToggle();
@@ -682,5 +625,4 @@ document.addEventListener("DOMContentLoaded", function () {
   initMobileNavigation();
 });
 
-// Export functions for global access
 window.sendEmail = sendEmail;
