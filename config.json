@@ -1,32 +1,32 @@
 {
   "fullName": "Trần Tôn Nữ Thục Anh",
   "firstName": "Thục Anh",
-  "pageTitle": "Thục Anh — Beauty Marketing Portfolio",
+  "pageTitle": "Thục Anh — Marketing Executive Portfolio",
   "hero": {
-    "glitchText": "Beauty & Brand Storyteller",
-    "tagline": "Turning beauty brands into digital experiences that captivate, convert, and inspire.",
+    "glitchText": "Results-Driven Marketing Executive",
+    "tagline": "Building beauty brand growth through product launches, e-commerce execution, livestream commerce, and multi-channel media plans.",
     "contactButton": "Let's Talk",
     "workButton": "See My Work"
   },
   "about": {
     "sectionTitle": "About Me",
     "profileImage": "images/avatar.jpg",
-    "profileAltText": "Thục Anh — Beauty Marketing Professional",
-    "intro": "Where beauty meets strategy.",
-    "bioParagraph1": "I'm a marketing professional who lives at the intersection of beauty and digital strategy. With hands-on experience at global powerhouses like L'Oréal and Estée Lauder, I've learned that great marketing isn't just about selling products — it's about creating moments that make people feel something.",
-    "bioParagraph2": "From hosting daily livestreams that exceeded 130% of KPIs, to co-founding a creative studio, to managing KOL campaigns with Vietnam's top influencers — I bring the rare blend of creative instinct and data-driven execution. Currently completing my Business Administration degree with a 3.68 GPA and a full merit scholarship."
+    "profileAltText": "Thục Anh — Marketing Executive",
+    "intro": "Beauty marketing with meticulous follow-through.",
+    "bioParagraph1": "I'm a results-driven Marketing Executive with 3+ years of experience across brand marketing, e-commerce, and beauty industry project execution. My work spans product launch events, end-to-end merchandise production, multi-channel media plans, livestream commerce, and online visibility for beauty brands.",
+    "bioParagraph2": "At L'Oréal Vietnam, I support Kérastase, L'Oréal Professionnel, and Matrix projects across TikTok, Shopee, CRM/CEM, e-commerce assets, brand collaborations, and launch events. I am a second-highest-ranking Business Administration graduate from UEF with a 3.7/4.0 GPA, a Top 1 Merit Scholarship, and four years of 50% scholarship support."
   },
   "education": {
     "sectionTitle": "Education",
     "educationHistory": [
       {
-        "institutionName": "University of Economics and Finance, HCMC",
+        "institutionName": "University of Economics and Finance Ho Chi Minh City",
         "duration": "2021 – 2025",
         "degreeName": "Bachelor of Business Administration",
         "accomplishments": [
-          "GPA: 3.68 / 4.0 — Top 1 Merit Scholarship (4.0/4.0, 2023–2024)",
-          "50% tuition scholarship for 4 consecutive years",
-          "Student of 5 Merits — 2022–2023 & 2023–2024"
+          "GPA: 3.7/4.0 — second-highest-ranking graduate",
+          "50% scholarship for 4 consecutive years",
+          "Top 1 Merit Scholarship 2023–2024: GPA 4.0/4.0"
         ]
       }
     ]
@@ -35,22 +35,34 @@
     "sectionTitle": "Featured Work",
     "projects": [
       {
-        "projectName": "L'Oréal CeraVe — TikTok Live Campaign",
-        "projectCategory": "Livestream & Content",
-        "projectDescription": "Led TikTok livestream sessions as Brand Ambassador, achieving 120–125% of monthly KPIs through strategic content alignment with seasonal campaigns and product launches.",
-        "projectLink": "#"
+        "projectName": "L'Oréal Vietnam — Project Marketing Execution",
+        "projectCategory": "Product Launch & E-commerce",
+        "projectDescription": "Scaled TikTok and Shopee video quantity by 150% within 2 months, enhancing engagement and increasing GMV by 3% while managing end-to-end merchandise production and e-commerce listings.",
+        "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       },
       {
-        "projectName": "Estée Lauder — Ecommerce Beauty Advisory",
-        "projectCategory": "Digital Sales & Beauty",
-        "projectDescription": "Hosted daily OBS-powered livestream sessions showcasing the full Estée Lauder product line, consistently hitting 100–130% KPIs across 6 months of ecommerce campaigns.",
-        "projectLink": "#"
+        "projectName": "Kérastase & L'Oréal Professionnel — Launch Events",
+        "projectCategory": "Offline Launch & Brand Activation",
+        "projectDescription": "Developed creative concepts and executed the Serioxyl “Độ tóc tốc độ” launch plus Kérastase Gloss Absolu and Elixir Ultime events with consistent brand guideline execution.",
+        "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       },
       {
-        "projectName": "Baresoul Cosme — Brand Growth from Zero",
-        "projectCategory": "Content & B2B Sales",
-        "projectDescription": "Built TikTok presence from scratch to 9K+ followers, managed KOL campaigns with top Vietnamese influencers (Giang Ơi, Hanna), and developed a B2B pool of 80–100 potential partners.",
-        "projectLink": "#"
+        "projectName": "L'Oréal Vietnam — Online Brand Operations",
+        "projectCategory": "CRM, Assets & Visibility",
+        "projectDescription": "Coordinated ~40 monthly visual assets across SIS, PDP, CPAS, and banners; planned CEM/CRM and Shopee video visibility; and supported Instax, Sony, and Logitech collaborations.",
+        "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
+      },
+      {
+        "projectName": "Estée Lauder Companies — E-commerce Livestream",
+        "projectCategory": "Cloud Beauty Advisor",
+        "projectDescription": "Hosted daily livestream sessions showcasing Estée Lauder products and aligned content with seasonal campaigns, holiday promotions, and product launches while achieving 100–130% monthly KPIs.",
+        "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
+      },
+      {
+        "projectName": "Baresoul Cosme — Growth & Key Accounts",
+        "projectCategory": "KOL/KOC, Affiliate & B2B Sales",
+        "projectDescription": "Grew TikTok to 9K+ followers, managed KOL/KOC partnerships and affiliate campaigns at 120% KPI, built an 80–100 client pipeline, and managed Hasaki, Watsons, and Guardian distribution.",
+        "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       }
     ]
   },
@@ -59,20 +71,24 @@
     "workHistory": [
       {
         "employmentPeriod": "Jun 2025 – Present",
-        "companyName": "L'Oréal Vietnam — Professional Products Division",
-        "jobTitle": "Online Marketing Intern",
+        "companyName": "L'Oréal Vietnam",
+        "jobTitle": "Project Marketing Executive (Kérastase & L'Oréal Professionnel)",
         "responsibilities": [
-          "Supporting digital marketing campaigns and online brand activations for L'Oréal's Professional Products Division",
-          "Coordinating cross-functional teams to optimize social media presence and campaign performance"
+          "Scaled TikTok and Shopee video quantity by 150% within 2 months, enhancing engagement and increasing GMV by 3%",
+          "Managed end-to-end merchandise production with vendors and e-commerce platform listings, maintaining 100% catalog integrity and visual consistency",
+          "Developed creative concepts and executed the Serioxyl “Độ tóc tốc độ” launch plus Kérastase Gloss Absolu and Elixir Ultime events",
+          "Managed the online launch project for Matrix (Jul 2026), establishing online visibility and information while enforcing brand guidelines across platforms"
         ]
       },
       {
-        "employmentPeriod": "May 2024 – Nov 2024",
-        "companyName": "Estée Lauder Companies",
-        "jobTitle": "Ecommerce Beauty Advisor",
+        "employmentPeriod": "Jun 2025 – Present",
+        "companyName": "L'Oréal Vietnam",
+        "jobTitle": "Online Brand Intern",
         "responsibilities": [
-          "Hosted daily livestream sessions via OBS Studio, consistently achieving 100–130% of monthly KPIs",
-          "Aligned livestream content with seasonal campaigns, holiday promotions, and new product launches"
+          "Spearheaded briefing and coordination of ~40 monthly visual assets (SIS, PDP, CPAS, banners) with design teams, ensuring 100% brand guideline compliance",
+          "Planned, executed, and optimized CEM/CRM, Shopee video plans, and e-commerce visibilities, driving 3–5% GMV growth per month",
+          "Coordinated high-profile brand collaborations with Instax, Sony, and Logitech for top spenders",
+          "Supported content planning and creative production for TikTok videos"
         ]
       },
       {
@@ -80,72 +96,75 @@
         "companyName": "Joetsu Skiing Resort, Japan",
         "jobTitle": "Hospitality Intern",
         "responsibilities": [
-          "Streamlined kitchen workflows and reorganized stations for peak efficiency",
-          "Collaborated with housekeeping to prioritize room schedules during high-occupancy periods"
+          "Optimized restaurant workflows and collaborated cross-functionally with housekeeping during peak seasons to ensure seamless guest experiences"
+        ]
+      },
+      {
+        "employmentPeriod": "May 2024 – Nov 2024",
+        "companyName": "Estée Lauder Companies",
+        "jobTitle": "Cloud (Ecom) Beauty Advisor — Freelance BA",
+        "responsibilities": [
+          "Hosted daily livestream sessions showcasing Estée Lauder products, consistently achieving 100–130% of monthly KPIs",
+          "Collaborated with the Ecommerce and Marketing team to align livestream content with seasonal campaigns, holiday promotions, and new product launches"
         ]
       },
       {
         "employmentPeriod": "Nov 2023 – Feb 2024",
-        "companyName": "L'Oréal Vietnam — CeraVe",
-        "jobTitle": "Brand Ambassador & TikTok Livestreamer",
+        "companyName": "L'Oréal Vietnam",
+        "jobTitle": "Brand Ambassador Livestreamer — TikTok",
         "responsibilities": [
-          "Hosted live product introductions, guided customers, and drove conversions through TikTok livestream",
-          "Co-created content strategy with Brand team, achieving highest KPI months: Nov (125%), Dec (120%)"
+          "Co-created promotional content videos and led engaging TikTok livestreams, achieving top-tier sales KPIs (125% in Nov, 120% in Dec)"
         ]
       },
       {
         "employmentPeriod": "Nov 2022 – Oct 2023",
         "companyName": "Baresoul Cosme",
-        "jobTitle": "Content Creator & B2B Sales",
+        "jobTitle": "Online Marketing & Key Account Staff",
         "responsibilities": [
-          "Built TikTok presence from zero to 9K+ followers through strategic content planning",
-          "Managed influencer campaigns with prominent KOLs including Giang Ơi and Gia Đình Hanna",
-          "Developed B2B pipeline of 80–100 potential partners and managed major retail chains"
-        ]
-      },
-      {
-        "employmentPeriod": "Nov 2022 – Jun 2023",
-        "companyName": "Drunky 3D Studio",
-        "jobTitle": "Co-founder",
-        "responsibilities": [
-          "Defined long-term strategy and brand positioning for a creative studio from the ground up",
-          "Designed communication plans that attracted 500+ student registrations across 3 core courses"
+          "Content & Brand Marketing: grew TikTok to 9K+ followers; managed KOL/KOC partnerships and affiliate campaigns, achieving 120% KPI",
+          "B2B Sales & Operations: developed an 80–100 client pipeline; negotiated contracts and managed distribution for Hasaki, Watsons, and Guardian",
+          "Livestreaming: hosted monthly livestreams on TikTok and Shopee, delivering 100%+ sales targets"
         ]
       }
     ]
   },
   "skills": {
-    "sectionTitle": "What I Do Best",
+    "sectionTitle": "Core Skills",
     "skillList": [
       {
-        "skillIcon": "fas fa-video",
-        "skillName": "Livestream & Content",
-        "skillDescription": "Expert at hosting high-converting livestream sessions on TikTok, Shopee, and ecommerce platforms with consistent 100–130% KPI achievement."
-      },
-      {
-        "skillIcon": "fas fa-palette",
-        "skillName": "Brand Storytelling",
-        "skillDescription": "Crafting brand narratives that connect — from luxury beauty to indie skincare, turning products into stories people remember."
-      },
-      {
-        "skillIcon": "fas fa-chart-line",
-        "skillName": "Digital Marketing",
-        "skillDescription": "Data-driven campaign strategy across social media, ecommerce, and influencer channels that deliver measurable results."
-      },
-      {
         "skillIcon": "fas fa-users",
-        "skillName": "KOL & Influencer Management",
-        "skillDescription": "End-to-end influencer campaign management — from sourcing and negotiation to content alignment and performance tracking."
+        "skillName": "Leadership & Teamwork",
+        "skillDescription": "Leading cross-functional coordination across marketing, design, vendors, e-commerce teams, and external partners."
       },
       {
-        "skillIcon": "fas fa-handshake",
-        "skillName": "B2B Partnerships",
-        "skillDescription": "Building and nurturing business relationships, developing pipelines of 80–100 potential partners across retail and distribution."
+        "skillIcon": "fas fa-puzzle-piece",
+        "skillName": "Problem-solving",
+        "skillDescription": "Optimizing workflows, campaign execution, launch planning, and online visibility under fast-paced project demands."
+      },
+      {
+        "skillIcon": "fas fa-comments",
+        "skillName": "Communication",
+        "skillDescription": "Briefing design teams, aligning stakeholders, coordinating vendors, and keeping brand guidelines clear across deliverables."
+      },
+      {
+        "skillIcon": "fas fa-sync-alt",
+        "skillName": "Adaptability",
+        "skillDescription": "Moving across beauty retail, e-commerce livestreaming, hospitality operations, launch events, and campaign execution."
       },
       {
         "skillIcon": "fas fa-lightbulb",
-        "skillName": "Creative Strategy",
-        "skillDescription": "Blending creative instinct with strategic thinking to design campaigns, marketing plans, and brand experiences that stand out."
+        "skillName": "Creative Thinking",
+        "skillDescription": "Developing creative concepts for launch events, TikTok content, Shopee videos, and beauty brand storytelling."
+      },
+      {
+        "skillIcon": "fas fa-tasks",
+        "skillName": "Project Management",
+        "skillDescription": "Managing merchandise production, asset timelines, event execution, e-commerce listings, and multi-channel media plans."
+      },
+      {
+        "skillIcon": "fas fa-table",
+        "skillName": "Excel, Sheets & Canva",
+        "skillDescription": "Using Microsoft Excel, Google Sheets, and Canva to organize execution details, campaign assets, and reporting workflows."
       }
     ]
   },
@@ -153,11 +172,11 @@
     "sectionTitle": "Beyond Work",
     "activityList": [
       {
-        "activityName": "AIESEC — Southern YouthSpeak 2022",
+        "activityName": "AIESEC — Southern YouthSpeak",
         "activityRole": "Student Brand Ambassador",
         "activityAccomplishments": [
-          "Led student engagement campaigns across Ho Chi Minh City for the regional conference",
-          "Contributed to growing event attendance to 1,000+ participants"
+          "Supported organizers in engaging students across Ho Chi Minh City for the 2022 conference",
+          "Contributed to attracting participants, helping attendance increase to 1,000+ participants"
         ]
       }
     ]
@@ -169,8 +188,9 @@
         "achievementIcon": "fas fa-graduation-cap",
         "achievementCategory": "Academic Excellence",
         "accomplishments": [
-          "Top 1 Merit Scholarship — Perfect 4.0 GPA (2023–2024)",
-          "Student of 5 Merits — Two consecutive years"
+          "Second-ranked graduate in Business Administration — UEF",
+          "Top 1 Merit Scholarship 2023–2024",
+          "Student of 5 Merits University 2022–2023 & 2023–2024"
         ]
       },
       {
@@ -178,15 +198,15 @@
         "achievementCategory": "Competition Wins",
         "accomplishments": [
           "Top 20 — 48H Hackathon 2021 RE-Organization",
-          "Top 20 — Z-Marketer 2023"
+          "Top 20 — Z-Marketer 2023",
+          "Project Design UEF — Excellent Innovation Project 2023"
         ]
       },
       {
         "achievementIcon": "fas fa-star",
         "achievementCategory": "Recognition",
         "accomplishments": [
-          "Outstanding Contribution to UEF Extracurricular Activities (2021–2024)",
-          "Excellent Innovation Project — Project Design UEF 2023"
+          "Certificate of Outstanding Contribution to UEF extracurricular activities 2021–2025"
         ]
       }
     ]
@@ -195,7 +215,7 @@
     "sectionTitle": "Let's Create Something Beautiful",
     "greeting": "Get in Touch",
     "formTitle": "Drop me a message",
-    "phoneNumber": "(+84) 797 038 080",
+    "phoneNumber": "(+84) 797 038 080 (Zalo)",
     "emailAddress": "thucanh.ttn@gmail.com",
     "linkedin": {
       "profileUrl": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222/",
@@ -205,6 +225,6 @@
       "profileUrl": "https://www.facebook.com/thucanhtrantonnu/",
       "username": "thucanhtrantonnu"
     },
-    "physicalLocation": "Ho Chi Minh City, Vietnam"
+    "physicalLocation": "D2, Ho Chi Minh City, Vietnam"
   }
 }
