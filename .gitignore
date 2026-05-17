@@ -10,3 +10,6 @@ Thumbs.db
 # IconKitchen output files
 IconKitchen-Output/
 IconKitchen-Output.zip
+
+# Local agent/project memory
+AGENTS.md
