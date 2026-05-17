@@ -175,13 +175,21 @@ const sections = document.querySelectorAll("section");
 
 function getCurrentSection() {
   const scrollPosition = window.scrollY;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const lastSection = sections[sections.length - 1];
+
+  if (lastSection && scrollPosition >= maxScroll - 2) {
+    return lastSection.id;
+  }
+
+  const activationPoint =
+    scrollPosition + Math.min(window.innerHeight * 0.35, 240);
   let currentSectionId = null;
 
   for (let i = sections.length - 1; i >= 0; i--) {
     const section = sections[i];
-    const sectionTop = section.offsetTop - 150;
 
-    if (scrollPosition >= sectionTop) {
+    if (activationPoint >= section.offsetTop) {
       currentSectionId = section.id;
       break;
     }

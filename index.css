@@ -147,14 +147,8 @@ main {
 }
 
 /* Alternating section backgrounds */
-#about { background: var(--bg); }
-#education { background: var(--bg-alt); }
-#portfolio { background: var(--bg); }
-#experience { background: var(--bg-alt); }
-#skills { background: var(--bg); }
-#activities { background: var(--bg-alt); }
-#achievements { background: var(--bg); }
-#contact { background: var(--bg-alt); }
+main > .section:nth-of-type(odd) { background: var(--bg); }
+main > .section:nth-of-type(even) { background: var(--bg-alt); }
 
 /* ===================================
    4. HEADER & HERO SECTION
