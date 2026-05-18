@@ -5,378 +5,334 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title data-config="pageTitle">Thục Anh — Marketing Executive Portfolio</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="/icons/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="index.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-    <!-- Theme initialization -->
-    <script>
-      const theme = localStorage.getItem("theme") || "light";
-      document.documentElement.setAttribute("data-theme", theme);
-    </script>
   </head>
   <body>
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-      <div class="mobile-nav-header">
-        <button
-          type="button"
-          class="hamburger-btn"
-          id="hamburger-btn"
-          aria-label="Toggle navigation menu"
-        >
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-        <div class="mobile-nav-brand" data-config="firstName"></div>
-      </div>
-    </nav>
+    <header class="topbar">
+      <a class="brand-lockup" href="#top" aria-label="Back to top">
+        <span class="monogram">TA</span>
+        <span class="brand-copy">
+          <strong data-config="firstName">Thục Anh</strong>
+          <em>Marketing Portfolio</em>
+        </span>
+      </a>
 
-    <!-- Mobile Sidebar Menu -->
-    <div class="mobile-sidebar" id="mobile-sidebar">
-      <div class="mobile-sidebar-overlay"></div>
-      <div class="mobile-sidebar-content">
-        <div class="mobile-sidebar-header">
-          <h3>Menu</h3>
-          <button class="close-btn" id="close-btn" aria-label="Close menu">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <ul class="mobile-menu">
-          <li>
-            <a href="#about" class="mobile-menu-link"
-              ><i class="fas fa-user"></i><span>About</span></a
-            >
-          </li>
-          <li>
-            <a href="#experience" class="mobile-menu-link"
-              ><i class="fas fa-history"></i><span>Experience</span></a
-            >
-          </li>
-          <li>
-            <a href="#portfolio" class="mobile-menu-link"
-              ><i class="fas fa-briefcase"></i><span>Portfolio</span></a
-            >
-          </li>
-          <li>
-            <a href="#skills" class="mobile-menu-link"
-              ><i class="fas fa-star"></i><span>Skills</span></a
-            >
-          </li>
-          <li>
-            <a href="#education" class="mobile-menu-link"
-              ><i class="fas fa-graduation-cap"></i><span>Education</span></a
-            >
-          </li>
-          <li>
-            <a href="#achievements" class="mobile-menu-link"
-              ><i class="fas fa-trophy"></i><span>Achievements</span></a
-            >
-          </li>
-          <li>
-            <a href="#activities" class="mobile-menu-link"
-              ><i class="fas fa-heart"></i><span>Activities</span></a
-            >
-          </li>
-          <li>
-            <a href="#contact" class="mobile-menu-link"
-              ><i class="fas fa-envelope"></i><span>Contact</span></a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Desktop Navigation -->
-    <nav class="nav">
-      <ul class="nav-menu">
-        <li>
-          <a href="#about" title="About"><i class="fas fa-user"></i></a>
-        </li>
-        <li>
-          <a href="#experience" title="Experience"
-            ><i class="fas fa-history"></i
-          ></a>
-        </li>
-        <li>
-          <a href="#portfolio" title="Portfolio"
-            ><i class="fas fa-briefcase"></i
-          ></a>
-        </li>
-        <li>
-          <a href="#skills" title="Skills"><i class="fas fa-star"></i></a>
-        </li>
-        <li>
-          <a href="#education" title="Education"
-            ><i class="fas fa-graduation-cap"></i
-          ></a>
-        </li>
-        <li>
-          <a href="#achievements" title="Achievements"
-            ><i class="fas fa-trophy"></i
-          ></a>
-        </li>
-        <li>
-          <a href="#activities" title="Activities"
-            ><i class="fas fa-heart"></i
-          ></a>
-        </li>
-        <li>
-          <a href="#contact" title="Contact"
-            ><i class="fas fa-envelope"></i
-          ></a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-      <i class="fas fa-moon"></i>
-    </button>
-
-    <!-- Header Section -->
-    <header class="header">
-      <div class="hero-bg-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-      </div>
-      <div class="hero">
-        <div class="hero-content" data-aos="fade-up">
-          <span class="hero-label">Marketing Executive</span>
-          <h1 class="hero-name" data-config="fullName"></h1>
-          <p class="typing-text" data-config="hero.tagline"></p>
-          <div class="hero-cta">
-            <a
-              href="#contact"
-              class="cta-button primary"
-              data-config="hero.contactButton"
-            ></a>
-            <a
-              href="#portfolio"
-              class="cta-button secondary"
-              data-config="hero.workButton"
-            ></a>
-          </div>
-        </div>
-      </div>
+      <nav class="mini-nav" aria-label="Portfolio sections">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <main>
-      <!-- About Section -->
-      <section id="about" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="about.sectionTitle"></h2>
-          <div class="about-grid" data-aos="fade-up">
-            <div class="about-image">
-              <div class="image-container">
-                <img
-                  data-config-src="about.profileImage"
-                  data-config-alt="about.profileAltText"
-                  alt=""
-                />
-              </div>
-            </div>
-            <div class="about-text">
-              <h3 data-config="about.intro"></h3>
-              <p data-config="about.bioParagraph1"></p>
-              <p data-config="about.bioParagraph2"></p>
-            </div>
+    <main id="top" class="site-shell">
+      <section class="hero" aria-label="Opening">
+        <div class="hero-copy">
+          <h1 class="hero-title" data-config-name="fullName">
+            Trần Tôn Nữ
+            <span>Thục Anh</span>
+          </h1>
+          <p class="hero-summary" data-config="hero.tagline">
+            Building beauty brand growth through product launches, e-commerce
+            execution, livestream commerce, and multi-channel media plans.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#portfolio" data-config="hero.workButton">
+              Open Portfolio
+            </a>
+            <a
+              class="button secondary cv-download"
+              href="downloads/Tran-Ton-Nu-Thuc-Anh-CV.pdf"
+              download="Tran-Ton-Nu-Thuc-Anh-CV.pdf"
+              data-config-href="contact.cvDownload.path"
+              data-config-download="contact.cvDownload.fileName"
+            >
+              Download CV
+            </a>
+            <a class="button ghost" href="#contact" data-config="hero.contactButton">
+              Contact
+            </a>
           </div>
         </div>
+
+        <nav
+          class="folder-board"
+          aria-label="Folder navigation"
+          data-active-folder="about"
+        >
+          <a class="folder about" href="#about" data-tab="About Me">
+            <small>01 / Profile</small>
+            <h2>Personal summary, contact, CV, brand tags.</h2>
+            <p>Beauty marketing with meticulous follow-through.</p>
+          </a>
+          <a class="folder experience" href="#experience" data-tab="Working">
+            <small>02 / Brands</small>
+            <h2>Brand experience</h2>
+            <p>Career journey shown through brand folders.</p>
+          </a>
+          <a class="folder portfolio" href="#portfolio" data-tab="Portfolio">
+            <small>03 / Case Work</small>
+            <h2>Campaign case files</h2>
+            <p>Selected launch, e-commerce, livestream, and key account work.</p>
+          </a>
+          <a class="folder skills" href="#skills" data-tab="Skills">
+            <small>04 / Capabilities</small>
+            <h2>Skills & activities</h2>
+            <p>Recruiter-friendly capability groups and extracurricular proof.</p>
+          </a>
+          <a class="folder education" href="#education" data-tab="Education">
+            <small>05 / Academic</small>
+            <h2>Education & achievements</h2>
+            <p>Academic signal presented like a certificate sheet.</p>
+          </a>
+          <a class="folder contact" href="#contact" data-tab="Contact">
+            <small>06 / Reach Out</small>
+            <h2>Contact details</h2>
+            <p>Direct recruiter actions: email, call, social, CV, portfolio.</p>
+          </a>
+        </nav>
       </section>
 
-      <!-- Experience Section -->
-      <section id="experience" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="experience.sectionTitle"></h2>
-          <div class="timeline" id="timeline-container"></div>
+      <section id="about" class="section">
+        <div class="section-head">
+          <h2 class="section-title" data-config="about.sectionTitle">About Me</h2>
+          <p class="section-kicker">
+            A concise profile for beauty, brand, and e-commerce marketing work.
+          </p>
         </div>
-      </section>
 
-      <!-- Portfolio Section -->
-      <section id="portfolio" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="portfolio.sectionTitle"></h2>
-          <div class="campaigns-container" id="campaigns-container"></div>
-        </div>
-      </section>
-
-      <!-- Skills Section -->
-      <section id="skills" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="skills.sectionTitle"></h2>
-          <div
-            class="skills-container"
-            data-aos="fade-up"
-            id="skills-container"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Education Section -->
-      <section id="education" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="education.sectionTitle"></h2>
-          <div
-            class="education-container"
-            data-aos="fade-up"
-            id="education-container"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Achievements Section -->
-      <section id="achievements" class="section">
-        <div class="content">
-          <h2
-            data-aos="fade-right"
-            data-config="achievements.sectionTitle"
-          ></h2>
-          <div
-            class="achievements-grid"
-            data-aos="fade-up"
-            id="achievements-container"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Activities Section -->
-      <section id="activities" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="activities.sectionTitle"></h2>
-          <div
-            class="activities-container"
-            data-aos="fade-up"
-            id="activities-container"
-          ></div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="section">
-        <div class="content">
-          <h2 data-aos="fade-right" data-config="contact.sectionTitle"></h2>
-          <div class="contact-content" data-aos="fade-up">
-            <div class="contact-info">
-              <h3 data-config="contact.greeting"></h3>
-              <div class="contact-details">
-                <div class="contact-item">
-                  <i class="fas fa-phone"></i>
-                  <div class="detail">
-                    <h4>Phone</h4>
-                    <p data-config="contact.phoneNumber"></p>
-                  </div>
+        <article class="about-card">
+          <div class="about-copy">
+            <div class="dossier-meta">
+              <span>Marketing Executive</span>
+              <span>Beauty Brands</span>
+              <span>Online Growth</span>
+            </div>
+            <h3 data-config="about.intro">
+              Beauty marketing with meticulous follow-through.
+            </h3>
+            <div class="about-summary">
+              <p data-config="about.bioParagraph1">
+                Results-driven Marketing Executive with 3+ years across brand
+                marketing, e-commerce, and beauty industry project execution.
+              </p>
+              <p data-config="about.bioParagraph2">
+                Current L'Oréal work spans salon-brand projects, TikTok, Shopee,
+                CRM/CEM, e-commerce assets, brand collaborations, and launch
+                events.
+              </p>
+              <div class="about-proof">
+                <div class="proof-note">
+                  <em>Experience</em>
+                  <strong>3+</strong>
+                  <span>years across beauty marketing and commerce execution</span>
                 </div>
-                <div class="contact-item">
-                  <i class="fas fa-envelope"></i>
-                  <div class="detail">
-                    <h4>Email</h4>
-                    <p data-config="contact.emailAddress"></p>
-                  </div>
+                <div class="proof-note">
+                  <em>Growth</em>
+                  <strong>150%</strong>
+                  <span>video output growth within 2 months</span>
                 </div>
-                <div
-                  class="contact-item clickable"
-                  id="linkedin-contact"
-                >
-                  <i class="fab fa-linkedin"></i>
-                  <div class="detail">
-                    <h4>LinkedIn</h4>
-                    <p data-config="contact.linkedin.username"></p>
-                  </div>
+                <div class="proof-note">
+                  <em>Commerce</em>
+                  <strong>3%</strong>
+                  <span>GMV lift from online listings and platform visibility</span>
                 </div>
-                <div
-                  class="contact-item clickable"
-                  id="facebook-contact"
-                >
-                  <i class="fab fa-facebook"></i>
-                  <div class="detail">
-                    <h4>Facebook</h4>
-                    <p data-config="contact.facebook.username"></p>
+              </div>
+            </div>
+
+            <div class="focus-strip">
+              <h4>Current focus</h4>
+              <div>
+                <p>
+                  <strong>L'Oréal salon-brand portfolio</strong> work, from brand
+                  brief to shipped campaign materials.
+                </p>
+                <div class="scope-list" aria-label="Current marketing scope">
+                  <div class="scope-item">
+                    <span>Channels</span>
+                    <strong>TikTok Shop, Shopee, SIS, PDP, CPAS</strong>
                   </div>
-                </div>
-                <div class="contact-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <div class="detail">
-                    <h4>Location</h4>
-                    <p data-config="contact.physicalLocation"></p>
+                  <div class="scope-item">
+                    <span>Outputs</span>
+                    <strong>Visual plans, listings, briefs, launch assets</strong>
+                  </div>
+                  <div class="scope-item">
+                    <span>Coordination</span>
+                    <strong>Merchandise, KOL/KOC, vendors, events</strong>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="contact-form-section">
-              <h4 data-config="contact.formTitle"></h4>
-              <form
-                class="contact-form"
-                id="contact-form"
-                onsubmit="return sendEmail(event)"
-              >
-                <div class="form-group">
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your Name"
-                    required
-                  />
+          </div>
+
+          <aside class="photo-stack" aria-label="Profile evidence">
+            <img
+              class="main-photo"
+              data-config-src="about.profileImage"
+              data-config-alt="about.profileAltText"
+              src="images/avatar.jpg"
+              alt="Thục Anh — Marketing Executive"
+            />
+            <span class="photo-caption">Project Marketing · Online Brand</span>
+            <div class="photo-evidence" aria-label="Selected marketing evidence">
+              <div>
+                <div class="evidence-kicker">
+                  <strong>Selected Evidence</strong>
+                  <span>2025</span>
                 </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="Subject"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Your Message"
-                    required
-                  ></textarea>
-                </div>
-                <button type="submit" class="submit-btn">
-                  <i class="fas fa-paper-plane"></i> Send Message
-                </button>
-              </form>
+                <h4>Beauty launch shelf with proof-ready project names.</h4>
+                <p>A compact proof slip for online brand and launch work.</p>
+              </div>
+              <div class="evidence-tags" aria-label="Launch names">
+                <span>Serioxyl</span>
+                <span>Gloss Absolu</span>
+                <span>Elixir Ultime</span>
+                <span>Matrix</span>
+              </div>
+            </div>
+          </aside>
+        </article>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="section-head">
+          <h2 class="section-title" data-config="experience.sectionTitle">
+            Working Experiences
+          </h2>
+          <p class="section-kicker">
+            Brand roles across beauty marketing, livestream commerce, online
+            visibility, and hospitality operations.
+          </p>
+        </div>
+        <div class="logo-strip" aria-label="Company logo strip">
+          <div class="logo-card dark">
+            <strong>L'Oréal</strong><span>Current · Vietnam</span>
+          </div>
+          <div class="logo-card"><strong>Estée<br />Lauder</strong><span>Companies</span></div>
+          <div class="logo-card"><strong>BareSoul</strong><span>Cosme</span></div>
+          <div class="logo-card"><strong>Joetsu<br />Skiing Resort</strong><span>Japan</span></div>
+        </div>
+        <div class="experience-grid" id="experience-grid"></div>
+      </section>
+
+      <section id="portfolio" class="section">
+        <div class="section-head">
+          <h2 class="section-title" data-config="portfolio.sectionTitle">
+            Featured Work
+          </h2>
+          <p class="section-kicker">
+            Selected launch, e-commerce, livestream, and key account projects
+            with measurable outcomes.
+          </p>
+        </div>
+        <div class="case-grid" id="portfolio-grid"></div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="section-head">
+          <h2 class="section-title" data-config="skills.sectionTitle">
+            Skills & Activities
+          </h2>
+          <p class="section-kicker">
+            Core capabilities and extracurricular work grouped by how recruiters
+            scan a marketing profile.
+          </p>
+        </div>
+        <div class="lower-grid">
+          <article class="paper-panel">
+            <h3>Core Skills</h3>
+            <ul id="skills-list"></ul>
+          </article>
+          <article class="paper-panel">
+            <h3>Brand Channels</h3>
+            <ul id="channel-list">
+              <li>Beauty e-commerce execution across TikTok Shop, Shopee, SIS, PDP, and CPAS.</li>
+              <li>Livestream commerce planning with campaign mechanics and performance tracking.</li>
+              <li>KOL/KOC briefs, affiliate coordination, and brand guideline alignment.</li>
+            </ul>
+          </article>
+          <article class="paper-panel">
+            <h3>Activities</h3>
+            <ul id="activities-list"></ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="education" class="section">
+        <div class="section-head">
+          <h2 class="section-title" data-config="education.sectionTitle">
+            Education & Achievements
+          </h2>
+          <p class="section-kicker">
+            Academic signal and recognitions kept close together for quick
+            recruiter scanning.
+          </p>
+        </div>
+        <div class="lower-grid" id="education-grid"></div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="contact-band">
+          <div class="contact-copy">
+            <h2 data-config="contact.sectionTitle">
+              Let's create something beautiful.
+            </h2>
+            <p>
+              Open to project marketing, online brand, and beauty e-commerce
+              opportunities.
+            </p>
+          </div>
+          <div class="contact-card">
+            <a class="contact-row" id="email-contact" href="mailto:thucanh.ttn@gmail.com">
+              <span>Email</span><strong data-config="contact.emailAddress">thucanh.ttn@gmail.com</strong>
+            </a>
+            <a class="contact-row" id="phone-contact" href="tel:+84797038080">
+              <span>Zalo / Phone</span><strong data-config="contact.phoneNumber">(+84) 797 038 080</strong>
+            </a>
+            <a
+              class="contact-row"
+              id="cv-contact"
+              href="downloads/Tran-Ton-Nu-Thuc-Anh-CV.pdf"
+              download="Tran-Ton-Nu-Thuc-Anh-CV.pdf"
+              data-config-href="contact.cvDownload.path"
+              data-config-download="contact.cvDownload.fileName"
+            >
+              <span>CV PDF</span><strong>Download CV</strong>
+            </a>
+            <a class="contact-row" id="portfolio-contact" href="#" target="_blank" rel="noopener">
+              <span>Portfolio Drive</span><strong>Open work samples</strong>
+            </a>
+            <a class="contact-row" id="linkedin-contact" href="#" target="_blank" rel="noopener">
+              <span>LinkedIn</span><strong data-config="contact.linkedin.username">Trần Tôn Nữ Thục Anh</strong>
+            </a>
+            <a class="contact-row" id="facebook-contact" href="#" target="_blank" rel="noopener">
+              <span>Facebook</span><strong data-config="contact.facebook.username">thucanhtrantonnu</strong>
+            </a>
+            <div class="contact-row">
+              <span>Location</span><strong data-config="contact.physicalLocation">D2, Ho Chi Minh City, Vietnam</strong>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
       <p>&copy; 2026 Trần Tôn Nữ Thục Anh. Crafted with care.</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/body-scroll-lock@3.1.5/lib/bodyScrollLock.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>

@@ -4,20 +4,20 @@
   "pageTitle": "Thục Anh — Marketing Executive Portfolio",
   "hero": {
     "glitchText": "Results-Driven Marketing Executive",
-    "tagline": "Building beauty brand growth through product launches, e-commerce execution, livestream commerce, and multi-channel media plans.",
-    "contactButton": "Let's Talk",
-    "workButton": "See My Work"
+    "tagline": "Results-driven Marketing Executive building beauty brand growth through launches, e-commerce execution, livestream commerce, and multi-channel media plans.",
+    "contactButton": "Contact",
+    "workButton": "Open Portfolio"
   },
   "about": {
     "sectionTitle": "About Me",
     "profileImage": "images/avatar.jpg",
     "profileAltText": "Thục Anh — Marketing Executive",
     "intro": "Beauty marketing with meticulous follow-through.",
-    "bioParagraph1": "I'm a results-driven Marketing Executive with 3+ years of experience across brand marketing, e-commerce, and beauty industry project execution. My work spans product launch events, end-to-end merchandise production, multi-channel media plans, livestream commerce, and online visibility for beauty brands.",
+    "bioParagraph1": "I'm a results-driven Marketing Executive with 3+ years of experience in brand marketing, e-commerce, and beauty industry project execution. My work spans product launch events, end-to-end merchandise production, multi-channel media plans, livestream commerce, and cross-functional team coordination.",
     "bioParagraph2": "At L'Oréal Vietnam, I support Kérastase, L'Oréal Professionnel, and Matrix projects across TikTok, Shopee, CRM/CEM, e-commerce assets, brand collaborations, and launch events. I am a second-highest-ranking Business Administration graduate from UEF with a 3.7/4.0 GPA, a Top 1 Merit Scholarship, and four years of 50% scholarship support."
   },
   "education": {
-    "sectionTitle": "Education",
+    "sectionTitle": "Education & Achievements",
     "educationHistory": [
       {
         "institutionName": "University of Economics and Finance Ho Chi Minh City",
@@ -37,42 +37,53 @@
       {
         "projectName": "L'Oréal Vietnam — Project Marketing Execution",
         "projectCategory": "Product Launch & E-commerce",
+        "projectLabel": "Launch",
+        "projectMetric": "+150%",
         "projectDescription": "Scaled TikTok and Shopee video quantity by 150% within 2 months, enhancing engagement and increasing GMV by 3% while managing end-to-end merchandise production and e-commerce listings.",
         "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       },
       {
         "projectName": "Kérastase & L'Oréal Professionnel — Launch Events",
         "projectCategory": "Offline Launch & Brand Activation",
+        "projectLabel": "Events",
+        "projectMetric": "3",
         "projectDescription": "Developed creative concepts and executed the Serioxyl “Độ tóc tốc độ” launch plus Kérastase Gloss Absolu and Elixir Ultime events with consistent brand guideline execution.",
         "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       },
       {
         "projectName": "L'Oréal Vietnam — Online Brand Operations",
         "projectCategory": "CRM, Assets & Visibility",
+        "projectLabel": "GMV",
+        "projectMetric": "+3%",
         "projectDescription": "Coordinated ~40 monthly visual assets across SIS, PDP, CPAS, and banners; planned CEM/CRM and Shopee video visibility; and supported Instax, Sony, and Logitech collaborations.",
         "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       },
       {
         "projectName": "Estée Lauder Companies — E-commerce Livestream",
         "projectCategory": "Cloud Beauty Advisor",
+        "projectLabel": "Live",
+        "projectMetric": "130%",
         "projectDescription": "Hosted daily livestream sessions showcasing Estée Lauder products and aligned content with seasonal campaigns, holiday promotions, and product launches while achieving 100–130% monthly KPIs.",
         "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       },
       {
         "projectName": "Baresoul Cosme — Growth & Key Accounts",
         "projectCategory": "KOL/KOC, Affiliate & B2B Sales",
+        "projectLabel": "Growth",
+        "projectMetric": "9K+",
         "projectDescription": "Grew TikTok to 9K+ followers, managed KOL/KOC partnerships and affiliate campaigns at 120% KPI, built an 80–100 client pipeline, and managed Hasaki, Watsons, and Guardian distribution.",
         "projectLink": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY"
       }
     ]
   },
   "experience": {
-    "sectionTitle": "Career Journey",
+    "sectionTitle": "Working Experiences",
     "workHistory": [
       {
         "employmentPeriod": "Jun 2025 – Present",
         "companyName": "L'Oréal Vietnam",
         "jobTitle": "Project Marketing Executive (Kérastase & L'Oréal Professionnel)",
+        "folderLabel": "L'Oréal",
         "responsibilities": [
           "Scaled TikTok and Shopee video quantity by 150% within 2 months, enhancing engagement and increasing GMV by 3%",
           "Managed end-to-end merchandise production with vendors and e-commerce platform listings, maintaining 100% catalog integrity and visual consistency",
@@ -84,6 +95,7 @@
         "employmentPeriod": "Jun 2025 – Present",
         "companyName": "L'Oréal Vietnam",
         "jobTitle": "Online Brand Intern",
+        "folderLabel": "Online",
         "responsibilities": [
           "Spearheaded briefing and coordination of ~40 monthly visual assets (SIS, PDP, CPAS, banners) with design teams, ensuring 100% brand guideline compliance",
           "Planned, executed, and optimized CEM/CRM, Shopee video plans, and e-commerce visibilities, driving 3–5% GMV growth per month",
@@ -95,6 +107,7 @@
         "employmentPeriod": "Nov 2024 – Apr 2025",
         "companyName": "Joetsu Skiing Resort, Japan",
         "jobTitle": "Hospitality Intern",
+        "folderLabel": "Japan",
         "responsibilities": [
           "Optimized restaurant workflows and collaborated cross-functionally with housekeeping during peak seasons to ensure seamless guest experiences"
         ]
@@ -103,6 +116,7 @@
         "employmentPeriod": "May 2024 – Nov 2024",
         "companyName": "Estée Lauder Companies",
         "jobTitle": "Cloud (Ecom) Beauty Advisor — Freelance BA",
+        "folderLabel": "Estée",
         "responsibilities": [
           "Hosted daily livestream sessions showcasing Estée Lauder products, consistently achieving 100–130% of monthly KPIs",
           "Collaborated with the Ecommerce and Marketing team to align livestream content with seasonal campaigns, holiday promotions, and new product launches"
@@ -112,6 +126,7 @@
         "employmentPeriod": "Nov 2023 – Feb 2024",
         "companyName": "L'Oréal Vietnam",
         "jobTitle": "Brand Ambassador Livestreamer — TikTok",
+        "folderLabel": "TikTok",
         "responsibilities": [
           "Co-created promotional content videos and led engaging TikTok livestreams, achieving top-tier sales KPIs (125% in Nov, 120% in Dec)"
         ]
@@ -120,6 +135,7 @@
         "employmentPeriod": "Nov 2022 – Oct 2023",
         "companyName": "Baresoul Cosme",
         "jobTitle": "Online Marketing & Key Account Staff",
+        "folderLabel": "Baresoul",
         "responsibilities": [
           "Content & Brand Marketing: grew TikTok to 9K+ followers; managed KOL/KOC partnerships and affiliate campaigns, achieving 120% KPI",
           "B2B Sales & Operations: developed an 80–100 client pipeline; negotiated contracts and managed distribution for Hasaki, Watsons, and Guardian",
@@ -129,7 +145,7 @@
     ]
   },
   "skills": {
-    "sectionTitle": "Core Skills",
+    "sectionTitle": "Skills & Activities",
     "skillList": [
       {
         "skillIcon": "fas fa-users",
@@ -212,11 +228,16 @@
     ]
   },
   "contact": {
-    "sectionTitle": "Let's Create Something Beautiful",
+    "sectionTitle": "Let's create something beautiful.",
     "greeting": "Get in Touch",
     "formTitle": "Drop me a message",
-    "phoneNumber": "(+84) 797 038 080 (Zalo)",
+    "phoneNumber": "(+84) 797 038 080",
     "emailAddress": "thucanh.ttn@gmail.com",
+    "portfolioDriveUrl": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY",
+    "cvDownload": {
+      "path": "downloads/Tran-Ton-Nu-Thuc-Anh-CV.pdf",
+      "fileName": "Tran-Ton-Nu-Thuc-Anh-CV.pdf"
+    },
     "linkedin": {
       "profileUrl": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222/",
       "username": "Trần Tôn Nữ Thục Anh"
