@@ -1,5 +1,5 @@
 # Baseline integrity manifest — artifact 54559e05-eda1-4835-9b23-bd439f19e24d
-# Pristine = the artifact as designed. Adjusted = pristine + D1-D4, D7, D8, D10, D11, D12.
+# Pristine = the artifact as designed. Adjusted = pristine + D1-D4, D7, D8, D10-D13.
 # (D5/D6/D9 and the interaction fixes are candidate-only; see reference/DEVIATIONS.md.)
 # Verify: cd docs/design/artifact-source && shasum -a 256 -c BASELINE.sha256
 b9037a0b155ac8d5d44c5cc8aeb7e65dba944c02dfd228429ba0839f85239c35  ./design-system.css
@@ -48,9 +48,9 @@ cd970361a2d5a9e7501d56a3c895dc420edc9763fb86606d9f5751a59d79c23d  ./modules/app.
 de0c8741142acbc83cca0f0eb7949b9fb0557206bbe00f78704bb2452152b067  ./modules/content.en+i18n.jsx
 0c07bb39bc280be1a058e0bce8452a8a17f51666f7bb8b7873eebc6faf904eeb  ./modules/content.vi.jsx
 f0a8be4b38a7c4348fee5d9605913ef9f0c62c3ae710f6cd2ef6b2a1ef567676  ./modules/folders.jsx
-d16d2c22fe84e84fb1c649fd0a7d60c3241f99dcd9d2d8b0529058ea36e57749  ./reference/adjusted-en.html
-2d564eff69a7cb45cab3f1dd93ff70b6df27b9e8c6cfb742eb3b5e6016938fdc  ./reference/adjusted-vi.html
-03a76381dc4bbc0db2e65a5fdc9893404f58877ee8379a7d4485e073b43ffc83  ./reference/DEVIATIONS.md
+3627797b330b9c8b0a52408d21bfa5951f95f9036695bfd9d4fd755df478a2db  ./reference/adjusted-en.html
+2d8bd569e47edb8fb7e639af9637e7fb08a4a8ca4234843484de967a9a6fd76e  ./reference/adjusted-vi.html
+84065a001c2a6900e16a63af946ddf42eabb629c9f1469e79ad83fc5eee42e04  ./reference/DEVIATIONS.md
 b9a1d15e5a024ad1026a24cb8b040db8461a7d965e794dfddbf3231e6b0220ba  ./reference/oracle-en.html
 3207e5e9e62c251ef4f8057bf8858a2e0fbec88f81a3e7987d90733907093ad1  ./reference/oracle-vi.html
 416e01405f6fb884f226d71d853f75b31d112480746b7bdb3a72ef97804b7f23  ./template.html

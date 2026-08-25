@@ -229,6 +229,19 @@ function adjust(html, lang) {
     log.push('D12 typography: balanced wrapping, display leading, tab descenders, hanging bullets');
   }
 
+  // D13 — link affordance. In the contact grid a real <a download> ("Download PDF") rendered
+  // pixel-identical to a plain <span> ("District 2, Ho Chi Minh City"): same colour, no underline.
+  // Underlines are added to the real links only. The oracle's contact cells are the D4-injected
+  // ones plus the artifact's own, so target the section structurally.
+  {
+    const css = '#contact .eyebrow + a,#about [style*="background: rgb"] a{text-decoration:underline;'
+      + 'text-decoration-thickness:1px;text-underline-offset:.28em;text-decoration-color:var(--line)}';
+    const before = out;
+    out = out.replace('</style>\n</head>', css + '\n</style>\n</head>');
+    if (out === before) throw new Error('D13: could not inject link affordance');
+    log.push('D13 link affordance on real contact/about-card links');
+  }
+
   // D2 — EN mode: the artifact hides the folder tab label with
   // visibility:hidden;width:126px, leaving a blank coloured tab. Show the label.
   if (lang === 'en') {

@@ -11,7 +11,7 @@
 #                   candidate would make the comparison circular. The hero band is excluded from
 #                   G2/G4 and asserted instead by gate G8.
 
-## adjusted-vi.html  sha256=2d564eff69a7cb45cab3f1dd93ff70b6df27b9e8c6cfb742eb3b5e6016938fdc
+## adjusted-vi.html  sha256=2d8bd569e47edb8fb7e639af9637e7fb08a4a8ca4234843484de967a9a6fd76e
   - D1 token --soft: #7B7869 -> #6A6759 (1 occurrences, hex + rgb())
   - D1 token --pink: #CB7885 -> #BD5565 (12 occurrences, hex + rgb())
   - D1c section-colour text swaps: 19 (+ contact-card white lifted to solid)
@@ -24,10 +24,11 @@
   - D10 font subsets: 40 -> 26 @font-face rules (latin-ext + unused weights dropped)
   - D11 .crow columns 210/130 -> 250/175 + text-wrap:balance
   - D12 typography: balanced wrapping, display leading, tab descenders, hanging bullets
+  - D13 link affordance on real contact/about-card links
   - D3 brand logos -> styled spans: 6
   - D4 contact: +3 cells (LinkedIn, Facebook, Portfolio)
 
-## adjusted-en.html  sha256=d16d2c22fe84e84fb1c649fd0a7d60c3241f99dcd9d2d8b0529058ea36e57749
+## adjusted-en.html  sha256=3627797b330b9c8b0a52408d21bfa5951f95f9036695bfd9d4fd755df478a2db
   - D1 token --soft: #7B7869 -> #6A6759 (1 occurrences, hex + rgb())
   - D1 token --pink: #CB7885 -> #BD5565 (11 occurrences, hex + rgb())
   - D1c section-colour text swaps: 15 (+ contact-card white lifted to solid)
@@ -40,6 +41,7 @@
   - D10 font subsets: 40 -> 26 @font-face rules (latin-ext + unused weights dropped)
   - D11 .crow columns 210/130 -> 250/175 + text-wrap:balance
   - D12 typography: balanced wrapping, display leading, tab descenders, hanging bullets
+  - D13 link affordance on real contact/about-card links
   - D2 EN folder tab labels made visible
   - D3 brand logos -> styled spans: 6
   - D4 contact: +3 cells (LinkedIn, Facebook, Portfolio)

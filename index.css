@@ -360,6 +360,23 @@ section[id]{scroll-margin-top:88px}
 /* A two-word action label should never wrap, on any surface. */
 .sheet-bar .btn,.sheet-foot .btn{white-space:nowrap}
 
+/* A link that renders identically to the plain text beside it is not a link a reader can find.
+   In the contact grid, "Download PDF" (a real <a download>) was pixel-identical to
+   "District 2, Ho Chi Minh City" (a plain <span>) — same colour, no underline — so the only
+   discoverable affordance was hover. Underline the real links, and leave the plain values alone.
+   Kept deliberately quiet: a hairline underline at a generous offset, in the muted rule colour,
+   so it reads as editorial rather than as a web-form link. */
+.contact-grid a,.about-card-rows a{
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:.28em;
+  text-decoration-color:var(--line);
+  transition:text-decoration-color .25s,color .25s}
+.contact-grid a:hover,.contact-grid a:focus-visible,
+.about-card-rows a:hover,.about-card-rows a:focus-visible{text-decoration-color:currentColor}
+/* the contact card sits on the pink surface, so its rule colour must be a light tint */
+.about-card-rows a{text-decoration-color:rgba(255,255,255,.45)}
+
 /* ==========================================================================
    Responsive tier — everything below 900px.
    The artifact has no working layout here: its grids are inline styles that a

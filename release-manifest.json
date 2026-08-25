@@ -1,6 +1,11 @@
 {
   "generations": [
     {
+      "css": "index.389db179.css",
+      "js": "index.2dd4e741.js",
+      "config": "config.91c749cf.json"
+    },
+    {
       "css": "index.8c3b28de.css",
       "js": "index.2dd4e741.js",
       "config": "config.91c749cf.json"
@@ -8,11 +13,6 @@
     {
       "css": "index.8c3b28de.css",
       "js": "index.eb7e6262.js",
-      "config": "config.91c749cf.json"
-    },
-    {
-      "css": "index.59f725ac.css",
-      "js": "index.fe08f7bc.js",
       "config": "config.91c749cf.json"
     }
   ]
