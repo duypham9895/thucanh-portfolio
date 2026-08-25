@@ -2,17 +2,17 @@
   "generations": [
     {
       "css": "index.389db179.css",
+      "js": "index.b307fa7c.js",
+      "config": "config.b9a7ab68.json"
+    },
+    {
+      "css": "index.389db179.css",
       "js": "index.2dd4e741.js",
       "config": "config.91c749cf.json"
     },
     {
       "css": "index.8c3b28de.css",
       "js": "index.2dd4e741.js",
-      "config": "config.91c749cf.json"
-    },
-    {
-      "css": "index.8c3b28de.css",
-      "js": "index.eb7e6262.js",
       "config": "config.91c749cf.json"
     }
   ]
