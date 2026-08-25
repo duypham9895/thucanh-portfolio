@@ -721,11 +721,7 @@
   // Written by tools/release.mjs. In the deployed copy this names a content-hashed file, so the
   // JS and the config it was released with are inseparable: a cached index.<hash>.js can only
   // ever request the config.<hash>.json it shipped with. No release stamp, no reload dance.
-  var CONFIG_URL = 'config.json';
-
-  // Beacon for gate G9. Recording which URL was *requested* only proves a request happened; this
-  // records the value the EXECUTED code actually used, which is the property that matters.
-  try { window.__PORTFOLIO_BUILD__ = { config: CONFIG_URL, booted: false }; } catch (e) {}
+  var CONFIG_URL = 'config.91c749cf.json';
 
   function loadConfig() {
     return fetch(CONFIG_URL)
@@ -743,10 +739,7 @@
   }
 
   loadConfig()
-    .then(function (cfg) {
-      boot(cfg);
-      try { window.__PORTFOLIO_BUILD__.booted = true; } catch (e) {}
-    })
+    .then(boot)
     .catch(function (err) {
       console.error('config load failed', err);
       app.innerHTML = '<section class="sec" style="padding-top:140px"><div class="wrap">' +

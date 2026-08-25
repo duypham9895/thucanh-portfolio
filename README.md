@@ -1,214 +1,143 @@
-# Thục Anh's Portfolio
+# Trần Tôn Nữ Thục Anh — Portfolio
 
-A modern, responsive portfolio website showcasing the professional experience and achievements of Trần Tôn Nữ Thục Anh, a marketing professional and Business Administration student.
+Vietnamese-first (EN toggle) portfolio for a Project Marketing Executive working in beauty
+e-commerce. Static site, no framework, no build step. Live at
+**[thucanhtrantonnu.com](https://thucanhtrantonnu.com)**.
 
-## 🚀 Features
+## Run it
 
-- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
-- **Dark/Light Theme**: Toggle between light and dark modes with preference persistence
-- **Smooth Animations**: AOS (Animate On Scroll) library integration with fallbacks
-- **Interactive Navigation**: Fixed sidebar navigation with active section highlighting
-- **Custom Cursor**: Desktop-only custom cursor with interactive effects
-- **Mobile-First**: Progressive enhancement with mobile navigation menu
-- **PWA Ready**: Progressive Web App manifest for installable experience
-- **Performance Optimized**: Throttled scroll events and optimized animations
-- **Accessibility**: ARIA labels, keyboard navigation, and screen reader friendly
+`config.json` is fetched at runtime, so open it over HTTP rather than from the filesystem:
 
-## 📁 Project Structure
-
-```
-portfolio/
-├── index.html          # Main HTML file (optimized)
-├── index.css           # Styles (organized into sections)
-├── index.js            # JavaScript functionality (modular)
-├── manifest.json       # PWA manifest
-├── config.json         # Portfolio content and settings
-├── CNAME               # GitHub Pages domain
-├── .gitignore          # Git ignore rules
-├── README.md           # Project documentation
-├── icons/              # PWA and favicon icons
-│   ├── favicon.ico
-│   ├── apple-touch-icon.png
-│   ├── icon-192.png
-│   ├── icon-512.png
-│   ├── icon-192-maskable.png
-│   └── icon-512-maskable.png
-└── images/
-    └── avatar.jpg     # Profile picture
+```bash
+python3 -m http.server 8900
+# → http://localhost:8900
 ```
 
-## 🛠 Technologies Used
+## What's here
 
-- **HTML5**: Semantic markup with accessibility features
-- **CSS3**: Custom properties (CSS variables), Grid, Flexbox, animations
-- **JavaScript (ES6+)**: Modern JavaScript with modules and best practices
-- **AOS Library**: Animate On Scroll for smooth reveal animations
-- **Font Awesome**: Icon library for consistent iconography
-- **PWA**: Progressive Web App capabilities
-
-## 🎨 Code Organization
-
-### HTML Structure
-
-- Clean, semantic HTML5 markup
-- Proper heading hierarchy (h1-h4)
-- ARIA labels for accessibility
-- Optimized meta tags and favicon setup
-- Minimal inline scripts (moved to external files)
-
-### CSS Architecture
-
-The CSS is organized into logical sections:
-
-1. **CSS Variables & Theme Setup**: Color schemes and theme variables
-2. **Base Styles & Reset**: Normalize styles and base typography
-3. **Layout & Structure**: Main layout containers and section styling
-4. **Header & Hero Section**: Landing page styles and animations
-5. **Navigation**: Desktop and mobile navigation systems
-6. **Theme Toggle**: Dark/light mode toggle functionality
-7. **Custom Cursor**: Desktop-only interactive cursor
-8. **Section Components**: Individual section styles (About, Portfolio, etc.)
-9. **Responsive Design**: Mobile-first responsive breakpoints
-10. **Dark Theme Adjustments**: Dark mode specific overrides
-11. **Performance Optimizations**: Hardware acceleration and smooth animations
-
-### JavaScript Modules
-
-The JavaScript is organized into functional modules:
-
-1. **Utility Functions**: Helper functions and device detection
-2. **Device Detection & Setup**: Mobile/desktop class assignment
-3. **Custom Cursor**: Desktop cursor interactions
-4. **Typing Animation**: Hero section typing effect
-5. **Theme Toggle**: Dark/light mode switching
-6. **Navigation & Scroll Handling**: Active section detection and smooth scrolling
-7. **Mobile Navigation**: Hamburger menu and sidebar functionality
-8. **Contact Form**: Email form handling
-9. **Animations & Effects**: AOS initialization and fallbacks
-10. **Initialization**: DOM ready event handlers
-
-## 🎯 Key Optimizations Made
-
-### Performance Improvements
-
-- **Reduced file sizes**: HTML from 716 to 360 lines, CSS from 1734 to 1220 lines, JS from 704 to 309 lines
-- **Throttled scroll events**: Improved scroll performance with throttling
-- **Optimized animations**: Hardware acceleration and efficient transforms
-- **Lazy loading**: AOS animations with visibility fallbacks
-- **Modular code**: Clear separation of concerns
-
-### Code Quality Enhancements
-
-- **Consistent formatting**: Proper indentation and spacing
-- **Clear comments**: Section headers and function documentation
-- **Semantic HTML**: Improved accessibility and SEO
-- **Modern JavaScript**: ES6+ features and best practices
-- **CSS organization**: Logical grouping and consistent naming
-- **Error handling**: Graceful fallbacks for all features
-
-### Maintainability Improvements
-
-- **Clear file structure**: Organized sections and modules
-- **Consistent naming**: Clear variable and function names
-- **Documentation**: Comprehensive comments and README
-- **Modular design**: Easy to modify and extend
-- **Version control ready**: Proper .gitignore and file organization
-
-## 📱 Responsive Breakpoints
-
-- **Desktop**: 769px and above (full features)
-- **Tablet**: 768px and below (mobile navigation)
-- **Mobile**: 480px and below (optimized spacing)
-
-## 🌙 Theme System
-
-The portfolio supports both light and dark themes:
-
-- **Light Theme**: Blue (#133e87) primary color with light backgrounds
-- **Dark Theme**: Softer blues with dark backgrounds
-- **Persistence**: Theme preference saved in localStorage
-- **Smooth Transitions**: Animated theme switching
-
-## 🚀 Getting Started
-
-1. **Clone the repository**
-
-   ```bash
-   git clone [repository-url]
-   cd thucanh-portfolio
-   ```
-
-2. **Open in browser**
-
-   - Simply open `index.html` in your web browser
-   - Or serve through a local web server for best experience
-
-3. **Development**
-   - Modify content in `index.html`
-   - Update styles in `index.css`
-   - Add functionality in `index.js`
-
-## 📋 Browser Support
-
-- **Modern Browsers**: Chrome 60+, Firefox 55+, Safari 12+, Edge 79+
-- **Mobile Browsers**: iOS Safari 12+, Chrome Mobile 60+
-- **Features**: CSS Grid, Flexbox, CSS Custom Properties, ES6+ JavaScript
-
-## 🔧 Customization
-
-### Colors
-
-Update CSS custom properties in the `:root` and `[data-theme="dark"]` selectors:
-
-```css
-:root {
-  --primary-color: #133e87;
-  --secondary-color: #608bc1;
-  --accent-color: #4a6fa5;
-  /* ... other variables */
-}
+```
+index.html      shell: nav, language toggle, mount points, font preloads, noscript fallback
+index.css       @font-face → verbatim design system → component classes → responsive tier
+index.js        renderer, i18n, folder nav, reveal observer, campaign sheet, toast
+config.json     all content, { meta, vi, en } — the single source of truth
+fonts/          21 self-hosted woff2 subsets (content-hashed). No Google Fonts request.
+docs/design/    the recovered design source + pixel oracles (see below)
+tools/          dev-only QA harness + release tool — never shipped to the browser
 ```
 
-### Content
+## Design provenance
 
-Update the content sections in `index.html`:
+The design is a port of a Claude Design artifact. The artifact was **recovered byte-exact** — its
+bundled HTML and assets were decoded rather than eyeballed from screenshots — and the recovered
+source lives in `docs/design/artifact-source/`, hash-pinned in `BASELINE.sha256` (52 files).
 
-- About section
-- Education details
-- Portfolio projects
-- Experience timeline
-- Skills and achievements
+Two oracles sit alongside it:
 
-### Content Configuration
+- **pristine** (`oracle-{vi,en}.html`) — the artifact exactly as designed, zero JavaScript
+- **adjusted** (`adjusted-{vi,en}.html`) — pristine plus the approved deviations
 
-All text content, project details, and social media links are managed in `config.json`. Modify this file to update the portfolio's content without changing the HTML structure.
+The site is diffed against the *adjusted* oracle at full strictness. Every allowed difference is
+listed in `reference/DEVIATIONS.md`, so nothing is waved through with a tolerance band.
 
-### Animations
+`index.css` opens with the design system copied verbatim. **Don't restyle by taste** — change the
+oracle deliberately, or not at all.
 
-Modify AOS settings in `index.js`:
+### Deliberate departures from the artifact
 
-```javascript
-AOS.init({
-  duration: 1000,
-  once: true,
-  offset: 50,
-  delay: 100,
-  easing: "ease-out-cubic",
-});
+- **Accessibility.** The artifact's palette failed WCAG AA badly in places — citron section text
+  measured **1.42:1**. Section colours keep their artifact value as *surfaces* but use a darkened
+  variant as *text*; body text and the pink token were nudged; folder caption opacity was removed.
+  Result: **zero AA failures**.
+- **Mobile.** The artifact overflows **208px at 375px**, because its layout grids are inline React
+  styles that a media query cannot reach. Those became CSS classes, and a real responsive tier was
+  written. Result: **0px overflow** at 320/375/390/768, including inside every campaign sheet.
+- **Weight and speed.** The artifact shipped React + Babel (~4.3 MB) compiling JSX in the browser.
+  This is vanilla JS. Measured, throttled:
+
+  | | Desktop (cable) | Mobile (4G, 4x CPU) |
+  |---|---|---|
+  | FCP | 64 ms | 1160 ms |
+  | LCP | 136 ms | 1496 ms |
+  | CLS | **0** | 0.0004 |
+
+  First-load transfer as GitHub Pages serves it (text gzipped): **28 KB** text +
+  **91 KB** preloaded fonts + **230 KB** portrait (below the fold, lazy) = **349 KB** desktop,
+  **119 KB** to first paint on mobile. 15 requests.
+- Brand logos use the design's own styled text treatment (`brands/*.png` 404 even in the artifact);
+  LinkedIn / Facebook / Drive links were kept, which the artifact drops.
+- **Reader flow and section order.** Driven by measurement plus published eyetracking research,
+  not taste — the full evidence and citations are in
+  [`docs/research/reader-flow.md`](docs/research/reader-flow.md). In short: NN/G found **74% of
+  viewing time falls in the first two screenfuls**, yet the campaigns — the strongest asset — began
+  at screen **4.6**. Ladders found recruiters give a first screen **7.4 seconds** and scan
+  *current title → previous role → dates → education*. Portfolio guidance is consistent that About
+  is *"where people go after they already like your work"*.
+  So the order is now **campaigns → experience → about → education → awards → extracurricular →
+  contact**, proof and a permanent Download CV live in the first screen, empty media renders
+  nothing, and the hero no longer forms a false floor at the fold.
+
+### What the visitor sees now
+
+| | Before | After |
+|---|---|---|
+| Download CV | 2.1 screens down | **always visible** in the nav |
+| Proof numbers | 2.0 screens | **0.6** — first screen |
+| Brands worked with | 2.4 screens | **0.75** — first screen |
+| Empty media frames | 6 | **0** |
+| Page length, desktop | 9.7 screens | **8.2** |
+| Page length, mobile | 16.5 screens | **13.1** |
+
+## Editing content
+
+Edit `config.json`, not the markup — and change both languages together. VI and EN are
+structurally identical and a parity check enforces it.
+
+**All strings must be NFC.** Decomposed (NFD) Vietnamese needs `U+0302`, `U+0306`, `U+031B`, none
+of which is in any font subset's `unicode-range`; NFD text silently falls back to a system font.
+
+Image slots are config-driven. An unset slot **renders nothing at all**, and a section whose slots
+are all empty hides itself — a labelled empty frame reads as "unfinished" to a visitor, which is the
+most expensive impression a portfolio can make. Add a path and the slot (and its section) reappears
+with no code change. A slot accepts an image path, a local video file, or a YouTube / Vimeo / Drive /
+Facebook URL.
+
+## QA
+
+```bash
+cd tools/visual-qa && npm install
+node gates.mjs      http://localhost:8900/   # G1–G7 × VI+EN, exits non-zero on failure
+node functional.mjs http://localhost:8900/   # behaviour + accessibility
 ```
 
-## 📄 License
+**Gates (G1–G9):** baseline hashes · geometry vs oracle (heights *and* order) · horizontal overflow
+(page *and* all 5 campaign sheets) · masked pixel diff with connected-component limits · design
+tokens · contrast, alpha- and opacity-composited · failed requests · reader flow (CV persistent and
+visible, proof in the first screen, zero empty frames — checked at 1440 **and** 390) · **browser-truth
+release verification**.
 
-This project is open source and available under the MIT License.
+The last one matters most: `tools/visual-qa/verify-deployed.mjs` loads the page in a real browser and observes
+what the engine *actually* applied, executed and fetched, rather than parsing the HTML. A static
+parser cannot be made spoof-proof, and no text analysis can determine which value reaches
+`fetch()`. `tools/visual-qa/README.md` documents the determinism pins and the full negative-test
+matrix.
 
-## 👤 Contact
+## Releasing
 
-**Trần Tôn Nữ Thục Anh**
+```bash
+node tools/release.mjs           # write content-hashed index.<h>.css/js + config.<h>.json
+node tools/release.mjs --check   # fail unless the deployed set is mutually consistent
+```
 
-- Email: thucanh.ttn@gmail.com
-- LinkedIn: [thuc-anh-tran-ton-nu](https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222/)
-- Facebook: [thucanhtrantonnu](https://www.facebook.com/thucanhtrantonnu/)
+`index.html` names only hashed files, and the hashed JS has its config's hashed name compiled in.
+A filename either exists with exactly the bytes its hash describes, or not at all — so a browser
+cannot assemble a page from two generations.
 
----
+Three generations are retained (`release-manifest.json`) so a visitor holding an older `index.html`
+still gets its assets rather than a 404. **Run `--check` before committing** — it fails on an
+edited-but-unreleased source, a non-hashed reference, or an orphaned asset.
 
-_This portfolio showcases modern web development practices with clean, maintainable, and accessible code._
+## Browser support
+
+Modern evergreen browsers. Requires CSS custom properties, `aspect-ratio`, `color-mix()`,
+`IntersectionObserver`, and `fetch`. Without JavaScript, the `noscript` block still shows name,
+role and contact details.

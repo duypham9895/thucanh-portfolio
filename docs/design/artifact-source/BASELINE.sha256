@@ -1,0 +1,56 @@
+# Baseline integrity manifest — artifact 54559e05-eda1-4835-9b23-bd439f19e24d
+# Pristine = the artifact as designed. Adjusted = pristine + deviations D1-D4, D7, D8, D10
+# (D5/D6/D9 are candidate-only; see reference/DEVIATIONS.md).
+# Verify: cd docs/design/artifact-source && shasum -a 256 -c BASELINE.sha256
+b9037a0b155ac8d5d44c5cc8aeb7e65dba944c02dfd228429ba0839f85239c35  ./design-system.css
+651baa2375f68359c951d938304ef831f0600b805eff106f6de645734f2c0966  ./fonts.css
+c393d858999d428c0bc41e3e39e7d8cdcce1da0dc0fe220638b7c13e36d53e52  ./fonts/bevietnampro-200-normal-latin-ext.woff2
+aacd8604e2fc4e75c0ed246e91e149ab1a74e7edca68f4229ee818d96f4b78d6  ./fonts/bevietnampro-200-normal-latin.woff2
+ff734262f9cf3e5b95d97a863dc9d0c8d69f7f96e284a013faa2089e3a3b9782  ./fonts/bevietnampro-200-normal-vietnamese.woff2
+3e217c40eb3f30f8378acc06b87fd0010cf192188ec63e3449a0d08130400c6c  ./fonts/bevietnampro-300-normal-latin-ext.woff2
+36755b3a55aba6d45df37ba297d7996668e4de5ba3cceddfe2b0345c981f5533  ./fonts/bevietnampro-300-normal-latin.woff2
+36e0cd62fe6705b2ed9c1976bf3d630d23bf4402f1522290f05906579afd65eb  ./fonts/bevietnampro-300-normal-vietnamese.woff2
+c2ae124f149371e1b6209cbba234852310caeee3c32990a56ccb93ac1c7edb9a  ./fonts/bevietnampro-400-normal-latin-ext.woff2
+d25f70ff7404fddbeb150c9c687bf37069468a5cdf59117b2a30226d1ebfa5c0  ./fonts/bevietnampro-400-normal-latin.woff2
+b0d9b8aec7f47207ce4065be34286203e0741c8329be6d05986b149f991f84c1  ./fonts/bevietnampro-400-normal-vietnamese.woff2
+83b86791eb0ebfca23daa3f70ee179f13638c69441b69a6d2deb6b96a95385ea  ./fonts/bevietnampro-500-normal-latin-ext.woff2
+0336df67f25be86ea38a6f37b11ffb4901c1ed65ce06ba99d6a304913e997e52  ./fonts/bevietnampro-500-normal-latin.woff2
+e83829fe40a88cff1c6ee213801661468bfed922771d1c382b4c1fdc269a5648  ./fonts/bevietnampro-500-normal-vietnamese.woff2
+919a7720ae1671f06ebdd4f65bb9c2f0d619f81f805d85aec025c89139536292  ./fonts/cormorantgaramond-300-italic-cyrillic-ext.woff2
+3170a883f1968a2d1135259e40fd88508da70c20337e491f171f9405d0749053  ./fonts/cormorantgaramond-300-italic-cyrillic.woff2
+06bc9a8c179afaf7dd5d3b4987ad2f4a82ca85a542c9e498b18bf32ad0257d8e  ./fonts/cormorantgaramond-300-italic-latin-ext.woff2
+e6d6d1d73858aa9b66f3a3539f9dec22faab2276e61ad1d813bc04dd59c9c122  ./fonts/cormorantgaramond-300-italic-latin.woff2
+3512ad3b4ddd21fa75ab44296867da1f82948350ffba678a04afbb511015cb08  ./fonts/cormorantgaramond-300-italic-vietnamese.woff2
+d04439363ec805132dc6c6e6a925f76efe17646f9811af8e10e218ea3dba5335  ./fonts/cormorantgaramond-300-normal-cyrillic-ext.woff2
+d81372bae1f872f1418c0b7eb412f8a92a156a950fda8d2383701c75d38969df  ./fonts/cormorantgaramond-300-normal-cyrillic.woff2
+9dc38267bdee93a653200ef3c1e8060e3f1399073432c415c683b419d3b50464  ./fonts/cormorantgaramond-300-normal-latin-ext.woff2
+5d618c462b7a5b74f442e1548880086af71764d9cc7d35c16ab45353da934621  ./fonts/cormorantgaramond-300-normal-latin.woff2
+826f73ca737feec0eb1004808629973d6b611fddc2bd2a689b5fe331f6be6427  ./fonts/cormorantgaramond-300-normal-vietnamese.woff2
+919a7720ae1671f06ebdd4f65bb9c2f0d619f81f805d85aec025c89139536292  ./fonts/cormorantgaramond-400-italic-cyrillic-ext.woff2
+3170a883f1968a2d1135259e40fd88508da70c20337e491f171f9405d0749053  ./fonts/cormorantgaramond-400-italic-cyrillic.woff2
+06bc9a8c179afaf7dd5d3b4987ad2f4a82ca85a542c9e498b18bf32ad0257d8e  ./fonts/cormorantgaramond-400-italic-latin-ext.woff2
+e6d6d1d73858aa9b66f3a3539f9dec22faab2276e61ad1d813bc04dd59c9c122  ./fonts/cormorantgaramond-400-italic-latin.woff2
+3512ad3b4ddd21fa75ab44296867da1f82948350ffba678a04afbb511015cb08  ./fonts/cormorantgaramond-400-italic-vietnamese.woff2
+d04439363ec805132dc6c6e6a925f76efe17646f9811af8e10e218ea3dba5335  ./fonts/cormorantgaramond-400-normal-cyrillic-ext.woff2
+d81372bae1f872f1418c0b7eb412f8a92a156a950fda8d2383701c75d38969df  ./fonts/cormorantgaramond-400-normal-cyrillic.woff2
+9dc38267bdee93a653200ef3c1e8060e3f1399073432c415c683b419d3b50464  ./fonts/cormorantgaramond-400-normal-latin-ext.woff2
+5d618c462b7a5b74f442e1548880086af71764d9cc7d35c16ab45353da934621  ./fonts/cormorantgaramond-400-normal-latin.woff2
+826f73ca737feec0eb1004808629973d6b611fddc2bd2a689b5fe331f6be6427  ./fonts/cormorantgaramond-400-normal-vietnamese.woff2
+d04439363ec805132dc6c6e6a925f76efe17646f9811af8e10e218ea3dba5335  ./fonts/cormorantgaramond-500-normal-cyrillic-ext.woff2
+d81372bae1f872f1418c0b7eb412f8a92a156a950fda8d2383701c75d38969df  ./fonts/cormorantgaramond-500-normal-cyrillic.woff2
+9dc38267bdee93a653200ef3c1e8060e3f1399073432c415c683b419d3b50464  ./fonts/cormorantgaramond-500-normal-latin-ext.woff2
+5d618c462b7a5b74f442e1548880086af71764d9cc7d35c16ab45353da934621  ./fonts/cormorantgaramond-500-normal-latin.woff2
+826f73ca737feec0eb1004808629973d6b611fddc2bd2a689b5fe331f6be6427  ./fonts/cormorantgaramond-500-normal-vietnamese.woff2
+e2ffec4562d4a81cbe75c25a51ca919f443d2c8f5096a84b81710439c0f16c73  ./fonts/italianno-400-normal-latin-ext.woff2
+c91c4b8b38b46d7f9f9692ecc7e3be2860a81b74ea0bc37a02b3e6467f90a1cb  ./fonts/italianno-400-normal-latin.woff2
+d09b833f8918abc98563a204f87d6e385ce1653885877bcb41c78340b9adaadc  ./fonts/italianno-400-normal-vietnamese.woff2
+cd970361a2d5a9e7501d56a3c895dc420edc9763fb86606d9f5751a59d79c23d  ./modules/app.jsx
+de0c8741142acbc83cca0f0eb7949b9fb0557206bbe00f78704bb2452152b067  ./modules/content.en+i18n.jsx
+0c07bb39bc280be1a058e0bce8452a8a17f51666f7bb8b7873eebc6faf904eeb  ./modules/content.vi.jsx
+f0a8be4b38a7c4348fee5d9605913ef9f0c62c3ae710f6cd2ef6b2a1ef567676  ./modules/folders.jsx
+25ff19be386f7031202388aefc2f7d8f9b40daa1b79a2e0b4fd7e17c239d969b  ./reference/adjusted-en.html
+e6434701b996b36450082c25f8f9c295b8e33e22c680fd6adf0f4db6397b8cec  ./reference/adjusted-vi.html
+204da702b71d71696229ba80cc602dec01daac7645c571eb86dd9e5e45052864  ./reference/DEVIATIONS.md
+b9a1d15e5a024ad1026a24cb8b040db8461a7d965e794dfddbf3231e6b0220ba  ./reference/oracle-en.html
+3207e5e9e62c251ef4f8057bf8858a2e0fbec88f81a3e7987d90733907093ad1  ./reference/oracle-vi.html
+416e01405f6fb884f226d71d853f75b31d112480746b7bdb3a72ef97804b7f23  ./template.html

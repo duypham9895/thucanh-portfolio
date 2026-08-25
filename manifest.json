@@ -1,15 +1,18 @@
 {
   "name": "Thục Anh's Portfolio",
   "short_name": "Thục Anh",
-  "description": "Professional portfolio of Trần Tôn Nữ Thục Anh — Marketing Executive",
+  "description": "Portfolio của Trần Tôn Nữ Thục Anh — Project Marketing Executive. Online marketing, e-commerce và beauty.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F4F8F6",
-  "theme_color": "#0A6E5C",
-  "orientation": "portrait-primary",
+  "background_color": "#F4F2ED",
+  "theme_color": "#BD5565",
   "scope": "/",
-  "lang": "en",
-  "categories": ["business", "portfolio", "professional"],
+  "lang": "vi",
+  "categories": [
+    "business",
+    "portfolio",
+    "professional"
+  ],
   "icons": [
     {
       "src": "/icons/favicon.ico",

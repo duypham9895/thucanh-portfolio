@@ -1,0 +1,7 @@
+{
+  "name": "thucanh-portfolio-visual-qa",
+  "private": true,
+  "type": "module",
+  "description": "Dev-only visual regression harness. Not part of the deployed site.",
+  "dependencies": { "playwright-core": "^1.49.0", "pixelmatch": "^6.0.0", "pngjs": "^7.0.0" }
+}

@@ -721,7 +721,7 @@
   // Written by tools/release.mjs. In the deployed copy this names a content-hashed file, so the
   // JS and the config it was released with are inseparable: a cached index.<hash>.js can only
   // ever request the config.<hash>.json it shipped with. No release stamp, no reload dance.
-  var CONFIG_URL = 'config.json';
+  var CONFIG_URL = 'config.91c749cf.json';
 
   // Beacon for gate G9. Recording which URL was *requested* only proves a request happened; this
   // records the value the EXECUTED code actually used, which is the property that matters.
