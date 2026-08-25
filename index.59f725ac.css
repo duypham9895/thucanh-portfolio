@@ -283,6 +283,82 @@ button.crow{width:100%;text-align:left;font:inherit;color:inherit;background:non
 .videos-grid>*,.sheet-cols>*,.sheet-vids-grid>*,.sheet-res-grid>*,.award>*,.crow>*{min-width:0}
 
 /* ==========================================================================
+   Layout-stability and text-fitting fixes (post-launch audit)
+   ========================================================================== */
+
+/* The artifact animates .crow:hover with padding-left:16px. That shrinks the flexible title
+   column (714px -> 698px), which tips a borderline title onto a second line and makes the row
+   44px taller — the page jumps while you hover. A transform is compositor-only and costs no
+   layout, so the same slide happens with zero reflow. */
+.crow:hover{padding-left:0}
+.crow{transition:none}
+.crow > *{transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.crow:hover > *{transform:translateX(16px)}
+
+/* Measured natural widths: the tag/year line needs up to 246px in a 210px column, and the KPI
+   needs up to 241px in a 130px column — so 3 of 5 rows wrapped at rest, orphaning single words
+   ("2026", "visuals"). Widened to fit, and where the longest KPI still needs two lines
+   text-wrap:balance splits it evenly instead of stranding one word. */
+.crow{grid-template-columns:56px 1fr 250px 175px}
+.ckpi p{text-wrap:balance}
+.cmeta p{text-wrap:balance}
+
+/* The brand is two names; let it break between them rather than wherever it runs out of room. */
+.nav-brand{white-space:nowrap}
+.nav-brand strong{white-space:nowrap}
+
+/* A two-word action label should never wrap. */
+.nav-cv{white-space:nowrap}
+
+/* ==========================================================================
+   Audit fixes — see the workflow audit; 44 findings confirmed by adversarial verification
+   ========================================================================== */
+
+/* Anchor jumps left ~15px of every section tucked under the 74px fixed nav. scroll-padding-top
+   fixes browser-driven scrolls (Tab, :target); index.js NAV_CLEARANCE matches it for JS scrolls. */
+html{scroll-padding-top:88px}
+
+/* Shift+Tab could park focus behind the nav, and a focused .folder had its outline painted over
+   by the next folder (they overlap by -16px). Give focusable things their own clearance, and move
+   the folder's focus ring onto the parts that are actually on top. */
+:where(a,button,[tabindex]){scroll-margin-top:88px}
+.folder:focus-visible{outline:none}
+.folder:focus-visible .tab,
+.folder:focus-visible .folder-body{outline:2px solid var(--ink);outline-offset:2px}
+
+/* The hover slide moved the right-hand metadata 16px past the alignment edge shared by the
+   section rule and the row borders. The artifact's padding-left only ever shifted the first two
+   columns (the 1fr track absorbed it), so restrict the transform the same way. */
+.crow:hover > *{transform:none}
+.crow:hover > *:nth-child(-n+2){transform:translateX(16px)}
+
+/* The nav CV label ships as "Tải CV" in the HTML and is swapped to "Download CV" once config
+   loads, which moved the button 56px left on every English load — a real layout shift, and it
+   fired even unthrottled. Reserving the wider label's width removes the jump in both languages. */
+/* 8.6em resolved to only 90px against the button's own 10.5px font — far short of the 141px the
+   English label needs. Reserved in px per breakpoint, measured from the wider of the two labels. */
+.nav-cv{min-width:141px;justify-content:center}
+
+/* Atomic names must not be split across lines: "(UEF)" was orphaned onto a third display line,
+   "Baresoul Cosme" and "tốc độ" were broken mid-name. */
+.edu-school,.hero-brands,.ct,.sheet-title,.about-quote,.award-t{text-wrap:balance}
+.hero-brands [data-hero-brands]{white-space:normal}
+
+/* Wrapping display type inherited .disp{line-height:1.02}, so descenders collided. .edu-school
+   already sets 1.1 and never had the problem, so it is deliberately left alone. */
+.about-quote,.sheet-title{line-height:1.12}
+
+/* .tabname clipped descenders (its 44px tab and line-height:1 left no room) and its
+   text-overflow:ellipsis never fired because the box was never actually constrained. */
+.tabname{line-height:1.25;padding-block:2px}
+
+/* CV bullets are dash-led; hang the dash so wrapped lines align with the text, not the dash. */
+.cv-row li{padding-left:1.1em;text-indent:-1.1em}
+
+/* A two-word action label should never wrap, on any surface. */
+.sheet-bar .btn,.sheet-foot .btn{white-space:nowrap}
+
+/* ==========================================================================
    Responsive tier — everything below 900px.
    The artifact has no working layout here: its grids are inline styles that a
    media query cannot reach, producing 208px of overflow at 375px.
@@ -319,10 +395,20 @@ button.crow{width:100%;text-align:left;font:inherit;color:inherit;background:non
   .extra-grid,.awards-grid,.contact-grid,.videos-grid{grid-template-columns:1fr}
   .extra-grid,.awards-grid{gap:0}
   .contact-grid{gap:22px}
+  /* contact rows were 14-20px tall — below the 24px WCAG 2.2 target minimum, far below comfortable */
+  .contact-grid a{display:inline-block;min-height:44px;line-height:44px}
+  .about-card-rows a{display:inline-block;min-height:40px;line-height:40px}
   .videos-grid{gap:26px}
 
   .crow{grid-template-columns:34px 1fr;gap:14px;padding:24px 0}
   .crow .cmeta,.crow .ckpi{display:none}
+
+  /* The nav has three items in ~346px of usable width. The brand gets an intentional break
+     between the two names instead of orphaning "Anh", and the CV label stays on one line. */
+  .nav-brand{font-size:17px;line-height:1.15;white-space:normal}
+  .nav-brand strong{display:block}
+  .nav-cv{padding:8px 11px;letter-spacing:.08em}
+  .nav-inner{gap:12px}
 
   .sheet-body{padding:40px 22px 72px}
   .sheet-cols{grid-template-columns:1fr;gap:34px;margin:48px 0}
@@ -337,6 +423,7 @@ button.crow{width:100%;text-align:left;font:inherit;color:inherit;background:non
 @media (max-width:420px){
   .about-stats{grid-template-columns:1fr}
 }
+
 
 /* Reduced motion must FORCE .reveal visible. Disabling only the transition
    leaves it stranded at opacity:0 — invisible content, not a calmer page. */
@@ -384,12 +471,22 @@ button.crow{width:100%;text-align:left;font:inherit;color:inherit;background:non
   .hero-stat-v{font-size:23px}
   .hero-brands{font-size:11.5px}
   .nav-actions{gap:8px}
-  .nav-cv{padding:8px 12px;letter-spacing:.1em}
+  .nav-cv{padding:8px 12px;letter-spacing:.1em;min-width:120px}
 }
 @media (max-width:420px){
-  /* the nav must not wrap: drop the CV label to an icon-free short form */
-  .nav-cv{padding:8px 10px}
-  .nav-brand{font-size:17px}
+  .nav-cv{padding:8px 10px;min-width:116px}
+}
+
+/* At 320px the English "Download CV" label left the brand only ~43px, forcing it to a third line.
+   Tightening the language pills and the brand buys back enough room for the intended two-line
+   break to hold. This must come AFTER the 420px block above, which also sets .nav-brand — both
+   match at 320px, and the later rule wins. */
+@media (max-width:365px){
+  .nav-brand{font-size:15.5px}
+  .lang button{padding:6px 9px;letter-spacing:.1em}
+  .lang{gap:5px}
+  .nav-cv{padding:8px 9px;letter-spacing:.04em;min-width:107px}
+  .nav-inner{gap:9px}
 }
 
 /* D9 — false floor at the fold. NN/G: 57% of viewing time is above the fold and the illusion of

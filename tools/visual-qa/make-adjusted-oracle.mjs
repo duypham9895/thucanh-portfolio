@@ -196,6 +196,39 @@ function adjust(html, lang) {
     log.push(`D10 font subsets: ${before} -> ${after} @font-face rules (latin-ext + unused weights dropped)`);
   }
 
+  // D11 — campaign row columns. Measured natural widths: the tag/year line needs up to 246px in a
+  // 210px column and the KPI up to 241px in a 130px column, so 3 of 5 rows wrapped at rest and
+  // orphaned single words. Widened to 250/175 with text-wrap:balance for the one KPI still long
+  // enough to need two lines. Applied here so G2/G4 keep comparing like for like.
+  {
+    const before = out;
+    out = out.replace('.crow{display:grid;grid-template-columns:56px 1fr 210px 130px;',
+                      '.crow{display:grid;grid-template-columns:56px 1fr 250px 175px;');
+    if (out === before) throw new Error('D11: .crow grid-template-columns not found in oracle');
+    out = out.replace('</style>\n</head>', '.ckpi p,.cmeta p{text-wrap:balance}\n</style>\n</head>');
+    log.push('D11 .crow columns 210/130 -> 250/175 + text-wrap:balance');
+  }
+
+  // D12 — typography fixes from the UI audit. Wrapping display type inherited single-line leading
+  // so descenders collided; atomic names ("(UEF)", "Baresoul Cosme", "tốc độ") were split across
+  // lines; .tabname clipped descenders; dash-led CV bullets had no hanging indent. Applied to the
+  // oracle too, since these change geometry and G2/G4 must keep comparing like for like.
+  {
+    // The oracle is serialized React output: it has NO semantic class names (.about-quote,
+    // .edu-school, .cv-row are mine), only inline styles. So these must be STRUCTURAL selectors
+    // that hit the same elements the candidate's classes hit.
+    const css = [
+      '#about h3.disp,#education h3.disp,.ct,#awards p{text-wrap:balance}',
+      '#about h3.disp{line-height:1.12}',
+      '.tabname{line-height:1.25;padding-block:2px}',
+      '#cv li{padding-left:1.1em;text-indent:-1.1em}',
+    ].join('');
+    const before = out;
+    out = out.replace('</style>\n</head>', css + '\n</style>\n</head>');
+    if (out === before) throw new Error('D12: could not inject typography fixes');
+    log.push('D12 typography: balanced wrapping, display leading, tab descenders, hanging bullets');
+  }
+
   // D2 — EN mode: the artifact hides the folder tab label with
   // visibility:hidden;width:126px, leaving a blank coloured tab. Show the label.
   if (lang === 'en') {

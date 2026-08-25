@@ -66,7 +66,8 @@
   function ti(el, path) {
     el.setAttribute('data-i18n', path);
     var v = get(L, path);
-    el.textContent = v == null ? '' : String(v);
+    // `undefined`/`null` must render as empty, never as the literal text "undefined"
+    el.textContent = (v == null) ? '' : String(v);
     return el;
   }
   function retranslate() {
@@ -362,7 +363,7 @@
         onmouseleave: function () { peek.hidden = true; },
         onclick: function () { openSheet(c.id); },
       }, [
-        ti(h('span', { class: 'eyebrow crow-n' }), 'CAMPAIGNS.' + i + '.n'),
+        ti(h('span', { class: 'eyebrow crow-n' }), 'CAMPAIGNS.' + i + '.n'),  // ti() blanks a missing value
         h('div', {}, [
           ti(h('h3', { class: 'ct' }), 'CAMPAIGNS.' + i + '.title'),
           ti(h('p', { class: 'body crow-sum' }), 'CAMPAIGNS.' + i + '.summary'),
@@ -499,9 +500,20 @@
     var idx = L.CAMPAIGNS.map(function (c) { return c.id; }).indexOf(id);
     if (idx < 0) return;
     var c = L.CAMPAIGNS[idx];
+    // A campaign added without shots/did/res used to throw here and the row became permanently
+    // unopenable with no feedback. Missing collections degrade to empty instead.
+    c = Object.assign({}, c, {
+      shots: Array.isArray(c.shots) ? c.shots : [],
+      did: Array.isArray(c.did) ? c.did : [],
+      res: Array.isArray(c.res) ? c.res : [],
+    });
     var opener = (sheetState && sheetState.opener) || document.activeElement;
+    // Record the page scroll BEFORE anything else. Focusing inside the freshly-appended sheet
+    // scrolls the document (measured: 534 -> 1229 on open), and body{overflow:hidden} then locks
+    // it there, so closing looked like the culprit when the damage was already done on open.
+    var pageY = (sheetState && typeof sheetState.pageY === 'number') ? sheetState.pageY : window.scrollY;
     closeSheet(true);
-    sheetState = { id: id, opener: opener };
+    sheetState = { id: id, opener: opener, pageY: pageY };
 
     var el = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true',
                         'data-qa-campaign': id, 'aria-label': c.title }, [
@@ -516,7 +528,7 @@
         h('p', { class: 'eyebrow', text: c.tag + ' · ' + c.year }),
         h('h1', { class: 'disp sheet-title', text: c.title }),
         h('p', { class: 'disp it sheet-sum', style: 'color:' + CT('work'), text: c.summary }),
-        (function () { var m = slot('shot-a-' + c.id, c.shots[0], '16/9', c.shotSrc && c.shotSrc[0]);
+        (function () { var m = slot('shot-a-' + c.id, c.shots[0] || '', '16/9', c.shotSrc && c.shotSrc[0]);
           return m ? h('div', { class: 'sheet-shot-a' }, [m]) : null; })(),
         (function () {
           if (!c.vids) return null;
@@ -582,7 +594,8 @@
     // (the sheet is the scroll container). Reset the sheet instead.
     el.scrollTop = 0;
     var first = el.querySelector(FOCUSABLE);
-    if (first) first.focus();
+    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+    if (window.scrollY !== pageY) window.scrollTo(0, pageY);
     el.addEventListener('keydown', trap);
   }
 
@@ -603,13 +616,33 @@
     // Page state is always restored, even on the silent path. Returning early here
     // would leave the page scroll-locked and hidden from assistive tech.
     var opener = sheetState && sheetState.opener;
+    var pageY = sheetState && sheetState.pageY;
     sheetState = null;
     document.body.style.overflow = '';
     [app, $('#nav')].forEach(function (n) {
       n.removeAttribute('aria-hidden');
       if ('inert' in n) n.inert = false;
     });
-    if (!silent && opener && document.contains(opener)) opener.focus();
+    // focus() scrolls its target into view, and with html{scroll-behavior:smooth} the page
+    // glided 131-230px after every sheet close. preventScroll keeps the focus restore without
+    // the movement; the fallback covers browsers that ignore the option.
+    if (!silent && opener && document.contains(opener)) {
+      // focus() scrolls its target into view. preventScroll alone was NOT enough: with
+      // html{scroll-behavior:smooth} the scroll is ANIMATED, so a synchronous scrollY check
+      // straight after focus() sees the old value and the page glides away afterwards.
+      // So: pin scroll-behavior to auto for the duration, focus, hard-restore, then release.
+      var y = (typeof pageY === 'number') ? pageY : window.scrollY;
+      var root = document.documentElement;
+      var prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
+      try { opener.focus({ preventScroll: true }); } catch (e) { opener.focus(); }
+      if (window.scrollY !== y) window.scrollTo(0, y);
+      // release on the next frame, after any queued scroll work has been discarded
+      requestAnimationFrame(function () {
+        if (window.scrollY !== y) window.scrollTo(0, y);
+        root.style.scrollBehavior = prev;
+      });
+    }
   }
 
   /* ── toast ───────────────────────────────────────────────────────────── */
@@ -638,10 +671,12 @@
   function scrollToY(y) {
     window.scrollTo({ top: y, behavior: reduced() ? 'auto' : 'smooth' });
   }
+  var NAV_CLEARANCE = 88;   // 74px nav + 14px breathing room; matches scroll-padding-top in CSS
   function navTo(id) {
     if (id === 'top') return scrollToY(0);
     var el = document.getElementById(id);
-    if (el) scrollToY(el.getBoundingClientRect().top + window.scrollY - 60);
+    // was -60, which left ~15px of every section tucked under the fixed nav
+    if (el) scrollToY(el.getBoundingClientRect().top + window.scrollY - NAV_CLEARANCE);
   }
 
   /* ── render / language ───────────────────────────────────────────────── */
@@ -683,11 +718,24 @@
     // needs a re-render. Everything else is mutated in place.
     var hadKickers = !!document.querySelector('.sechead .eyebrow[data-kicker]');
     if (hadKickers !== (lang !== 'EN')) {
+      // Preserving the pixel offset moved the reader by up to 293px, because EN and VI have
+      // different section heights. Anchor on whichever section is at the top of the viewport and
+      // restore the offset WITHIN it, so the reader stays on the same content.
+      var anchor = null, within = 0;
+      Array.prototype.forEach.call(document.querySelectorAll('section[id]'), function (sec) {
+        var top = sec.getBoundingClientRect().top;
+        if (top <= 80) { anchor = sec.id; within = 80 - top; }
+      });
       var y = window.scrollY;
       closeSheet(true);
       render();
       Array.prototype.forEach.call(document.querySelectorAll('.reveal'), function (n) { n.classList.add('in'); });
-      window.scrollTo({ top: y });
+      var el = anchor && document.getElementById(anchor);
+      if (el) {
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80 + within, behavior: 'auto' });
+      } else {
+        window.scrollTo({ top: y, behavior: 'auto' });
+      }
     } else {
       retranslate();
     }

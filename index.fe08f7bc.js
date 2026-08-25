@@ -590,9 +590,7 @@
     // (the sheet is the scroll container). Reset the sheet instead.
     el.scrollTop = 0;
     var first = el.querySelector(FOCUSABLE);
-    // preventScroll: the sheet is a fixed overlay, so moving the page to reveal a control inside
-    // it is never wanted.
-    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+    if (first) first.focus();
     el.addEventListener('keydown', trap);
   }
 
@@ -623,12 +621,21 @@
     // glided 131-230px after every sheet close. preventScroll keeps the focus restore without
     // the movement; the fallback covers browsers that ignore the option.
     if (!silent && opener && document.contains(opener)) {
-      // Restoring focus must not move the page. Without preventScroll, closing a sheet opened
-      // from a partially-visible row scrolled that row into view — jarring, since the reader had
-      // not asked to move. (The larger jump originally reported on CLICK is the browser natively
-      // revealing a partly-offscreen element you clicked, which is correct behaviour: verified
-      // 0px when the row is fully visible, and 0px via the keyboard path.)
+      // focus() scrolls its target into view. preventScroll alone was NOT enough: with
+      // html{scroll-behavior:smooth} the scroll is ANIMATED, so a synchronous scrollY check
+      // straight after focus() sees the old value and the page glides away afterwards.
+      // So: pin scroll-behavior to auto for the duration, focus, hard-restore, then release.
+      var y = window.scrollY;
+      var root = document.documentElement;
+      var prev = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';
       try { opener.focus({ preventScroll: true }); } catch (e) { opener.focus(); }
+      if (window.scrollY !== y) window.scrollTo(0, y);
+      // release on the next frame, after any queued scroll work has been discarded
+      requestAnimationFrame(function () {
+        if (window.scrollY !== y) window.scrollTo(0, y);
+        root.style.scrollBehavior = prev;
+      });
     }
   }
 
@@ -756,7 +763,7 @@
   // Written by tools/release.mjs. In the deployed copy this names a content-hashed file, so the
   // JS and the config it was released with are inseparable: a cached index.<hash>.js can only
   // ever request the config.<hash>.json it shipped with. No release stamp, no reload dance.
-  var CONFIG_URL = 'config.json';
+  var CONFIG_URL = 'config.91c749cf.json';
 
   // Beacon for gate G9. Recording which URL was *requested* only proves a request happened; this
   // records the value the EXECUTED code actually used, which is the property that matters.

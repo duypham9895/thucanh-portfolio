@@ -11,7 +11,7 @@
 #                   candidate would make the comparison circular. The hero band is excluded from
 #                   G2/G4 and asserted instead by gate G8.
 
-## adjusted-vi.html  sha256=e6434701b996b36450082c25f8f9c295b8e33e22c680fd6adf0f4db6397b8cec
+## adjusted-vi.html  sha256=2d564eff69a7cb45cab3f1dd93ff70b6df27b9e8c6cfb742eb3b5e6016938fdc
   - D1 token --soft: #7B7869 -> #6A6759 (1 occurrences, hex + rgb())
   - D1 token --pink: #CB7885 -> #BD5565 (12 occurrences, hex + rgb())
   - D1c section-colour text swaps: 19 (+ contact-card white lifted to solid)
@@ -22,10 +22,12 @@
   - D6 persistent nav CV button — CANDIDATE ONLY, not injected here; gate G8
   - D8 section order -> work > cv > about > education > awards > extra
   - D10 font subsets: 40 -> 26 @font-face rules (latin-ext + unused weights dropped)
+  - D11 .crow columns 210/130 -> 250/175 + text-wrap:balance
+  - D12 typography: balanced wrapping, display leading, tab descenders, hanging bullets
   - D3 brand logos -> styled spans: 6
   - D4 contact: +3 cells (LinkedIn, Facebook, Portfolio)
 
-## adjusted-en.html  sha256=25ff19be386f7031202388aefc2f7d8f9b40daa1b79a2e0b4fd7e17c239d969b
+## adjusted-en.html  sha256=d16d2c22fe84e84fb1c649fd0a7d60c3241f99dcd9d2d8b0529058ea36e57749
   - D1 token --soft: #7B7869 -> #6A6759 (1 occurrences, hex + rgb())
   - D1 token --pink: #CB7885 -> #BD5565 (11 occurrences, hex + rgb())
   - D1c section-colour text swaps: 15 (+ contact-card white lifted to solid)
@@ -36,6 +38,8 @@
   - D6 persistent nav CV button — CANDIDATE ONLY, not injected here; gate G8
   - D8 section order -> work > cv > about > education > awards > extra
   - D10 font subsets: 40 -> 26 @font-face rules (latin-ext + unused weights dropped)
+  - D11 .crow columns 210/130 -> 250/175 + text-wrap:balance
+  - D12 typography: balanced wrapping, display leading, tab descenders, hanging bullets
   - D2 EN folder tab labels made visible
   - D3 brand logos -> styled spans: 6
   - D4 contact: +3 cells (LinkedIn, Facebook, Portfolio)
