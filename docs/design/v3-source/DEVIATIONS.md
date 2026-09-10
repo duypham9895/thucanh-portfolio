@@ -301,3 +301,18 @@ at y=691 and two tiles reach the first screen, with the proof strip still above 
 Rejected: collapse-by-default with expand-on-hover. Hover does not exist on touch and fails
 differently on iOS and Android; the tile's note is already the excerpt such a panel would show,
 and it is permanent, copyable and printable instead of transient.
+
+## D19 — the social card is generated, asserted and fingerprinted
+
+`og:image` is a 1200×630 card rather than a crop of the portrait: a 3:4 full-body shot declared
+as landscape drops LinkedIn out of its large-card layout, and the face is a few dozen pixels wide
+at that size.
+
+It shipped broken once. The card was rendered by hand from a throwaway file while the font subset
+was still missing the uppercase Vietnamese glyphs that `text-transform` generates, so `Ầ Ữ Ụ Ô`
+came from a system serif at a visibly heavier weight. Fixing the fonts could not fix the card,
+because a raster is frozen at the moment it is taken and nothing regenerated it.
+
+`tools/build/make-og-card.mjs` now owns it: it reads the strings from `config.json`, draws with
+the shipped font files, asserts through CDP that no glyph fell back, and records a fingerprint of
+its inputs that `release.mjs --check` verifies. All three guards are tested to fail.

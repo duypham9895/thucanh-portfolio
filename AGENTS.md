@@ -62,6 +62,29 @@ single source and the previous port's docs drifted out of sync precisely because
   Derives its base URL from its own `<script src>` so one file serves both documents.
 - `config.json` — `{ meta, vi, en }`. VI and EN are structurally identical; keep them that way.
 
+### Regenerating the social card
+
+`images/portrait-og.jpg` is the 1200×630 image every link preview shows. It is a RASTER of her
+name set in the site's own fonts, so it cannot tell you when it has gone stale — and it did:
+it was rendered by hand while the subsetted fonts were still missing the uppercase Vietnamese
+glyphs, so `Ầ Ữ Ụ Ô` fell back to a system serif and her name shipped half in the wrong face.
+
+```bash
+node tools/build/make-og-card.mjs            # regenerate
+node tools/build/make-og-card.mjs --check    # re-render and compare, exits 1 if stale
+```
+
+Three guards, because one was not enough:
+- The generator **asserts via CDP** that every glyph came from the intended family, and refuses to
+  write the file otherwise. Verified to bite: a codepoint outside the subset produces
+  `1 glyph(s) rendered in "蘋方-簡"` and exit 1 with the image untouched.
+- It writes `images/portrait-og.inputs`, a fingerprint of the name, role, niche, brands and the
+  exact font filenames it drew with.
+- **`release.mjs --check` compares that fingerprint** and fails if anything it depends on changed.
+  Cheap — no browser. Verified to bite on a renamed brand.
+
+Re-run it after any change to her name, role, niche, the first five brands, or the fonts.
+
 ### Regenerating config.json
 
 `config.json` is **generated**, not hand-edited at first creation:

@@ -307,6 +307,27 @@ for (const shell of SHELLS) {
   }
 }
 
+// The og:image is a RASTER of the name in the site's own fonts. It cannot tell you it has gone
+// stale, and when it did, her name shipped in the wrong face on every shared link for a day.
+// make-og-card.mjs records a fingerprint of everything it drew from; compare it here, cheaply,
+// without launching a browser.
+{
+  const stamp = f('images/portrait-og.inputs');
+  if (fs.existsSync(stamp)) {
+    const cfg = JSON.parse(fs.readFileSync(f('config.json'), 'utf8'));
+    const P = cfg.en.P;
+    const fonts = fs.readdirSync(f('fonts')).filter((n) => n.endsWith('.woff2')).sort().join(',');
+    const want = crypto.createHash('sha256').update([
+      `${cfg.vi.P.name} ${cfg.vi.P.name2}`, P.role, P.stats[0].v, P.niche,
+      P.brands.slice(0, 5).join(' · '), fonts,
+    ].join('\u0000')).digest('hex');
+    if (fs.readFileSync(stamp, 'utf8').trim() !== want) {
+      fail('images/portrait-og.jpg is stale — its name, role, brands or fonts changed since it was '
+         + 'rendered. Regenerate: node tools/build/make-og-card.mjs');
+    }
+  }
+}
+
 const head = shellRefs[0] || { css: [], js: [], preloadFetch: [] };
 for (const s2 of shellRefs.slice(1)) {
   if (s2.css[0] !== head.css[0] || s2.js[0] !== head.js[0]) {
