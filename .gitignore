@@ -12,7 +12,6 @@ IconKitchen-Output/
 IconKitchen-Output.zip
 
 # Local agent/project memory
-AGENTS.md
 
 # Dev-only QA harness dependencies and output (the harness itself IS tracked)
 tools/visual-qa/node_modules/

@@ -1,0 +1,29 @@
+# Baseline integrity manifest — Claude Design project b8e2e5a4-1ed4-444a-81a6-089830b12b02
+# The frozen design snapshot ONLY. PROVENANCE.md and DEVIATIONS.md are this port's own
+# documents about the snapshot, not part of it, so editing them does not break G1.
+# Regenerate: see tools/build/gen-baseline.sh
+44ffefc77a1b9329d6eb23d55186e40727291658d148ea760990c81cdb7a43a2  ./assets/matrix-shopee-store.png
+b36965a30033de50be1a9a6543ba1e2258f15e8fbf8800037ac782301f534925  ./assets/nl-feb.png
+e7491833095d661669a3f5fa145ed3e053d5c8c6be2834a75969e1e2d9022097  ./assets/nl-jan.png
+761cd53b551d111a865bbea46a34f183ab4f651c2b4c69c606fa0f6bc8fdbb4d  ./assets/nl-mar.png
+b9b8b0b7de98f2db7c6c4cfb828da688ab678d50047b5ad7bace5a391b6a4fd5  ./assets/nl-may.png
+4ba25f564bc3633cfe07dbfdece94c9b88d2b0073bc26bd2892a783ebbd37833  ./assets/portrait.jpg
+159a0a75527110ae67c751df3cc854cc155661841471c5e83c8be1f5e0e26a46  ./assets/serioxyl-brief.png
+e165c9a2982a2718654730f083bfd69edebae2de7116919b748dadf331b3dcfb  ./assets/serioxyl-event-kv.png
+61ae5393f50f22f2af48a27d47563304d71f68a13951b4a3a86d848f5440a9e5  ./assets/serioxyl-livestream.png
+cb38fdba19832e789e195551b2880ecef1feb35ad74e47d42910ba5cf8cbb8fa  ./brands/baresoul.png
+721f761f09e7ff885d9966fd1339fde42016d7dda0f80f73cb5e46349a6c77c5  ./brands/clinique.png
+823ad857e76c02a5913ab9df8258202b00477f89d17541d34e5d12fcab99bf5c  ./brands/estee-lauder.png
+0ca5e64ba8f4ff30adfbaaf34e69fd57c73b75b2229d18d1c08f028fec933f94  ./brands/kerastase.png
+127be621449cfe90e3092085d555ac98ca034ab02f1f0e9ec0699a761f09838a  ./brands/loreal-professionnel.png
+dc43cad24d24830f864359125ed56a15e3127d82deea9b57dfe50c4cd6286535  ./brands/loreal-vietnam.png
+531ea6f370df33e431a079b6f03b2eddb7663d82e15b7d3533f9236cd6399c26  ./brands/matrix.png
+c8d69526f29dad2d2aff8f663a9fece1a54b734d19fe003f74be06c34161e669  ./cv.pdf
+2ddaa9af76bcf79514e86ae56ff760a0cb73051ddcf7dd1ada33c2b31198c947  ./image-slots.state.json
+fff26d081c8d9d60870f86c7539a5d179b9cdab15e67f2b205508a068e7c7ff6  ./modules/image-slot.js
+233401e8be580a3d7fd6870603bffd6e70cc799488d32d5806de12adf73616fc  ./modules/portfolio-v2-data.jsx
+1e324da3f0c54e9a1a6357a07dc35c36b2d663c643ea7ec80ff1b8bd9dfb9292  ./modules/portfolio-v3-app.jsx
+1a7170b6dcfcc12146cf806dadb577e587a46e5c3e0a84762a4c340c526335e5  ./modules/portfolio-v3-data.jsx
+17283ede1902bf69a2b02459d49e723ede9b62402258a71f14fa7fd86303e5cc  ./modules/portfolio-v3-i18n.jsx
+d259e3a86f7300c808daa21baa358688b54665a3978816cfa028757a7f41f04d  ./modules/tweaks-panel.jsx
+5be06c75a31f39146faadff457b8283ce1b62dcb63bfcf1a0f50ca0bfa1e5022  ./template.html

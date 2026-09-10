@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /docs/
+Disallow: /tools/
+
+Sitemap: https://thucanhtrantonnu.com/sitemap.xml

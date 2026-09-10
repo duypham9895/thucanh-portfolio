@@ -23,10 +23,26 @@ import crypto from 'node:crypto';
 
 const ROOT = path.resolve(path.join(import.meta.dirname, '..'));
 const f = (n) => path.join(ROOT, n);
+
+// Every HTML shell that references the hashed bundle, with the prefix its own depth needs.
+// English is the primary language and lives at the root; Vietnamese is a real document at
+// /vi/index.html so hreflang has something to point at, and it loads the same hashed
+// css/js/config from one level up. A release that rewrote only the root shell would leave /vi/
+// pointing at the unhashed files — which still exist, so it would not 404; it would silently
+// serve a DIFFERENT generation to Vietnamese visitors.
+const SHELLS = [
+  { file: 'index.html', prefix: '' },
+  { file: 'vi/index.html', prefix: '../' },
+];
 const sha8 = (b) => crypto.createHash('sha256').update(b).digest('hex').slice(0, 8);
 const HASHED = /^(index|config)\.[0-9a-f]{8}\.(css|js|json)$/;
 const MANIFEST = 'release-manifest.json';
-const RETAIN = 3;
+// Raised from 3 for the v3 launch. Iterating during development ran enough releases to evict
+// the generation the LIVE site was still serving, so merging would have 404'd the css and js for
+// anyone holding index.html from the previous ten minutes (Pages sends max-age=600) — a blank
+// page, because #fallback is only revealed by the script that failed to load. Drop back to 3 once
+// the new release has been live longer than that cache window.
+const RETAIN = 4;
 
 // Comments plus the CONTENT of raw-text / escapable-raw-text elements. A browser treats markup
 // inside <textarea> or <title> as TEXT, so asset-looking tags in there must not satisfy the gate.
@@ -187,20 +203,38 @@ if (!process.argv.includes('--check')) {
   const cssName = `index.${sha8(cssBuf)}.css`;
   fs.writeFileSync(f(cssName), cssBuf);
 
-  let html = fs.readFileSync(f('index.html'), 'utf8');
-  const cur = assetRefs(stripComments(html));
-  cur.css.forEach((h) => { html = html.split(`"${h}"`).join(`"${cssName}"`); });
-  cur.js.forEach((h) => { html = html.split(`"${h}"`).join(`"${jsName}"`); });
-  cur.preloadFetch.forEach((h) => { html = html.split(`"${h}"`).join(`"${cfgName}"`); });
-  fs.writeFileSync(f('index.html'), html);
+  for (const shell of SHELLS) {
+    if (!fs.existsSync(f(shell.file))) continue;
+    let html = fs.readFileSync(f(shell.file), 'utf8');
+    const cur = assetRefs(stripComments(html));
+    cur.css.forEach((h) => { html = html.split(`"${h}"`).join(`"${shell.prefix}${cssName}"`); });
+    cur.js.forEach((h) => { html = html.split(`"${h}"`).join(`"${shell.prefix}${jsName}"`); });
+    cur.preloadFetch.forEach((h) => { html = html.split(`"${h}"`).join(`"${shell.prefix}${cfgName}"`); });
+    fs.writeFileSync(f(shell.file), html);
+  }
 
-  const prev = fs.existsSync(f(MANIFEST))
-    ? JSON.parse(fs.readFileSync(f(MANIFEST), 'utf8')).generations || [] : [];
+  const prevRaw = fs.existsSync(f(MANIFEST))
+    ? JSON.parse(fs.readFileSync(f(MANIFEST), 'utf8')) : {};
+  const prev = prevRaw.generations || [];
   const current = { css: cssName, js: jsName, config: cfgName };
   const same = (a, b) => a.css === b.css && a.js === b.js && a.config === b.config;
-  const generations = [current, ...prev.filter((g) => !same(g, current))].slice(0, RETAIN);
-  fs.writeFileSync(f(MANIFEST), JSON.stringify({ generations }, null, 2) + '\n');
+  // A generation the LIVE site is still serving must survive prune no matter how many releases
+  // happen. RETAIN alone does not protect it: during this rebuild the live generation was
+  // restored, RETAIN raised to 4, and then evicted anyway within the hour by the releases that
+  // came with the next round of fixes — silently, because prune says nothing about what it took.
+  // `pinned` in the manifest is exempt from the slice. Remove the pin once the deployed release
+  // has been live longer than Pages' cache-control window (max-age=600).
+  const pinnedGens = (prevRaw.pinned || []);
+  const rolling = [current, ...prev.filter((g) => !same(g, current) && !pinnedGens.some((q) => same(q, g)))]
+    .slice(0, RETAIN);
+  const generations = [...rolling, ...pinnedGens.filter((q) => !same(q, current))];
+  fs.writeFileSync(f(MANIFEST), JSON.stringify(
+    pinnedGens.length ? { generations, pinned: pinnedGens } : { generations }, null, 2) + '\n');
 
+  // Fonts are content-hashed on the same scheme but are NOT matched by HASHED, so prune never
+  // touched them — the subsetter deleted them instead. The live generation's CSS names ten of
+  // them, so they have to survive the swap too or a cached visitor gets a styled page in system
+  // fonts plus ten failed requests. Recorded next to the pinned generation, and asserted below.
   const keep = new Set(generations.flatMap((g) => [g.css, g.js, g.config]));
   const pruned = fs.readdirSync(ROOT).filter((n) => HASHED.test(n) && !keep.has(n));
   pruned.forEach((n) => fs.unlinkSync(f(n)));
@@ -213,11 +247,75 @@ if (!process.argv.includes('--check')) {
 }
 
 // ── verify ─────────────────────────────────────────────────────────────────
-const html = stripComments(fs.readFileSync(f('index.html'), 'utf8'));
-const { css: cssRefs, js: jsRefs, preloadFetch } = assetRefs(html);
+// Each shell is checked independently, and each must agree with the others: a shell left behind
+// at an older generation is the exact failure the content hashing exists to prevent.
+const shellRefs = [];
+for (const shell of SHELLS) {
+  if (!fs.existsSync(f(shell.file))) {
+    if (shell.file !== 'index.html') continue;
+    fail(`${shell.file} is missing`);
+    continue;
+  }
+  const h = stripComments(fs.readFileSync(f(shell.file), 'utf8'));
+  const r = assetRefs(h);
+  // Require the prefix, do not merely tolerate it. Returning the href unchanged when the prefix
+  // is ABSENT made a /vi/ shell naming "index.<h>.css" compare equal to the root shell's — so a
+  // shell that loads neither its stylesheet nor its script passed the check clean.
+  const strip = (x) => {
+    if (!shell.prefix) return x;
+    if (!x.startsWith(shell.prefix)) {
+      fail(`${shell.file} references "${x}" without the "${shell.prefix}" prefix its depth needs — it will 404`);
+      return null;
+    }
+    return x.slice(shell.prefix.length);
+  };
+  if (r.css.length !== 1) fail(`${shell.file}: expected exactly 1 real <link rel="stylesheet">, found ${r.css.length}`);
+  if (r.js.length !== 1) fail(`${shell.file}: expected exactly 1 real JS <script src>, found ${r.js.length}`);
+  shellRefs.push({
+    shell, css: r.css.map(strip), js: r.js.map(strip), preloadFetch: r.preloadFetch.map(strip),
+  });
+}
+// A shell may legitimately not exist — but not if another shell advertises it. index.html carries
+// <link rel="alternate" hreflang> pointing at /en/, so deleting en/index.html would leave a live
+// hreflang aimed at a 404, and the loop above would `continue` right past it.
+{
+  const viHtml = fs.readFileSync(f('index.html'), 'utf8');
+  for (const m of viHtml.matchAll(/<link[^>]+rel=["']alternate["'][^>]*>/gi)) {
+    const href = (m[0].match(/href=["']([^"']+)["']/i) || [])[1] || '';
+    const lang = (m[0].match(/hreflang=["']([^"']+)["']/i) || [])[1] || '';
+    if (!href || lang === 'x-default') continue;
+    const rel = href.replace(/^https?:\/\/[^/]+\//, '');
+    if (!rel) continue;                                   // the root, which is index.html itself
+    const target = rel.endsWith('/') ? rel + 'index.html' : rel;
+    if (!fs.existsSync(f(target))) {
+      fail(`index.html advertises hreflang="${lang}" -> ${href}, but ${target} does not exist`);
+    } else if (!SHELLS.some((sh) => sh.file === target)) {
+      fail(`${target} is advertised by hreflang but is not in SHELLS, so release does not hash it`);
+    }
+  }
+}
 
-if (cssRefs.length !== 1) fail(`expected exactly 1 real <link rel="stylesheet">, found ${cssRefs.length}`);
-if (jsRefs.length !== 1) fail(`expected exactly 1 real JS <script src>, found ${jsRefs.length}`);
+{
+  const man = fs.existsSync(f(MANIFEST)) ? JSON.parse(fs.readFileSync(f(MANIFEST), 'utf8')) : {};
+  for (const g of (man.pinned || [])) {
+    for (const n of [g.css, g.js, g.config]) {
+      if (!fs.existsSync(f(n))) fail(`pinned generation asset ${n} is missing — a cached visitor would 404`);
+    }
+  }
+  for (const a of (man.pinnedAssets || [])) {
+    if (!fs.existsSync(f(a))) fail(`pinned asset ${a} is missing — the pinned generation's CSS names it`);
+  }
+}
+
+const head = shellRefs[0] || { css: [], js: [], preloadFetch: [] };
+for (const s2 of shellRefs.slice(1)) {
+  if (s2.css[0] !== head.css[0] || s2.js[0] !== head.js[0]) {
+    fail(`${s2.shell.file} references {${s2.css[0]}, ${s2.js[0]}} but index.html references ` +
+         `{${head.css[0]}, ${head.js[0]}} — shells are on different generations`);
+  }
+}
+const html = stripComments(fs.readFileSync(f('index.html'), 'utf8'));
+const { css: cssRefs, js: jsRefs, preloadFetch } = head;
 
 const verifyHashed = (ref, kind) => {
   if (!ref || !HASHED.test(ref)) { fail(`${kind} "${ref}" is not content-hashed`); return false; }
