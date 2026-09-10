@@ -2,6 +2,11 @@
   "generations": [
     {
       "css": "index.6544f137.css",
+      "js": "index.673ba4ab.js",
+      "config": "config.27cc4034.json"
+    },
+    {
+      "css": "index.6544f137.css",
       "js": "index.185d1748.js",
       "config": "config.f63ffe0f.json"
     },
@@ -12,11 +17,6 @@
     },
     {
       "css": "index.2e07ac12.css",
-      "js": "index.185d1748.js",
-      "config": "config.f63ffe0f.json"
-    },
-    {
-      "css": "index.28fad010.css",
       "js": "index.185d1748.js",
       "config": "config.f63ffe0f.json"
     },
@@ -32,17 +32,5 @@
       "js": "index.5d271aec.js",
       "config": "config.7b8fb2ae.json"
     }
-  ],
-  "pinnedAssets": [
-    "fonts/bevietnampro-300-normal-latin.36755b3a.woff2",
-    "fonts/bevietnampro-300-normal-vietnamese.36e0cd62.woff2",
-    "fonts/bevietnampro-400-normal-latin.d25f70ff.woff2",
-    "fonts/bevietnampro-400-normal-vietnamese.b0d9b8ae.woff2",
-    "fonts/cormorantgaramond-300-italic-latin.e6d6d1d7.woff2",
-    "fonts/cormorantgaramond-300-italic-vietnamese.3512ad3b.woff2",
-    "fonts/cormorantgaramond-300-normal-latin.5d618c46.woff2",
-    "fonts/cormorantgaramond-300-normal-vietnamese.826f73ca.woff2",
-    "fonts/italianno-400-normal-latin.c91c4b8b.woff2",
-    "fonts/italianno-400-normal-vietnamese.d09b833f.woff2"
   ]
 }

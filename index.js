@@ -335,7 +335,8 @@
     var links = h('div', { class: 'cardlinks' }, [
       ti(h('a', { href: 'mailto:' + P.email }), 'P.email'),
       ti(h('a', { href: 'tel:' + P.phone.replace(/[^\d+]/g, '') }), 'P.phone'),
-      ti(h('span'), 'P.city')
+      ti(h('span'), 'P.city'),
+      ti(h('a', { href: P.linkedin, target: '_blank', rel: 'noopener me' }), 'P.linkedinLabel')
     ]);
     card.appendChild(links);
     card.appendChild(h('div', { class: 'cardbtns' }, [
@@ -559,11 +560,14 @@
       ['T.cEmail', 'P.email', 'mailto:' + P.email, null],
       ['T.cPhone', 'P.phone', 'tel:' + P.phone.replace(/[^\d+]/g, ''), null],
       ['T.cAddr', 'P.city', null, null],
-      ['T.cCv', 'T.cCvVal', url(cvPath()), true]
+      ['T.cCv', 'T.cCvVal', url(cvPath()), true],
+      ['T.cLinkedin', 'P.linkedinLabel', P.linkedin, false, true]
     ].forEach(function (row) {
       var cell = h('div', null, [ti(h('p', { class: 'eyebrow', style: 'margin-bottom:8px' }), row[0])]);
       cell.appendChild(row[2]
-        ? ti(h('a', row[3] ? { href: row[2], download: '' } : { href: row[2] }), row[1])
+        ? ti(h('a', row[3] ? { href: row[2], download: '' }
+              : row[4] ? { href: row[2], target: '_blank', rel: 'noopener me' }
+              : { href: row[2] }), row[1])
         : ti(h('span'), row[1]));
       grid.appendChild(cell);
     });

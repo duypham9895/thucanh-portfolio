@@ -267,7 +267,9 @@
           ],
           "link": ""
         }
-      ]
+      ],
+      "linkedin": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222",
+      "linkedinLabel": "thuc-anh-tran-ton-nu"
     },
     "CAMPAIGNS": [
       {
@@ -697,7 +699,8 @@
       "close": "Đóng ✕",
       "scope": "Phạm vi & vai trò",
       "cvNav": "Tải CV",
-      "samples": "Xem sản phẩm đã làm →"
+      "samples": "Xem sản phẩm đã làm →",
+      "cLinkedin": "LinkedIn"
     }
   },
   "en": {
@@ -844,7 +847,9 @@
           ],
           "link": ""
         }
-      ]
+      ],
+      "linkedin": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222",
+      "linkedinLabel": "thuc-anh-tran-ton-nu"
     },
     "CAMPAIGNS": [
       {
@@ -1274,7 +1279,8 @@
       "close": "Close ✕",
       "scope": "Scope & role",
       "cvNav": "Download CV",
-      "samples": "View work samples →"
+      "samples": "View work samples →",
+      "cLinkedin": "LinkedIn"
     }
   }
 }
