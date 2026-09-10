@@ -1,24 +1,24 @@
 {
   "generations": [
     {
-      "css": "index.6544f137.css",
-      "js": "index.673ba4ab.js",
+      "css": "index.b76acc61.css",
+      "js": "index.5e99bf2b.js",
+      "config": "config.27cc4034.json"
+    },
+    {
+      "css": "index.b19bf15a.css",
+      "js": "index.5e99bf2b.js",
+      "config": "config.27cc4034.json"
+    },
+    {
+      "css": "index.36b3f2f9.css",
+      "js": "index.5e99bf2b.js",
       "config": "config.27cc4034.json"
     },
     {
       "css": "index.6544f137.css",
-      "js": "index.185d1748.js",
-      "config": "config.f63ffe0f.json"
-    },
-    {
-      "css": "index.a509c010.css",
-      "js": "index.185d1748.js",
-      "config": "config.f63ffe0f.json"
-    },
-    {
-      "css": "index.2e07ac12.css",
-      "js": "index.185d1748.js",
-      "config": "config.f63ffe0f.json"
+      "js": "index.673ba4ab.js",
+      "config": "config.27cc4034.json"
     },
     {
       "css": "index.389db179.css",

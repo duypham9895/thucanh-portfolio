@@ -272,12 +272,11 @@
       tab.appendChild(ti(h('span', { class: 'tabname' }), 'F.' + f.id + '.t'));
       btn.appendChild(tab);
       var body = h('div', { class: 'folder-body', style: 'background:' + f.c + ';color:' + f.t });
-      var txt = h('div');
-      var title = ti(h('p', { class: 'disp', style: 'font-size:26px;line-height:1' }), 'F.' + f.id + '.t');
-      var note = ti(h('p', { class: 'fnote' }), 'F.' + f.id + '.n');
-      if (f.noteFirst) { txt.appendChild(note); title.style.marginTop = '5px'; txt.appendChild(title); }
-      else { txt.appendChild(title); note.style.marginTop = '5px'; txt.appendChild(note); }
-      body.appendChild(txt);
+      // The design prints each label twice — once on the tab, once again 30px below it in the
+      // body, both from F.<id>.t. Dropping the repeat and promoting the note into its place is
+      // what lets all seven tiles clear a short laptop viewport: the tile goes 130px -> 100px
+      // and the stack 814px -> 604px, without touching the stagger, tab, clip or hover lift.
+      body.appendChild(ti(h('p', { class: 'disp fnote-lead' }), 'F.' + f.id + '.n'));
       body.appendChild(ti(h('span', { class: 'fgo' }), 'T.open'));
       btn.appendChild(body);
       stack.appendChild(btn);

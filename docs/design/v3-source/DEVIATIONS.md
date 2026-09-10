@@ -272,3 +272,32 @@ only, since the content is internal."
 
 The campaign therefore leads with no image. The work is described in the text and the archive
 shows the cadence without showing the contents.
+
+## D18 — the folder stack fits the screen
+
+Each tile printed its own label twice: a 16.5px label on the tab and a 26px title 30px below it in
+the body, both rendering `F.<id>.t`. The accessible name read "About meAbout meContact · Skills ·
+CV Open →".
+
+The repeat is deleted and the note takes its place, so the body now carries the only thing on the
+tile that is not already on its tab — "UEF · GPA 3.7", "6 selected campaigns", "L'Oréal · Estée
+Lauder · Baresoul". Tile 130px → 100px, pitch 114 → 84, stack **814px → 604px**.
+
+Measured, all seven tiles fully visible: 1440×800 was 6/7 and is now 7/7; 1366×768 and 1280×720
+were 5–6/7 and are now 7/7. Below 780px tall the hero's own padding tightens so the index still
+clears the fold; nothing else moves.
+
+The stagger, tab, paperclip, overlap and hover lift are untouched. On mobile the note is now
+shown rather than hidden — the tile had no room for it before and was left repeating one word.
+
+### D18b — mobile runway
+
+At 390×844 the stack began at y=845, one pixel past the fold, so the cue "Pick a folder to open →"
+pointed at an index nobody could see. The stack was never the problem: the hero above it ran 1.96
+screenfuls. Below 620px the two hero pills are dropped (both strings repeat verbatim in About and
+in the contact grid), the proof strip tightens, and the hero padding shrinks. The stack now starts
+at y=691 and two tiles reach the first screen, with the proof strip still above the fold.
+
+Rejected: collapse-by-default with expand-on-hover. Hover does not exist on touch and fails
+differently on iOS and Android; the tile's note is already the excerpt such a panel would show,
+and it is permanent, copyable and printable instead of transient.

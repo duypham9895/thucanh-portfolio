@@ -272,12 +272,11 @@
       tab.appendChild(ti(h('span', { class: 'tabname' }), 'F.' + f.id + '.t'));
       btn.appendChild(tab);
       var body = h('div', { class: 'folder-body', style: 'background:' + f.c + ';color:' + f.t });
-      var txt = h('div');
-      var title = ti(h('p', { class: 'disp', style: 'font-size:26px;line-height:1' }), 'F.' + f.id + '.t');
-      var note = ti(h('p', { class: 'fnote' }), 'F.' + f.id + '.n');
-      if (f.noteFirst) { txt.appendChild(note); title.style.marginTop = '5px'; txt.appendChild(title); }
-      else { txt.appendChild(title); note.style.marginTop = '5px'; txt.appendChild(note); }
-      body.appendChild(txt);
+      // The design prints each label twice — once on the tab, once again 30px below it in the
+      // body, both from F.<id>.t. Dropping the repeat and promoting the note into its place is
+      // what lets all seven tiles clear a short laptop viewport: the tile goes 130px -> 100px
+      // and the stack 814px -> 604px, without touching the stagger, tab, clip or hover lift.
+      body.appendChild(ti(h('p', { class: 'disp fnote-lead' }), 'F.' + f.id + '.n'));
       body.appendChild(ti(h('span', { class: 'fgo' }), 'T.open'));
       btn.appendChild(body);
       stack.appendChild(btn);
@@ -335,7 +334,8 @@
     var links = h('div', { class: 'cardlinks' }, [
       ti(h('a', { href: 'mailto:' + P.email }), 'P.email'),
       ti(h('a', { href: 'tel:' + P.phone.replace(/[^\d+]/g, '') }), 'P.phone'),
-      ti(h('span'), 'P.city')
+      ti(h('span'), 'P.city'),
+      ti(h('a', { href: P.linkedin, target: '_blank', rel: 'noopener me' }), 'P.linkedinLabel')
     ]);
     card.appendChild(links);
     card.appendChild(h('div', { class: 'cardbtns' }, [
@@ -559,11 +559,14 @@
       ['T.cEmail', 'P.email', 'mailto:' + P.email, null],
       ['T.cPhone', 'P.phone', 'tel:' + P.phone.replace(/[^\d+]/g, ''), null],
       ['T.cAddr', 'P.city', null, null],
-      ['T.cCv', 'T.cCvVal', url(cvPath()), true]
+      ['T.cCv', 'T.cCvVal', url(cvPath()), true],
+      ['T.cLinkedin', 'P.linkedinLabel', P.linkedin, false, true]
     ].forEach(function (row) {
       var cell = h('div', null, [ti(h('p', { class: 'eyebrow', style: 'margin-bottom:8px' }), row[0])]);
       cell.appendChild(row[2]
-        ? ti(h('a', row[3] ? { href: row[2], download: '' } : { href: row[2] }), row[1])
+        ? ti(h('a', row[3] ? { href: row[2], download: '' }
+              : row[4] ? { href: row[2], target: '_blank', rel: 'noopener me' }
+              : { href: row[2] }), row[1])
         : ti(h('span'), row[1]));
       grid.appendChild(cell);
     });
@@ -879,7 +882,7 @@
     onScroll();
   }
 
-  var CONFIG_URL = 'config.f63ffe0f.json';
+  var CONFIG_URL = 'config.27cc4034.json';
   function showFallback(err, what) {
     var ns = $('#fallback');
     if (ns) ns.hidden = false;
