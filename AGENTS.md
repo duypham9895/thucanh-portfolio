@@ -48,14 +48,16 @@ upstream.**
 `index.css` opens with the design system copied verbatim, except the D1 contrast tokens.
 **Do not restyle by taste** — change `DEVIATIONS.md` deliberately, or change nothing.
 
-Deviations are D1–D12 plus a "not ported" list. Do not restate them here; `DEVIATIONS.md` is the
+Deviations are D1–D21 plus a "not ported" list (the list sits between D12 and D13). Do not restate them here; `DEVIATIONS.md` is the
 single source and the previous port's docs drifted out of sync precisely because they restated.
 
 ## Important files
 
 - `index.html` — **English** shell (the primary document): nav, language toggle, `#app`, `#sheet-host`, `#toast-host`,
   `#fallback`, noscript block, font preloads, JSON-LD.
-- `vi/index.html` — the English document. Same shell, EN metadata, `../` asset prefix.
+- `vi/index.html` — the **Vietnamese** document. Same shell, VI metadata (`<html lang="vi">`),
+  `../` asset prefix. An earlier revision of this line said "the English document, EN metadata";
+  it was wrong, and D10 is the authority.
   **Both shells must reference the same hashed generation**; `release.mjs --check` enforces it.
 - `index.css` — `@font-face` → verbatim design system → lifted component classes → responsive tier.
 - `index.js` — renderer, i18n, folder nav, reveal observer, campaign sheet, toast, hover peek.
@@ -99,6 +101,29 @@ content is exact by construction rather than transcribed. It fails loudly if VI 
 structurally. **Re-running it discards hand edits to content** — for ongoing copy changes, edit
 `config.json` directly and keep both languages in step.
 
+### Regenerating the video posters
+
+The video strip renders click-to-play facades, so every clip needs a still. The stills are
+**self-hosted** — D11 says the shipped site makes no third-party request, and a hot-linked
+`i.ytimg.com` thumbnail would be one on every page view.
+
+```bash
+node tools/build/make-video-posters.mjs           # fetch + re-encode (needs the network)
+node tools/build/make-video-posters.mjs --check   # offline; exits 1 on a missing or wrong-shaped poster
+```
+
+It reads `meta.videoPosters` from `config.json` — the directory, the per-aspect width rungs and the
+`sizes` strings — and so does `posterImg()` in `index.js`. One source of truth, so the files on disk
+and the candidates offered to the browser cannot drift apart.
+
+Which thumbnail matters more than it looks. YouTube serves `oar2.jpg` at the clip's **original**
+aspect ratio; `hqdefault` and `maxresdefault` are 16:9 with a vertical frame letterboxed into them,
+and `object-fit:cover` would crop one back to a vertical sliver of the middle — which is where her
+face is not. The script falls back down that chain but **asserts the shape it got against the ratio
+`config.json` paints it into**, and exits 1 rather than shipping a poster that will be cropped.
+
+Re-run it after adding, replacing or re-cutting a clip, or after changing a clip's `r`.
+
 ### Four properties stay inline (everything else is a class)
 
 `background` (folder surfaces and section tints), `aspect-ratio` (slots), `--off-instance` (folder
@@ -115,7 +140,7 @@ Edit `config.json`, not the markup. Both languages must change together.
   `fixed` (the design's frozen tweak defaults), cv path, brand and campaign logo maps, portrait,
   `sectionOrder`.
 - `vi` / `en` — `P` (profile, bio, stats, brands, skills, edu, awards, cv), `CAMPAIGNS` (6),
-  `EXTRA`, `VIDEOS`, `XFILE`, `F` (folder text), `T` (50 UI strings).
+  `EXTRA`, `VIDEOS` (7 clips, all 9/16), `XFILE`, `F` (folder text), `T` (54 UI strings).
 
 **All strings must be NFC.** NFD Vietnamese decomposes to `U+0302`, `U+0306`, `U+031B`, none of
 which is in any font subset's `unicode-range` — NFD text silently falls back to a system font.
@@ -135,6 +160,8 @@ Then in `tools/visual-qa/` (dev-only; never shipped):
 ```bash
 node smoke-v3.mjs                    # both documents: sections, counts, overflow, console, requests
 node a11y-v3.mjs [url]               # contrast (alpha+opacity composited), keyboard, modal, print
+                                     # run it TWICE — it only tests the URL you give it
+node videos-v3.mjs [url]             # video strip: column ladder, posters, srcset rungs, play
 node perf-v3.mjs                     # throttled desktop and mobile timings
 node sections-v3.mjs                 # per-section screenshots into out/v3/
 node shots-v3.mjs                    # full-page + every campaign sheet at 390
@@ -176,8 +203,14 @@ Both shells are rewritten and both are verified, including a cross-check that th
 generation — a shell left behind is exactly what content hashing exists to prevent, and it would not
 404, it would silently serve English visitors different code. Verified to exit 1 on a stale shell.
 
-Three generations are retained (`release-manifest.json`). **`RETAIN` is 3, so three releases evict
-the currently-live generation** — iterate on a scratch copy, or produce one release commit per ship.
+**`RETAIN` is 4** (`release.mjs`), so the live generation is evicted by the FOURTH release after it
+ships — one release per change is safe. An earlier revision of this file said 3; it was wrong, and
+the number had been raised precisely because of the eviction it warned about. The real protection is
+the manifest's `pinned` array, which `release.mjs` excludes from the slice and re-appends: pin the
+live generation BEFORE a run of releases, and unpin it once the new one has outlived Pages' 600s
+cache. Better still, iterate against unhashed sources — copy the two shells to `preview.html` and
+`vi/preview.html` with the hashed names swapped for `index.css`, `index.js` and `config.json`, QA
+against those, and release exactly once at the end. Delete them before committing.
 
 ## Working notes
 

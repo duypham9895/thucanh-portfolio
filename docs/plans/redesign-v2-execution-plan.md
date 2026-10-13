@@ -280,7 +280,7 @@ ban is stale on two counts**, verified this session:
 
 ```bash
 crossagent --agent codex --name <session> --model gpt-5.6-terra \
-  --prompt-file <file> --cwd /Users/edwardpham/Documents/Programming/Projects/thucanh-portfolio
+  --prompt-file <file> --cwd <repo root>
 ```
 
 `gpt-5.4-codex` and `gpt-5-codex` are both rejected — *"not supported when using Codex with a ChatGPT

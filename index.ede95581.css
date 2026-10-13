@@ -96,7 +96,8 @@ image-slot{display:block;width:100%;height:100%}
 .folder:hover .tab{filter:brightness(1.06)}
 .tab{height:44px;width:max-content;max-width:calc(100% - var(--off));margin-left:var(--off);border-radius:14px 20px 0 0;display:flex;align-items:center;gap:12px;padding:0 20px;box-shadow:0 -1px 0 rgba(0,0,0,.05)}
 .tabname{font-family:var(--disp);font-size:16.5px;letter-spacing:.03em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.folder-body{height:86px;border-radius:0 10px 2px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+/* was 86px, carrying a repeated label above the note */
+.folder-body{height:56px;border-radius:0 10px 2px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
 .fnote{font-size:12.5px;letter-spacing:.05em}
 .fgo{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;transition:opacity .3s,transform .35s}
 .folder:hover .fgo{transform:translateX(6px)}
@@ -209,9 +210,76 @@ image-slot{display:block;width:100%;height:100%}
 .csum{margin-top:10px;max-width:40em;font-size:14.5px}
 .peek{position:fixed;width:258px;pointer-events:none;z-index:40;box-shadow:0 26px 70px rgba(43,42,37,.2)}
 
-/* videos */
-.vidgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:22px;align-items:start}
+/* videos — D20.
+   Declared column counts, not auto-fit. The 230px floor was authored for a mixed 4:3 / 9:16 strip
+   holding one clip; a set of seven 9/16 verticals breaks it. auto-fit cannot express the ladder
+   this needs: reaching two columns at 320px (content 276) requires a track minimum of <=127px, and
+   a 127px minimum overshoots to FOUR columns at 620px. A minimum that is right at the bottom of
+   the phone tier is wrong at the top of it.
+   `minmax(0,1fr)` rather than `minmax(min(N,100%),1fr)` because a 0 minimum can always shrink —
+   there is no width at which a declared track can overflow its container (D4). */
+.vidgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start}
 .vidlabel{font-family:var(--disp);font-size:20px;font-weight:500;color:var(--olive);line-height:1;margin:70px 0 20px;letter-spacing:0;text-transform:none}
+/* Two lines are reserved at every width. The captions are one line on a desktop cell and two on a
+   phone cell, and an unreserved box leaves a row's captions ragged under frames that are not. */
+.vidcap{margin-top:9px;line-height:1.45;min-height:2.9em}
+
+/* the click-to-play facade */
+.vfacade{position:absolute;inset:0;display:block;width:100%;padding:0;background:#2B2A25;cursor:pointer}
+.vposter{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.vembed{width:100%;height:100%;border:0;display:block;background:#2B2A25}
+/* The disc holds no text, so it may use a scrim; the duration chip holds text over an arbitrary
+   photograph and may not — a11y-v3's bgOf() composites background-COLOR only and would score that
+   text against the frame's paper, i.e. report a pass it cannot actually see. Opaque ink removes
+   the question: #FBFAF6 on #2B2A25 is 13.8:1 whatever the still underneath happens to be. */
+.vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;
+  background:color-mix(in oklab,var(--ink) 72%,transparent);border:1px solid var(--paper);transition:background .25s,transform .25s}
+.vplay::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);width:0;height:0;
+  border-left:16px solid var(--paper);border-top:10px solid transparent;border-bottom:10px solid transparent}
+.vdur{position:absolute;right:8px;bottom:8px;padding:3px 7px;background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-weight:400;font-size:9.5px;letter-spacing:.08em;line-height:1.3}
+@media (hover:hover){.vfacade:hover .vplay{background:var(--olive);transform:translate(-50%,-50%) scale(1.06)}}
+/* `.frame` is overflow:hidden, so an outward ring would be clipped away. Inset it. */
+/* Two-tone, and INSET. `:focus-visible` at the bottom of this file supplies an outer 5px halo,
+   but `.frame{overflow:hidden}` clips it away entirely, leaving a single #2B2A25 hairline over an
+   arbitrary video still — and over `.vfacade`'s own #2B2A25 background while the poster is still
+   decoding, where it is literally invisible. `.folder:focus-visible .folder-body` solved this
+   first; this is the same inset halo, for the same reason. */
+/* The halo must be a LAYER, not a shadow. `box-shadow:inset` on the button paints beneath the
+   button's own children, and `.vposter` covers the box edge to edge — sampling the focused element
+   found no halo pixels at all. A positioned ::before with a z-index paints above the poster, the
+   play disc and the duration chip, which is the whole point of a focus ring. */
+.vfacade:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+.vfacade:focus-visible::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  border:4px solid rgba(255,255,255,.95)}
+.vfacade:focus-visible .vplay{background:var(--olive)}
+
+/* social marks — one row of three in both contact surfaces. Monochrome and `currentColor`, so
+   each row inherits its surface: white on the About card, ink in the contact grid, ink on paper
+   when printed. The <a> is 32px square for a comfortable touch target while the mark itself stays
+   18px, which is the size the surrounding 15px text wants beside it. */
+.social{display:flex;align-items:center;gap:10px;margin-left:-7px}
+.sico{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;color:var(--ink);text-decoration:none;transition:color .25s}
+.sico svg{width:18px;height:18px;display:block}
+/* The marks sit in a 32px box for the touch target while the glyph is 18px, so their optical
+   centre lands 6px below the baseline band of the text cells beside them. Pull the row back onto
+   that band without shrinking the target. */
+.cgrid .social{margin-top:-6px;margin-bottom:-6px}
+/* `--ink` at 18px measured 12.97:1 against the contact tint — more than four times what WCAG
+   1.4.11 asks of a graphic, and it showed: three SOLID 18px glyphs carry far more ink than the
+   15px letterforms around them, so the marks out-ranked the email address above them. Matching
+   PERCEIVED weight means dropping value and size, not hue: `--soft` at 16px measures 5.22:1,
+   still comfortably above 3:1, and puts the marks level with the "Social" label they sit under.
+   Rose on hover is the page's own convention for every other link. */
+/* Hover moves LIGHTNESS as well as hue. `--soft` -> `--pink-ink` measured 1.01:1 between the two
+   states, i.e. the state change was invisible to anyone who cannot resolve hue; ink -> rose is a
+   real luminance step. */
+.sico:hover,.sico:focus-visible{color:var(--pink-ink)}
+/* On the card the surface is already the accent, so the rose hover would be invisible against it
+   and the file's other card links hover to plain white. Match them. */
+.cardsocial{margin-top:2px}
+.cardsocial .sico,.cardsocial .sico:hover{color:#fff}
+.cardsocial .sico:hover{opacity:.78}
 
 /* extra + awards + xfile share a two-column reading list */
 .listgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:0 44px}
@@ -284,6 +352,13 @@ image-slot{display:block;width:100%;height:100%}
 /* ═══ 4. responsive ═══ */
 
 /* the design's own tiers, kept verbatim */
+/* The disc follows the CELL, and the cell is narrowest just above the 900 breakpoint, not below
+   it: four columns start at 901 and do not recover a 900px-wide cell until ~1065. Leaving the 44px
+   rule at <=900 made the disc 31% of the cell at 901 and 16% at 900 — louder on the smaller frame. */
+@media (max-width:1064px){
+  .vplay{width:44px;height:44px}
+  .vplay::after{border-left-width:12px;border-top-width:7.5px;border-bottom-width:7.5px}
+}
 @media (max-width:900px){
   .wrap{padding:0 22px}
   .crow{grid-template-columns:34px 1fr;gap:14px}
@@ -310,6 +385,15 @@ image-slot{display:block;width:100%;height:100%}
   .sheet-ctx{margin:52px 0;gap:38px}
   .peek{display:none}
   .vidlabel{margin-top:48px}
+  /* 4 -> 3. Three columns hold a >=150px cell down to a ~538px viewport, so the step to two
+     belongs at the repo's 620 tier, not here.
+     Known and accepted: the ladder is not monotonic across 900. Four columns at 901 give a
+     185.75px cell where three at 900 gave 270.7px, and four do not recover 768's cell until
+     ~1065 — so a 1024px laptop renders 216.5px cells where a 768px tablet renders 226.7px. Four
+     columns still clear the 150px legibility floor everywhere and fit the reel in two rows
+     instead of three, which is the trade; a fifth breakpoint to smooth it is not worth the rule. */
+  .vidgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  /* 44px for this tier is set by the <=1064 block above, which is where the narrowest cell is. */
   .sec{padding:72px 0}
   .brands{margin-top:56px}
   /* --off is the folder stagger. It is written as --off-instance inline and consumed through this
@@ -321,6 +405,11 @@ image-slot{display:block;width:100%;height:100%}
   .awardrow{grid-template-columns:32px 1fr;gap:10px}
   .didrow{grid-template-columns:26px 1fr}
   .thanks{font-size:clamp(44px,13vw,64px)}
+  /* 3 -> 2. One column of seven 9/16 clips is a 4,400px wall at 390px — five screenfuls of the
+     same shape. Two columns is also the shape every vertical-video grid a visitor has already
+     seen, so it reads as an index rather than as a feed. */
+  .vidgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vdur{right:6px;bottom:6px;padding:2px 5px;font-size:9px}
 }
 
 /* The reveal animation hides content until it scrolls into view. Disabling only the transition
@@ -329,6 +418,9 @@ image-slot{display:block;width:100%;height:100%}
   html{scroll-behavior:auto}
   .reveal{opacity:1!important;transform:none!important;transition:none!important}
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  /* Neutralise only the hover SCALE. `.vplay`'s translate is what centres it, so the blanket
+     `transform:none` used for `.reveal` would knock the disc off the poster. */
+  .vfacade:hover .vplay{transform:translate(-50%,-50%)}
 }
 
 /* A recruiter may print this. Without forcing .reveal visible, every one of them prints blank. */
@@ -342,14 +434,30 @@ image-slot{display:block;width:100%;height:100%}
   .card,.folder-body,.tab,.xdrive{border:1px solid #B9B3A4!important}
   .cardlinks a{text-decoration-color:#2B2A25!important}
   .reveal{opacity:1!important;transform:none!important}
-  .nav,.lang,.skip,.peek,.backtop,.sheet,.toast,.cardbtns,.sheet-foot,.stack,.cgo,.fgo{display:none!important}
+  .nav,.lang,.skip,.peek,.backtop,.sheet,.toast,.cardbtns,.sheet-foot,.stack,.cgo,.fgo,.vplay,.vdur,.vembed{display:none!important}
+  /* The strip prints as a contact sheet, not as seven full-width stills. Print sets
+     `.wrap{padding:0}`, so four columns on A4 (794px, 12px gaps) give a 189.5px cell and the whole
+     strip costs 762px — about two thirds of a page. The evidence survives, the paper bill does
+     not. The play disc, the duration chip and any embed the reader opened before printing are
+     hidden above: none of them means anything on paper, and `.vembed` would print as a dark slab.
+     `.vopen` keeps the poster hidden too, so a played clip prints as its caption alone. */
+  .vidgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .vidcap{min-height:0}
+  .vopen{display:none}
   body{background:#fff}
   /* Sections are taller than an A4 page, so break-inside:avoid on them pushed each to a fresh
      page and overflowed anyway — 13 pages, six of them 40-70% blank. Keep it on the atoms. */
   .sec,.hero{padding:24px 0;min-height:0}
   .jobrow,.crow,.awardrow{break-inside:avoid}
   .wrap{max-width:none;padding:0}
-  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9px;color:#555;word-break:break-all}
+  /* A printed URL belongs after a text link, not inside a 32px icon box — there it overflows the
+     box and overprints whatever the contact block put beside it. The marks print as the handle
+     instead, which is the part a reader can actually use on paper. */
+  a[href^="http"]:not(.sico)::after{content:" (" attr(href) ")";font-size:9px;color:#555;word-break:break-all}
+  .social{gap:14px}
+  .sico{width:auto;height:auto}
+  .sico svg{display:none}
+  .sico::after{content:attr(aria-label);font-size:9.5px;letter-spacing:.04em;color:#2B2A25}
   .frame,.folder{break-inside:avoid}
 }
 
@@ -384,6 +492,20 @@ image-slot{display:block;width:100%;height:100%}
   .nav-brand{font-size:16px}
   .nav-cv{padding:8px 11px;font-size:9.5px;letter-spacing:.08em}
   .lang button{padding:6px 9px;font-size:10px}
+  /* Column-gap trades directly against poster width — every 2px of gutter costs 1px off each of
+     two cells — while row-gap trades against nothing. Return 4px to each poster at the width
+     where the poster is smallest: at 320px the cell goes 127 -> 131. 14px is already this file's
+     small-screen gap, not a new number. */
+  .vidgrid{column-gap:14px}
+  /* `.eyebrow` tracks at .2em, which costs ~2px per character — at a 131px cell that is most of
+     a word. Measured: at .2em three EN captions and one VI caption take a third line here; at
+     .13em every caption in both languages fits the two lines the box reserves. Tightening the
+     tracking is cheaper than reserving a third line on every phone, because the third line is
+     only ever used below ~342px while the reservation would cost 14.5px of dead space at 360,
+     375, 390 and 393 — which is where the phones actually are. */
+  .vidcap{letter-spacing:.13em}
+  .vplay{width:36px;height:36px}
+  .vplay::after{border-left-width:10px;border-top-width:6px;border-bottom-width:6px}
 }
 
 /* Evidence link on a role. Understated — it is a footnote to the bullets, not a call to action. */
@@ -409,3 +531,37 @@ image-slot{display:block;width:100%;height:100%}
   .cgo{margin-top:14px}
 }
 @media (prefers-reduced-motion:reduce){.crow:hover .cgo{transform:none}}
+
+/* The note is now the tile's only line of body copy, so it carries the weight the repeated
+   title used to. It stays a note in tone — this is an index, not a heading. */
+.fnote-lead{font-size:17px;line-height:1.2;letter-spacing:.01em}
+@media (max-width:900px){
+  .folder-body{height:52px;padding:0 20px}
+  /* the note was hidden on mobile because the tile had no room; it has room now, and a tile
+     that says only what its tab already says is worth nothing on a phone */
+  .fnote-lead{display:block;font-size:15px}
+  .fnote{display:none}
+}
+
+/* A short laptop viewport is the case the folder stack has to survive: it is the page's index,
+   and an index that hides an entry is not doing its job. Only the hero's own padding moves. */
+@media (min-width:901px) and (max-height:780px){
+  .hero{padding:64px 0 40px}
+  .heropills{margin-top:18px}
+  .proof{margin-top:24px;padding-top:20px}
+}
+
+/* MOBILE RUNWAY. At 390 the stack began at y=845 in an 844px viewport — the index missed the
+   first screen by one pixel, and the cue "Pick a folder to open →" sat above a stack that was
+   not there yet. The stack itself fits; the hero above it was 1.96 screenfuls. Trim the hero,
+   never the index. */
+@media (max-width:620px){
+  .hero{padding:84px 0 44px}
+  /* Both pills repeat verbatim in the About section and the contact grid below. */
+  .heropills{display:none}
+  .proof{margin-top:22px;padding-top:18px}
+  .proofstats{gap:14px 16px}
+  .proofv{font-size:24px}
+  .proofk{font-size:9.5px;letter-spacing:.06em}
+  .proofbrands{margin-top:14px;font-size:9.5px;line-height:1.6}
+}

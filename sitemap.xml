@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Two URLs, because the site is two real documents: English at the root, Vietnamese at /vi/.
+  Each entry declares the reciprocal hreflang pair and x-default, matching the <link rel="alternate">
+  tags in both shells (index.html:14-16, vi/index.html:14-16) — a crawler that trusts one and not
+  the other is the failure this file exists to prevent.
+
+  Deliberately NO <lastmod>. A hand-written date here cannot tell you when it has gone stale, and
+  this repo has already paid for that lesson once: see D19 in docs/design/v3-source/DEVIATIONS.md,
+  where a raster of her name shipped wrong because nothing regenerated it. <lastmod> is optional and
+  crawlers weight it only when they trust it; an absent date is honest, a wrong one is worse than
+  none. Add it only alongside something that keeps it true.
+
+  robots.txt names this file. If the URL set ever changes, both change together.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://thucanhtrantonnu.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thucanhtrantonnu.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thucanhtrantonnu.com/vi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://thucanhtrantonnu.com/"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://thucanhtrantonnu.com/vi/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thucanhtrantonnu.com/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://thucanhtrantonnu.com/vi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://thucanhtrantonnu.com/"/>
+    <priority>0.9</priority>
+  </url>
+</urlset>

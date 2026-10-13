@@ -121,7 +121,40 @@
       "srcset": "images/portrait-600.webp 600w, images/portrait.webp 900w, images/portrait-1200.webp 1200w",
       "sizes": "(max-width:760px) calc(100vw - 44px), (max-width:1100px) 40vw, 450px"
     },
-    "showPlaceholders": false
+    "showPlaceholders": false,
+    "videoPosters": {
+      "dir": "images/video-posters/",
+      "skip": [
+        "xv5W7UcBLl8",
+        "3JWJoCS2yFs"
+      ],
+      "widths": {
+        "9/16": [
+          360,
+          576,
+          864
+        ],
+        "16/9": [
+          600,
+          1200
+        ]
+      },
+      "sizes": {
+        "9/16": "(max-width:400px) calc((100vw - 58px)/2), (max-width:620px) calc((100vw - 66px)/2), (max-width:900px) calc((100vw - 88px)/3), (max-width:1280px) calc((100vw - 158px)/4), 280px",
+        "16/9": "(max-width:667px) calc(100vw - 44px), (max-width:900px) calc((100vw - 68px)/2), (max-width:1280px) calc((100vw - 116px)/2), 582px"
+      },
+      "dur": {
+        "2Zp3mIdFY-A": 41,
+        "3JWJoCS2yFs": 146,
+        "J5Dm--5n2VE": 12,
+        "Ur9IqW5OQgM": 15,
+        "W1Nh9tGX5Dc": 49,
+        "fRzedKXy36w": 17,
+        "qINvSJZ-ueQ": 26,
+        "xQlXPngldt0": 51,
+        "xv5W7UcBLl8": 369
+      }
+    }
   },
   "vi": {
     "P": {
@@ -269,7 +302,11 @@
         }
       ],
       "linkedin": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222",
-      "linkedinLabel": "thuc-anh-tran-ton-nu"
+      "linkedinLabel": "thuc-anh-tran-ton-nu",
+      "facebook": "https://www.facebook.com/thucanhtrantonnu/",
+      "facebookLabel": "thucanhtrantonnu",
+      "instagram": "https://www.instagram.com/thucanhtrantonnu/",
+      "instagramLabel": "thucanhtrantonnu"
     },
     "CAMPAIGNS": [
       {
@@ -569,34 +606,45 @@
     "VIDEOS": [
       {
         "id": "v1",
-        "l": "Video dọc — TikTok",
+        "l": "Kérastase — 11.11 trên TikTok Shop",
         "r": "9/16",
         "src": "https://youtube.com/shorts/W1Nh9tGX5Dc"
       },
       {
         "id": "v2",
-        "l": "Ảnh sự kiện — ngang",
-        "r": "4/3"
+        "l": "Kérastase — sản phẩm tại salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/Ur9IqW5OQgM"
       },
       {
         "id": "v3",
-        "l": "Video dọc — Shopee",
-        "r": "9/16"
+        "l": "Kérastase — KOL tại sự kiện",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/J5Dm--5n2VE"
       },
       {
         "id": "v4",
-        "l": "Ảnh sản phẩm",
-        "r": "4/3"
+        "l": "L'Oréal Pro — Serioxyl tại salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/fRzedKXy36w"
       },
       {
         "id": "v5",
-        "l": "Video dọc — livestream",
-        "r": "9/16"
+        "l": "L'Oréal Pro — serum Serioxyl",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/xQlXPngldt0"
       },
       {
         "id": "v6",
-        "l": "Ảnh hậu trường",
-        "r": "4/3"
+        "l": "L'Oréal Pro — ưu đãi Serioxyl",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/qINvSJZ-ueQ"
+      },
+      {
+        "id": "v7",
+        "l": "L'Oréal Pro — thể lệ minigame",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/2Zp3mIdFY-A"
       }
     ],
     "XFILE": [
@@ -674,7 +722,8 @@
       "cvEm": "làm việc",
       "workTitle": "Chiến dịch",
       "workEm": "& dự án",
-      "videosLabel": "Hình ảnh & video tôi đã thực hiện",
+      "videosLabel": "Video tôi đã thực hiện",
+      "playVideo": "Phát video",
       "extraTitle": "Hoạt động",
       "extraEm": "ngoại khoá",
       "awardsTitle": "Thành tích",
@@ -700,7 +749,10 @@
       "scope": "Phạm vi & vai trò",
       "cvNav": "Tải CV",
       "samples": "Xem sản phẩm đã làm →",
-      "cLinkedin": "LinkedIn"
+      "cLinkedin": "LinkedIn",
+      "cSocial": "Mạng xã hội",
+      "cFacebook": "Facebook",
+      "cInstagram": "Instagram"
     }
   },
   "en": {
@@ -849,7 +901,11 @@
         }
       ],
       "linkedin": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222",
-      "linkedinLabel": "thuc-anh-tran-ton-nu"
+      "linkedinLabel": "thuc-anh-tran-ton-nu",
+      "facebook": "https://www.facebook.com/thucanhtrantonnu/",
+      "facebookLabel": "thucanhtrantonnu",
+      "instagram": "https://www.instagram.com/thucanhtrantonnu/",
+      "instagramLabel": "thucanhtrantonnu"
     },
     "CAMPAIGNS": [
       {
@@ -1149,34 +1205,45 @@
     "VIDEOS": [
       {
         "id": "v1",
-        "l": "Vertical video — TikTok",
+        "l": "Kérastase — 11.11 on TikTok Shop",
         "r": "9/16",
         "src": "https://youtube.com/shorts/W1Nh9tGX5Dc"
       },
       {
         "id": "v2",
-        "l": "Event photo — landscape",
-        "r": "4/3"
+        "l": "Kérastase — products in salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/Ur9IqW5OQgM"
       },
       {
         "id": "v3",
-        "l": "Vertical video — Shopee",
-        "r": "9/16"
+        "l": "Kérastase — KOL at the event",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/J5Dm--5n2VE"
       },
       {
         "id": "v4",
-        "l": "Product photo",
-        "r": "4/3"
+        "l": "L'Oréal Pro — Serioxyl in salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/fRzedKXy36w"
       },
       {
         "id": "v5",
-        "l": "Vertical video — livestream",
-        "r": "9/16"
+        "l": "L'Oréal Pro — Serioxyl serum",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/xQlXPngldt0"
       },
       {
         "id": "v6",
-        "l": "Behind the scenes",
-        "r": "4/3"
+        "l": "L'Oréal Pro — Serioxyl offer",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/qINvSJZ-ueQ"
+      },
+      {
+        "id": "v7",
+        "l": "L'Oréal Pro — minigame rules",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/2Zp3mIdFY-A"
       }
     ],
     "XFILE": [
@@ -1254,7 +1321,8 @@
       "cvEm": "experience",
       "workTitle": "Campaigns",
       "workEm": "& projects",
-      "videosLabel": "Photo & video work I produced",
+      "videosLabel": "Video work I produced",
+      "playVideo": "Play video",
       "extraTitle": "Extracurricular",
       "extraEm": "activities",
       "awardsTitle": "Achievements",
@@ -1280,7 +1348,10 @@
       "scope": "Scope & role",
       "cvNav": "Download CV",
       "samples": "View work samples →",
-      "cLinkedin": "LinkedIn"
+      "cLinkedin": "LinkedIn",
+      "cSocial": "Social",
+      "cFacebook": "Facebook",
+      "cInstagram": "Instagram"
     }
   }
 }

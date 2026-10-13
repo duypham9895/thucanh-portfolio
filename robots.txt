@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /docs/
 Disallow: /tools/
+Disallow: /images/video-posters/
 
 Sitemap: https://thucanhtrantonnu.com/sitemap.xml

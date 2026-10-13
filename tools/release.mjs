@@ -5,7 +5,8 @@
 // A filename either exists with exactly the bytes its hash describes, or not at all, and
 // index.<h>.js has its config's hashed name compiled in — so code and content are inseparable.
 //
-// Not a serve-time build step: outputs are committed and served as-is, like generate_icons.py.
+// Not a serve-time build step: outputs are committed and served as-is, like
+// tools/build/generate_icons.py.
 // Editing stays in the unhashed sources.
 //
 //   node tools/release.mjs           # cut a release

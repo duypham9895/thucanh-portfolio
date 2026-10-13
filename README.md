@@ -22,10 +22,17 @@ index.css       @font-face → verbatim design system → component classes → 
 index.js        renderer, i18n, folder nav, reveal observer, campaign sheet, toast
 config.json     all content, { meta, vi, en } — the single source of truth
 fonts/          10 self-hosted woff2 subsets (content-hashed). No Google Fonts request.
-images/ brands/ 18 optimized WebP assets
+images/ brands/ 21 optimized WebP (14 + 7 brand marks) + 1 JPEG social card;
+                images/video-posters/  21 WebP stills for the click-to-play video strip
+sitemap.xml     the two real URLs, with their hreflang pair — robots.txt names it
+CHANGELOG.md    tagged releases; the design decisions behind them live in DEVIATIONS.md
 docs/design/    the frozen design snapshot, hash-pinned (see below)
 tools/          build scripts + dev-only QA harness — never shipped to the browser
 ```
+
+Everything under `docs/` and `tools/` is served on the live domain and disallowed in `robots.txt`;
+`images/video-posters/` is disallowed too, because those stills are frames of brand campaign work
+and belong on her page rather than in an image search.
 
 ## Design provenance
 
@@ -46,7 +53,8 @@ the single, complete list of differences between the design and the site; the su
   *surfaces* and use a darkened same-hue variant as *text*; body text was re-derived against the
   darkest section tint rather than the page background. Clickable `<div>`s became real buttons, the
   campaign sheet became a proper modal, and reduced-motion forces content visible instead of leaving
-  it at `opacity:0`. Result: **zero AA failures**, 35 keyboard-reachable controls, both languages.
+  it at `opacity:0`. Result: **zero AA failures**, 49 keyboard-reachable controls, both languages.
+  That count is a measurement, re-taken per change — `a11y-v3.mjs` prints it and does not assert it.
 - **Mobile.** React writes layout as inline styles, and a media query cannot reach one — which is
   how the previous design shipped a 208px overflow at 375px. Every inline grid became a class.
   Result: **0px overflow** at 320/375/390/768/900, page *and* all six campaign sheets.
@@ -82,6 +90,8 @@ ongoing copy changes, edit `config.json` directly.
 cd tools/visual-qa
 node smoke-v3.mjs    # both documents: sections, counts, overflow at 5 widths, console, requests
 node a11y-v3.mjs     # contrast (alpha+opacity composited), keyboard, modal, reduced motion, print
+node a11y-v3.mjs http://localhost:8900/vi/   # it only ever tests the URL you give it
+node videos-v3.mjs   # the video strip: column ladder, posters, srcset rungs, click-to-play
 node shots-v3.mjs    # full-page and every campaign sheet at 390
 ```
 
@@ -99,8 +109,21 @@ node tools/release.mjs --check   # fail unless the deployed set is mutually cons
 
 Both shells are rewritten and cross-checked: they must name the *same* generation, or the check
 exits 1. A shell left behind would not 404 — it would silently serve English visitors different
-code. Three generations are retained (`release-manifest.json`) so a visitor holding older HTML still
-gets its assets. **Run `--check` before committing.**
+code. Four generations are retained (`RETAIN = 4` in `release.mjs`) so a visitor holding older HTML
+still gets its assets; entries in the manifest's `pinned` array are exempt from eviction.
+**Run `--check` before committing.**
+
+`RETAIN` protects the last four generations, but a run of releases in one sitting will still evict
+the one the live site is serving — which 404s for any visitor holding cached HTML, since Pages
+caches it for 600 s. Before a run, add the live generation to the manifest's `pinned` array; after
+the new release has outlived that window, take it out again. Better still, iterate against the
+unhashed sources (copy the two shells to `preview.html` and `vi/preview.html` with the hashed names
+swapped for `index.css`, `index.js`, `config.json`) and release once at the end.
+
+## Versioning
+
+Releases are tagged `vMAJOR.MINOR.PATCH` and described in [`CHANGELOG.md`](CHANGELOG.md).
+Tags named `pre-*` are older safety markers taken before large changes, not releases.
 
 ## Browser support
 

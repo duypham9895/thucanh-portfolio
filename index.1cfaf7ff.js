@@ -162,19 +162,166 @@
     // to be framed and produce an empty box, which D7 says the site never shows.
     return null;
   }
+  // The id inside a YouTube URL, which is also the poster filename. Same capture group as
+  // embedUrl(), deliberately: a clip that can be embedded is a clip that can have a poster.
+  function ytId(u) {
+    var m = (u || '').match(/(?:youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/)|youtu\.be\/)([\w-]{6,})/);
+    return m ? m[1] : null;
+  }
+  function clock(s) {
+    s = Math.round(s || 0);
+    return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+  }
+  // `lazy` only means anything for the fallback path, where the embed is built at render time and
+  // may be far below the fold. An embed built by a click is in the viewport by definition, and
+  // `loading="lazy"` on it would be deferral that never defers — machinery that reads as a
+  // guarantee and provides none.
+  function embedFrame(e, title, lazy) {
+    return h('iframe', {
+      class: 'vembed', src: e, title: title || '', loading: lazy ? 'lazy' : null,
+      allow: 'accelerometer;autoplay;clipboard-write;encrypted-media;picture-in-picture',
+      allowfullscreen: ''
+    });
+  }
+
+  /* ── social marks ────────────────────────────────────────────────────────
+     Inline SVG, monochrome, `currentColor`. Not the platforms' brand colours: three of those
+     (LinkedIn blue, Facebook blue, Instagram's orange-to-purple gradient) in a palette built on
+     paper, ink and one rose accent would be the loudest thing on the page, and they would be
+     loudest in the contact block, which is the quietest part of the design by intent.           */
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function mark(paths) {
+    var s = document.createElementNS(SVGNS, 'svg');
+    s.setAttribute('viewBox', '0 0 24 24');
+    s.setAttribute('aria-hidden', 'true');   // the link carries the name
+    s.setAttribute('focusable', 'false');    // IE/Edge legacy: an SVG is not a tab stop
+    // Stroked, not filled: one weight for all three marks, set once here rather than per path.
+    s.setAttribute('fill', 'none');
+    s.setAttribute('stroke', 'currentColor');
+    s.setAttribute('stroke-width', '1.7');
+    s.setAttribute('stroke-linecap', 'round');
+    s.setAttribute('stroke-linejoin', 'round');
+    paths.forEach(function (d) {
+      var p = document.createElementNS(SVGNS, 'path');
+      p.setAttribute('d', d);
+      s.appendChild(p);
+    });
+    return s;
+  }
+  var SOCIAL = [
+    ['linkedin', 'T.cLinkedin', [
+      'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-13h4v1.5A6 6 0 0 1 16 8z',
+      'M6 9v12H2V9h4z',
+      'M4 2.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4z'
+    ]],
+    ['facebook', 'T.cFacebook', [
+      'M18 2.5h-3a5 5 0 0 0-5 5v3.5H7v4h3v8.5h4V15h3.2l.8-4H14V7.5a1 1 0 0 1 1-1h3v-4z'
+    ]],
+    ['instagram', 'T.cInstagram', [
+      'M7 2.5h10a4.5 4.5 0 0 1 4.5 4.5v10a4.5 4.5 0 0 1-4.5 4.5H7A4.5 4.5 0 0 1 2.5 17V7A4.5 4.5 0 0 1 7 2.5z',
+      'M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z',
+      'M17.6 6.4h.01'
+    ]]
+  ];
+  // D7 applies here too: a profile with no URL in config renders nothing, and if none of the three
+  // has one the row itself is absent rather than an empty box.
+  function socialRow(cls) {
+    var row = h('div', { class: cls });
+    SOCIAL.forEach(function (s) {
+      var href = L.P[s[0]];
+      if (!href) return;
+      var name = get(L, s[1]) || s[0];
+      var handle = L.P[s[0] + 'Label'];
+      var a = h('a', {
+        class: 'sico', href: href, target: '_blank', rel: 'noopener me',
+        'aria-label': handle ? name + ' — ' + handle : name
+      });
+      a.appendChild(mark(s[2]));
+      row.appendChild(a);
+    });
+    return row.children.length ? row : null;
+  }
+  // The poster is self-hosted WebP captured from the clip's own frame, never hot-linked from
+  // i.ytimg.com — D11 says the shipped site makes no third-party request, and a hot-linked
+  // thumbnail would be one on every page view. tools/build/make-video-posters.mjs writes the
+  // files; `meta.videoPosters` is the one source of truth that it and this function share, so
+  // the files on disk and the candidates offered to the browser cannot drift apart.
+  function posterImg(id, ratio) {
+    var P = M.videoPosters;
+    if (!P || !id) return null;
+    // Some clips are opted out of having a poster at all — see `meta.videoPosters.skip` and D20.
+    // Without this the facade is still built, pointing at files that were never generated, and the
+    // only symptom is a 404 and a dark frame on a page nobody is watching the network tab of.
+    if ((P.skip || []).indexOf(id) !== -1) return null;
+    var widths = P.widths[ratio] || P.widths['16/9'];
+    if (!widths || !widths.length) return null;
+    return h('img', {
+      class: 'vposter', alt: '', loading: 'lazy', decoding: 'async',
+      src: url(P.dir + id + '-' + widths[0] + '.webp'),
+      srcset: widths.map(function (w) { return url(P.dir + id + '-' + w + '.webp') + ' ' + w + 'w'; }).join(', '),
+      sizes: P.sizes[ratio] || P.sizes['16/9']
+    });
+  }
   function video(src, title, ratio) {
     var e = embedUrl(src);
     if (!e) return null;
     // The config records each clip's real aspect ratio. A vertical TikTok cut rendered at 16/9
     // is letterboxed into a black slab — which is exactly what the design's own grid does.
-    return h('div', { class: 'frame', style: 'aspect-ratio:' + (ratio || '16/9') }, [
-      h('iframe', {
-        src: e, title: title || '', loading: 'lazy',
-        allow: 'accelerometer;autoplay;clipboard-write;encrypted-media;picture-in-picture',
-        allowfullscreen: '',
-        style: 'width:100%;height:100%;border:0;display:block;background:#2B2A25'
-      })
+    var r = ratio || '16/9';
+    var frame = h('div', { class: 'frame', style: 'aspect-ratio:' + r });
+
+    // Click-to-play. One clip was cheap to embed live; seven are not — each YouTube embed is
+    // roughly 0.6–1.2 MB of player, and `loading="lazy"` only defers that until the strip is
+    // scrolled to, at which point all seven arrive at once. The facade is a 20–45 KB local
+    // still, and nothing is fetched from YouTube until a visitor actually asks to watch.
+    //
+    // It also fixes something the single clip already got wrong: an iframe that has not painted
+    // is a dark slab, which is the "unfinished" impression D7 exists to prevent. A poster paints
+    // from disk, so the strip looks finished before the network has an opinion.
+    //
+    // A clip with no poster falls back to the live embed that shipped before this change, so one
+    // added to config.json without re-running the poster build still plays.
+    //
+    // There are TWO ways to have no poster and they are not the same. `posterImg()` returns null
+    // for a clip that is opted out or for a config with no poster manifest — decided before any
+    // DOM exists. A poster that is CONFIGURED but 404s is decided by the network, after the
+    // element is in the page, and that case used to render a broken <img> inside a facade: a black
+    // box with a play control that opens nothing. The whole directory is a single untracked unit,
+    // so "the posters did not deploy" is a plausible failure, not a hypothetical one.
+    var id = ytId(src);
+    var poster = posterImg(id, r);
+    if (!poster) { frame.appendChild(embedFrame(e, title, true)); return frame; }
+
+    var dur = (M.videoPosters.dur || {})[id];
+    var btn = h('button', {
+      type: 'button', class: 'vfacade',
+      // The visible duration chip is aria-hidden, so the name carries the length once, not twice.
+      'aria-label': (L.T.playVideo || 'Play video') + ' ' + (title || '') + (dur ? ', ' + clock(dur) : '')
+    }, [
+      poster,
+      h('span', { class: 'vplay', 'aria-hidden': 'true' }),
+      dur ? h('span', { class: 'vdur', 'aria-hidden': 'true', text: clock(dur) }) : null
     ]);
+    btn.addEventListener('click', function () {
+      // Swap inside the same `.frame`, which keeps its inline aspect-ratio — nothing above or
+      // below the clip moves. autoplay is required: the visitor already expressed intent, and a
+      // facade that needs a second click is worse than no facade at all.
+      var f = embedFrame(e + '?autoplay=1&rel=0&playsinline=1&enablejsapi=1', title);
+      frame.replaceChild(f, btn);
+      frame.className = 'frame vopen';
+      try { f.focus(); } catch (err) { /* focusing a cross-origin frame can throw; harmless */ }
+    });
+    // The runtime half of the same fallback: if the still never arrives, stop pretending to be a
+    // facade and become the embed. One listener, fires at most once, and it degrades toward the
+    // thing the visitor came for rather than toward a black rectangle.
+    poster.addEventListener('error', function () {
+      if (!btn.parentNode) return;
+      frame.replaceChild(embedFrame(e, title, true), btn);
+      frame.className = 'frame';
+    });
+
+    frame.appendChild(btn);
+    return frame;
   }
 
   function brandLogo(name) {
@@ -272,12 +419,11 @@
       tab.appendChild(ti(h('span', { class: 'tabname' }), 'F.' + f.id + '.t'));
       btn.appendChild(tab);
       var body = h('div', { class: 'folder-body', style: 'background:' + f.c + ';color:' + f.t });
-      var txt = h('div');
-      var title = ti(h('p', { class: 'disp', style: 'font-size:26px;line-height:1' }), 'F.' + f.id + '.t');
-      var note = ti(h('p', { class: 'fnote' }), 'F.' + f.id + '.n');
-      if (f.noteFirst) { txt.appendChild(note); title.style.marginTop = '5px'; txt.appendChild(title); }
-      else { txt.appendChild(title); note.style.marginTop = '5px'; txt.appendChild(note); }
-      body.appendChild(txt);
+      // The design prints each label twice — once on the tab, once again 30px below it in the
+      // body, both from F.<id>.t. Dropping the repeat and promoting the note into its place is
+      // what lets all seven tiles clear a short laptop viewport: the tile goes 130px -> 100px
+      // and the stack 814px -> 604px, without touching the stagger, tab, clip or hover lift.
+      body.appendChild(ti(h('p', { class: 'disp fnote-lead' }), 'F.' + f.id + '.n'));
       body.appendChild(ti(h('span', { class: 'fgo' }), 'T.open'));
       btn.appendChild(body);
       stack.appendChild(btn);
@@ -336,7 +482,7 @@
       ti(h('a', { href: 'mailto:' + P.email }), 'P.email'),
       ti(h('a', { href: 'tel:' + P.phone.replace(/[^\d+]/g, '') }), 'P.phone'),
       ti(h('span'), 'P.city'),
-      ti(h('a', { href: P.linkedin, target: '_blank', rel: 'noopener me' }), 'P.linkedinLabel')
+      socialRow('social cardsocial')
     ]);
     card.appendChild(links);
     card.appendChild(h('div', { class: 'cardbtns' }, [
@@ -466,7 +612,11 @@
     // not recognise produce a heading with an empty grid under it.
     var sec = h('section', { class: 'sec', style: 'background:' + TINT('work', 7) + ';border-top:0;padding-top:0' });
     var w = h('div', { class: 'wrap' });
-    w.appendChild(ti(h('p', { class: 'disp vidlabel' }), 'T.videosLabel'));
+    // An <h3>, not a <p>: this is the only label on the largest block in the work section, and a
+    // screen-reader user scans a CV by heading. h3 rather than h2 because the strip is appended
+    // inside the work section, whose h2 is already its title. `.vidlabel` is matched by class
+    // only (index.css), so nothing moves by a pixel.
+    w.appendChild(ti(h('h3', { class: 'disp vidlabel' }), 'T.videosLabel'));
     var grid = h('div', { class: 'vidgrid' });
     L.VIDEOS.forEach(function (v, i) {
       if (!v.src) return;
@@ -474,7 +624,10 @@
       var vel = video(v.src, v.l, v.r);
       if (!vel) return;
       cell.appendChild(vel);
-      cell.appendChild(ti(h('p', { class: 'eyebrow', style: 'margin-top:9px' }), 'VIDEOS.' + i + '.l'));
+      // `.vidcap` rather than an inline margin: at two columns on a phone the cell is 131–166px
+      // and these captions wrap to two lines, so the box reserves both. Without it the row's
+      // frames stay aligned (align-items:start) but the captions below them do not.
+      cell.appendChild(ti(h('p', { class: 'eyebrow vidcap' }), 'VIDEOS.' + i + '.l'));
       grid.appendChild(cell);
     });
     if (!grid.children.length) return null;      // D7: an all-empty section renders nothing
@@ -560,8 +713,7 @@
       ['T.cEmail', 'P.email', 'mailto:' + P.email, null],
       ['T.cPhone', 'P.phone', 'tel:' + P.phone.replace(/[^\d+]/g, ''), null],
       ['T.cAddr', 'P.city', null, null],
-      ['T.cCv', 'T.cCvVal', url(cvPath()), true],
-      ['T.cLinkedin', 'P.linkedinLabel', P.linkedin, false, true]
+      ['T.cCv', 'T.cCvVal', url(cvPath()), true]
     ].forEach(function (row) {
       var cell = h('div', null, [ti(h('p', { class: 'eyebrow', style: 'margin-bottom:8px' }), row[0])]);
       cell.appendChild(row[2]
@@ -571,6 +723,12 @@
         : ti(h('span'), row[1]));
       grid.appendChild(cell);
     });
+    var soc = socialRow('social');
+    if (soc) {
+      grid.appendChild(h('div', null, [
+        ti(h('p', { class: 'eyebrow', style: 'margin-bottom:8px' }), 'T.cSocial'), soc
+      ]));
+    }
     w.appendChild(grid);
     w.appendChild(h('div', { style: 'display:flex;gap:10px;margin-top:40px;flex-wrap:wrap' }, [
       ti(h('button', { type: 'button', class: 'btn btn-solid', onclick: copyEmail }), 'T.copy'),
@@ -711,6 +869,18 @@
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
 
+  // Ask every YouTube embed inside `root` to pause. The IFrame API answers a postMessage only when
+  // the player was built with `enablejsapi=1`, which embedFrame's activation URL sets; a player
+  // that has not finished loading simply ignores it, which is the correct outcome — it has nothing
+  // to pause yet. Wrapped because a cross-origin contentWindow can throw on a detached frame.
+  function pauseEmbeds(root) {
+    Array.prototype.forEach.call(root.querySelectorAll('iframe.vembed'), function (f) {
+      try {
+        f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+      } catch (e) { /* detached or blocked: nothing to pause */ }
+    });
+  }
+
   function openSheet(id, opener, keepOpener) {
     var el = sheetFor(id);
     if (!el) return;
@@ -728,6 +898,7 @@
     var gutter = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
     if (gutter > 0) document.body.style.paddingRight = gutter + 'px';
+    pauseEmbeds(app);
     app.setAttribute('inert', '');
     document.addEventListener('keydown', trapFocus, true);
     el.focus();
@@ -877,13 +1048,40 @@
       openSheet(deep, row || null, true);
     }
 
+    // The nav gains `.stuck` once the page has scrolled past 60px.
+    //
+    // This was a scroll listener that read `window.scrollY` and toggled a class on every event —
+    // a geometry read immediately after a style invalidation, which is the textbook forced
+    // synchronous layout. Worse, it was also called once directly, at the end of boot(), i.e. the
+    // instant after the whole page DOM had been built: measured on a 4x-throttled CPU at 390px,
+    // that single call forced a layout of 821 of 831 nodes taking 418ms, on the critical path,
+    // immediately before first paint. Over the load the handler accounted for 431ms of forced
+    // reflow in total.
+    //
+    // An IntersectionObserver on a 60px sentinel reports the same boundary without ever reading
+    // geometry from script. The repo already uses one for `.reveal`, so this is the house idiom.
     var nav = $('#nav');
-    var onScroll = function () { nav.classList.toggle('stuck', window.scrollY > 60); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    if ('IntersectionObserver' in window) {
+      // 1px wide, no background, no pointer events, out of the accessibility tree, and absolutely
+      // positioned so it takes part in no layout but its own.
+      var sentinel = h('div', {
+        'aria-hidden': 'true',
+        style: 'position:absolute;top:0;left:0;width:1px;height:60px;pointer-events:none;visibility:hidden'
+      });
+      document.body.appendChild(sentinel);
+      // The observer fires once on observe() with the current state, so the initial class is set
+      // without a synchronous read — asynchronously, after paint, which is the entire point.
+      new IntersectionObserver(function (es) {
+        nav.classList.toggle('stuck', !es[0].isIntersecting);
+      }, { threshold: 0 }).observe(sentinel);
+    } else {
+      var onScroll = function () { nav.classList.toggle('stuck', window.scrollY > 60); };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   }
 
-  var CONFIG_URL = 'config.27cc4034.json';
+  var CONFIG_URL = 'config.c7cb03b9.json';
   function showFallback(err, what) {
     var ns = $('#fallback');
     if (ns) ns.hidden = false;
