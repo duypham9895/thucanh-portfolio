@@ -30,8 +30,15 @@ One sentence under the video heading, naming what the strip could not say for it
   vaguer phrasing would invite the reader to assume it.
 
   It renders as `p.body.vidnote` at 14.5px under the 20px `h3`, one line at 1440px and two at
-  390px in both languages, with `.vidnote` taking over the 10px/24px spacing that used to sit
-  between heading and grid — so nothing below it moves.
+  390px in both languages. Its `-10px` top margin collapses into the heading's 20px bottom margin
+  (`20 + (-10) = 10`), so the gap above the sentence is 10px rather than the 20px that used to run
+  straight to the grid; below it there is 24px.
+
+  **The heading does not move and the grid does.** Measured: heading bottom identical to the pixel,
+  grid pushed down 40.09px at 1440px and 66.19px at 390px, page 41px and 67px taller. An earlier
+  wording of this entry, and the commit message of `f501fe6`, both said "nothing below it moves" —
+  that was wrong. Inserting a paragraph necessarily pushes what follows it down; what the negative
+  margin buys is the spacing rhythm, not a free insertion.
 
 ### Not changed
 
