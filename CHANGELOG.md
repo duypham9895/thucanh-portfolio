@@ -15,6 +15,35 @@ safety markers taken *before* large changes, not releases. They are left alone.
 
 ---
 
+## [1.2.0] — 2026-10-14
+
+The sentence added in 1.1.0 is removed. It was not wanted.
+
+### Removed
+
+- **The line under the video heading** (`T.videosNote`, `p.body.vidnote`, `.vidnote`). Removed at
+  the owner's request — *"kh bỏ nó đi, tôi kh muốn có nữa"*. No further justification is recorded
+  here, because none is needed: it is her CV.
+
+  The revert is complete rather than approximate. `config.json`, `index.js` and `index.css` are
+  **byte-identical to `212b8c2`**, the commit before the sentence shipped, and content hashing
+  proves it independently: this release reproduced the v1.0.0 generation exactly —
+  `index.ede95581.css`, `index.1cfaf7ff.js`, `config.c7cb03b9.json`. A partial revert could not
+  have produced those three hashes.
+
+  `T` is back to 54 keys per language, key sets identical. The grid returns to the 20px gap under
+  the `h3` that 1.1.0's entry measured it leaving: the 40.09px / 66.19px it had been pushed down at
+  1440px / 390px is given back.
+
+### Verified
+
+Both documents, English and Vietnamese: `smoke-v3` (zero console errors, zero failed requests, zero
+horizontal overflow), `a11y-v3` (zero contrast failures on page and sheets, 49 keyboard-reachable
+controls, zero clickable-but-unfocusable), `videos-v3`, `check-font-coverage`,
+`make-video-posters --check`, `release.mjs --check`.
+
+---
+
 ## [1.1.0] — 2026-10-14
 
 One sentence under the video heading, naming what the strip could not say for itself.
