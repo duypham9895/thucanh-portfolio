@@ -610,7 +610,7 @@
   function videos() {
     // Build first, decide after. Testing for a src before building let a host embedUrl() does
     // not recognise produce a heading with an empty grid under it.
-    var sec = h('section', { class: 'sec', style: 'background:' + TINT('work', 7) + ';border-top:0;padding-top:0' });
+    var sec = h('section', { class: 'sec vidsec', style: 'background:' + TINT('work', 7) + ';border-top:0;padding-top:0' });
     var w = h('div', { class: 'wrap' });
     // An <h3>, not a <p>: this is the only label on the largest block in the work section, and a
     // screen-reader user scans a CV by heading. h3 rather than h2 because the strip is appended

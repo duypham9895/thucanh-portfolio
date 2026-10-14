@@ -159,7 +159,7 @@ Then in `tools/visual-qa/` (dev-only; never shipped):
 
 ```bash
 node smoke-v3.mjs                    # both documents: sections, counts, overflow, console, requests
-node a11y-v3.mjs [url]               # contrast (alpha+opacity composited), keyboard, modal, print
+node a11y-v3.mjs [url]               # contrast (alpha+opacity composited), keyboard, modal
                                      # run it TWICE — it only tests the URL you give it
 node videos-v3.mjs [url]             # video strip: column ladder, posters, srcset rungs, play
 node perf-v3.mjs                     # throttled desktop and mobile timings
@@ -169,6 +169,10 @@ node shots-v3.mjs                    # full-page + every campaign sheet at 390
 
 **smoke-v3 and a11y-v3 exit non-zero on failure**, so they can gate a deploy. They did not until
 the pre-deploy review pointed out that a check which cannot fail cannot gate anything.
+
+**Nothing in the suite checks `@media print`.** No gate calls `emulateMedia`, so D9's print tier is
+verified by hand or not at all — `page.emulateMedia({media:'print'})` plus a real
+`page.pdf({format:'A4'})` page count. This line used to claim `a11y-v3` covered print; it never did.
 
 The previous design's harness — `gates.mjs`, `make-adjusted-oracle.mjs`, `functional.mjs`,
 `verify-deployed.mjs`, `prove.mjs`, `measure.mjs`, `shoot.mjs`, `diff.mjs` — and its pinned oracle

@@ -15,6 +15,57 @@ safety markers taken *before* large changes, not releases. They are left alone.
 
 ---
 
+## [1.2.1] — 2026-10-14
+
+### Fixed
+
+- **The video heading sat on page background instead of on its own band.** `.vidlabel`'s 70px top
+  margin had nothing to stop it. The section is deliberately `border-top:0;padding-top:0` so the
+  strip reads as a continuation of the work band, and with no top padding or border on `.wrap`
+  either, the margin collapsed out of both and became the **section's** own — leaving 70px of
+  `#F4F2ED` between two bands of the same tint (48px at ≤900px), with the heading flush on the top
+  edge of the lower one. Reported by the owner: *"chữ 'Video work I produced' đang nằm lệch vs
+  background"*.
+
+  Sampled as painted pixels the junction read `rgb(239,239,231)` · `rgb(244,242,237)` × 70px ·
+  `rgb(239,239,231)`, and `elementFromPoint` in the middle of the stripe returned `body > main` —
+  no section covered it.
+
+  Fixed by making the section a block formatting context — `.vidsec{display:flow-root}` — so the
+  margin stays on the box it was written for. One CSS declaration and one class name; `.vidlabel`'s
+  own two rules, including its 48px tier at ≤900px, are untouched, and the inline
+  `border-top:0;padding-top:0` is left alone. Paying the gap as `padding-top` instead measures
+  identically but would have copied the 70/48 split into new rules and silently opted the section
+  out of the print padding tier on specificity. Recorded in D20.
+
+### Documentation
+
+- **`AGENTS.md` claimed `a11y-v3` tests print. It never did** — no gate in the suite calls
+  `emulateMedia`. The line is corrected and the gap is now stated, so D9's print tier is known to
+  be hand-verified rather than assumed covered.
+- **D20's height table was measured on the box this fix grows** and is updated: 320 1,310 · 390
+  1,558 · 768 1,527 · 1024 1,078 · 1440 1,305. The 320 row also corrects a pre-existing error — it
+  measured 1,261.5px, not the 1,305px recorded.
+
+### Verified
+
+Both documents, English and Vietnamese, at fourteen widths from 320 to 1512: the gap between the two
+bands goes 70/48px → **0** and the heading's offset from the top of its own band goes 0 → **70 above
+900px, 48 at and below**. Document height is **identical at every width in both languages** — the
+space is moved, not added — horizontal overflow stays 0, grid height, cell width and column count
+are unchanged, both bands keep the same computed colour, and the label's left edge still matches the
+grid's. Under `emulateMedia` print: rule-to-label 94px at 1440 and 72px at 794, contact sheet still
+four columns of 189.5px, print document height EN 8466/9287 and VI 8414/9227, and a real A4 render
+still **ten pages** in each language. `smoke-v3`, `a11y-v3` (EN and VI), `videos-v3` (EN and VI),
+`check-font-coverage`, `make-video-posters --check` and `release.mjs --check` all exit 0.
+
+One measurement needed a control before it could be trusted: document height at EN@390 appeared to
+shift by 72px between the before and after reads. Injecting an **empty** stylesheet reproduced the
+same 72px shift, so it was the page not having settled at `networkidle`, not the change. Once
+settled, before and after are identical.
+
+---
+
 ## [1.2.0] — 2026-10-14
 
 The sentence added in 1.1.0 is removed. It was not wanted.

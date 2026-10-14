@@ -378,11 +378,18 @@ Measured, seven clips, section height including heading and padding:
 
 | viewport | columns | cell | before (old rule, 7 clips) | after |
 |---|---|---|---|---|
-| 320 | 2 | 131 × 233 | ~3,830px | **1,305px** |
-| 390 | 2 | 166 × 295 | ~4,440px | **1,510px** |
-| 768 | 3 | 227 × 403 | ~2,710px | **1,479px** |
-| 1024 | 4 | 217 × 385 | ~1,740px | **1,008px** |
-| 1440 | 4 | 281 × 499 | ~1,095px | **1,235px** |
+| 320 | 2 | 131 × 233 | ~3,830px | **1,310px** |
+| 390 | 2 | 166 × 295 | ~4,440px | **1,558px** |
+| 768 | 3 | 227 × 403 | ~2,710px | **1,527px** |
+| 1024 | 4 | 217 × 385 | ~1,740px | **1,078px** |
+| 1440 | 4 | 281 × 499 | ~1,095px | **1,305px** |
+
+The `after` column is the section's **border box**, so it grew by the lead-in gap when
+`.vidsec{display:flow-root}` moved that gap inside the band — 70px above 900, 48px at and below it.
+The strip itself did not move: the grid is 1,095.31px at 1440 and 1,149.5px at 320 before and after.
+Measured before → after: 320 1,261.5 → 1,309.5 · 390 1,510.44 → 1,558.44 · 768 1,478.88 → 1,526.88 ·
+1024 1,007.75 → 1,077.75 · 1440 1,235.31 → 1,305.31. The 320 row also corrects a pre-existing error:
+it measured 1,261.5px, not the 1,305px previously recorded here.
 
 Seven is prime, so every column count but seven leaves a ragged last row. Four fills it best (75%)
 and uses the fewest rows; seven across would put a 151px cell on a 1440 desktop, at which the clips'
@@ -458,6 +465,54 @@ phone at DPR 2, 576w at DPR 2 desktop and on a large phone, 864w at DPR 3 — as
   survives; seven full-width stills would not have been worth the paper. A printed poster is also
   strictly better than what an iframe printed before, which was nothing. A clip the reader opened
   before printing is hidden entirely (`.vopen`, `.vembed`) — an embed prints as a dark slab.
+
+### The strip's lead-in belongs inside the band
+
+`videos()` gives this section `border-top:0;padding-top:0` so the strip reads as a continuation of
+the work band rather than as a new section. That is still the intent — but it also left
+`.vidlabel`'s top margin with nothing to stop it. The margin collapsed out through `.wrap` (no top
+padding, no top border), out through the section, and became the **section's** own top margin,
+opening a stripe of page background between two bands of the same tint.
+
+Measured before the fix, at 1440 / 900 / 390: **70 / 48 / 48px of `--bg` between the bands, and the
+heading 0px from the top edge of its own band at every width.** Sampled as painted pixels, the
+junction read `rgb(239,239,231)` · `rgb(244,242,237)` × 70px · `rgb(239,239,231)`, and
+`elementFromPoint` in the middle of the stripe returned `body > main` — no section covered it. The
+owner reported it as the heading looking misaligned against the background, which is what it was.
+
+`.vidsec{display:flow-root}` makes the section a block formatting context, so the margin stays on
+the box it was written for. The 70/48 split stays in `.vidlabel`'s own two rules (`index.css` and
+its `≤900` tier) rather than being copied onto a third, and the inline `border-top:0;padding-top:0`
+is left untouched.
+
+**Why not pay the gap as `padding-top` instead.** It measures identically at every width, and it was
+rejected on two counts. It must copy the 70/48 split into new rules, one of them inside the `≤900`
+block at equal specificity with `.vidlabel`, so its correctness depends on source order. And
+`.sec.vidsec{padding-top:70px}` is specificity (0,2,0) and sits outside `@media print`, so it
+outranks print's `.sec{padding:24px 0}` (0,1,0) and silently opts this one section out of the print
+padding tier — a no-op today only because the inline `padding-top:0` already did the same thing.
+
+Verified after the fix, both documents, fourteen widths 320→1512: band gap 70/48 → **0**, heading
+offset 0 → **70 above 900, 48 at and below**, document height **identical at every width** (the
+space moves, it is not added), horizontal overflow 0, both bands still the same computed colour,
+label left edge still equal to grid left edge. Under print: rule-to-label 94px at 1440 and 72px at
+794, contact sheet still four columns of 189.5px, A4 still ten pages in each language.
+
+Two measured non-actions:
+
+- **The two bands now abut, and at a fractional device pixel ratio that boundary antialiases.** One
+  device-pixel row differing from the band by 1–2 of 255 at DPR 1.25 / 1.5 / 1.75 / 2.5; clean at
+  1 / 2 / 3. Below the visible threshold, and every other section boundary on this page already
+  abuts the same way — they simply draw a `--line` border over it. `.vidsec{margin-top:-1px}`
+  removes it at every DPR, measured. Not shipped: a magic −1px against a sub-threshold artefact
+  costs more to maintain than it buys.
+- **The section is now a BFC at its bottom edge too.** A future bottom margin on the strip's last
+  child would add to `.sec`'s padding-bottom instead of being swallowed. A no-op today — `.vidgrid`
+  carries no bottom margin — but it is an asymmetry against the eight other `.sec` elements and it
+  is invisible in the diff.
+
+`display:flow-root` is unsupported in Safari ≤12.1 / iOS ≤12, where the page renders as it did
+before this fix rather than worse.
 
 ### The campaign sheet gets the same treatment
 
