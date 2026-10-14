@@ -15,6 +15,45 @@ safety markers taken *before* large changes, not releases. They are left alone.
 
 ---
 
+## [1.1.0] — 2026-10-14
+
+One sentence under the video heading, naming what the strip could not say for itself.
+
+### Added
+
+- **A line under "Video work I produced"** — *"On camera in six of the seven — the third is a KOL
+  at a Kérastase event."* / *"Tôi lên hình trong sáu trên bảy — clip thứ ba là KOL tại sự kiện
+  Kérastase."* The strip is the largest block in the work section and it claimed only authorship;
+  a reader with no other signal would assume she worked behind the camera. Being the talent on six
+  of seven brand clips is the stronger claim, and it was the one going unsaid. The exception is
+  named rather than glossed, because a blanket "on camera in all seven" would be untrue and a
+  vaguer phrasing would invite the reader to assume it.
+
+  It renders as `p.body.vidnote` at 14.5px under the 20px `h3`, one line at 1440px and two at
+  390px in both languages, with `.vidnote` taking over the 10px/24px spacing that used to sit
+  between heading and grid — so nothing below it moves.
+
+### Not changed
+
+The **folder stack on the first screen was examined and deliberately left alone.** The research is
+recorded in the session, not here: physical filing systems stagger tabs by *cycling* cut positions
+(1/3-cut, 1/5-cut) rather than marching monotonically right, and three faithful reconstructions of
+that convention were built and measured. Every one of them truncates labels at 901–1024px, because
+the convention assumes short labels on a fixed-width 8.5" folder while this stack has phrase-length
+labels in two languages inside a fluid body. The monotonic stagger survives precisely because it
+lets each tab size to its own content. No change shipped.
+
+### Verified
+
+Both documents, English and Vietnamese: `smoke-v3` (zero horizontal overflow at 320/375/390/768/900,
+zero console errors, zero failed requests), `a11y-v3` (zero contrast failures on page and sheets, 49
+keyboard-reachable controls, zero clickable-but-unfocusable), `videos-v3`, `check-font-coverage`
+(157 distinct characters, the two new strings add none), `make-video-posters --check` (7 clips, 21
+files, all tracked), `release.mjs --check`. `T` holds 55 keys in each language and the key sets are
+identical; both new strings are NFC.
+
+---
+
 ## [1.0.0] — 2026-10-13
 
 The video strip grows from one clip to seven, the contact block gains two more social profiles,

@@ -617,6 +617,11 @@
     // inside the work section, whose h2 is already its title. `.vidlabel` is matched by class
     // only (index.css), so nothing moves by a pixel.
     w.appendChild(ti(h('h3', { class: 'disp vidlabel' }), 'T.videosLabel'));
+    // She is the talent on six of the seven clips — her own YouTube titles say so — and the strip
+    // never said it. It is the strongest thing the section claims, and without it a reader can
+    // only assume she produced them from behind the camera. The one exception is named rather
+    // than glossed, because the alternative is a caption that implies something untrue.
+    if (get(L, 'T.videosNote')) w.appendChild(ti(h('p', { class: 'body vidnote' }), 'T.videosNote'));
     var grid = h('div', { class: 'vidgrid' });
     L.VIDEOS.forEach(function (v, i) {
       if (!v.src) return;

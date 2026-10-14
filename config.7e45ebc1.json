@@ -1,0 +1,1359 @@
+{
+  "meta": {
+    "schema": 3,
+    "source": "Claude Design project b8e2e5a4-1ed4-444a-81a6-089830b12b02 — Portfolio v3.html",
+    "folders": [
+      {
+        "id": "about",
+        "c": "#AE5E6C",
+        "t": "#fff",
+        "off": 0,
+        "tc": "#9E4F5E"
+      },
+      {
+        "id": "education",
+        "c": "#D4D994",
+        "t": "#3A3F16",
+        "off": 28,
+        "tc": "#6F7230"
+      },
+      {
+        "id": "cv",
+        "c": "#893941",
+        "t": "#fff",
+        "off": 56,
+        "tc": "#893941"
+      },
+      {
+        "id": "work",
+        "c": "#5E6623",
+        "t": "#fff",
+        "off": 84,
+        "tc": "#5E6623"
+      },
+      {
+        "id": "extra",
+        "c": "#D0A583",
+        "t": "#40301F",
+        "off": 112,
+        "noteFirst": true,
+        "tc": "#8D6646"
+      },
+      {
+        "id": "awards",
+        "c": "#E7A6B0",
+        "t": "#5A2530",
+        "off": 140,
+        "tc": "#995E69"
+      },
+      {
+        "id": "xfile",
+        "c": "#C6C3B8",
+        "t": "#43423B",
+        "off": 168,
+        "tc": "#6F6D63"
+      }
+    ],
+    "cv": "downloads/Tran-Ton-Nu-Thuc-Anh-CV.pdf",
+    "brandLogos": {
+      "L'Oréal Professionnel": [
+        "brands/loreal-professionnel.webp",
+        52
+      ],
+      "Kérastase": [
+        "brands/kerastase.webp",
+        30
+      ],
+      "Matrix": [
+        "brands/matrix.webp",
+        44
+      ],
+      "Estée Lauder": [
+        "brands/estee-lauder.webp",
+        46
+      ],
+      "Baresoul Cosme": [
+        "brands/baresoul.webp",
+        52
+      ],
+      "Clinique": [
+        "brands/clinique.webp",
+        24
+      ]
+    },
+    "campaignLogos": {
+      "ppd": [
+        "brands/loreal-vietnam.webp",
+        29
+      ],
+      "newsletter": [
+        "brands/loreal-vietnam.webp",
+        29
+      ],
+      "matrix": [
+        "brands/matrix.webp",
+        30
+      ],
+      "serioxyl": [
+        "brands/loreal-professionnel.webp",
+        26
+      ],
+      "gloss": [
+        "brands/kerastase.webp",
+        17
+      ],
+      "pickleball": [
+        "brands/kerastase.webp",
+        17
+      ]
+    },
+    "portrait": "images/portrait.webp",
+    "sectionOrder": [
+      "about",
+      "education",
+      "cv",
+      "work",
+      "extra",
+      "awards",
+      "xfile"
+    ],
+    "portraitSet": {
+      "srcset": "images/portrait-600.webp 600w, images/portrait.webp 900w, images/portrait-1200.webp 1200w",
+      "sizes": "(max-width:760px) calc(100vw - 44px), (max-width:1100px) 40vw, 450px"
+    },
+    "showPlaceholders": false,
+    "videoPosters": {
+      "dir": "images/video-posters/",
+      "skip": [
+        "xv5W7UcBLl8",
+        "3JWJoCS2yFs"
+      ],
+      "widths": {
+        "9/16": [
+          360,
+          576,
+          864
+        ],
+        "16/9": [
+          600,
+          1200
+        ]
+      },
+      "sizes": {
+        "9/16": "(max-width:400px) calc((100vw - 58px)/2), (max-width:620px) calc((100vw - 66px)/2), (max-width:900px) calc((100vw - 88px)/3), (max-width:1280px) calc((100vw - 158px)/4), 280px",
+        "16/9": "(max-width:667px) calc(100vw - 44px), (max-width:900px) calc((100vw - 68px)/2), (max-width:1280px) calc((100vw - 116px)/2), 582px"
+      },
+      "dur": {
+        "2Zp3mIdFY-A": 41,
+        "3JWJoCS2yFs": 146,
+        "J5Dm--5n2VE": 12,
+        "Ur9IqW5OQgM": 15,
+        "W1Nh9tGX5Dc": 49,
+        "fRzedKXy36w": 17,
+        "qINvSJZ-ueQ": 26,
+        "xQlXPngldt0": 51,
+        "xv5W7UcBLl8": 369
+      }
+    }
+  },
+  "vi": {
+    "P": {
+      "name": "Trần Tôn Nữ",
+      "name2": "Thục Anh",
+      "role": "Project Marketing Executive",
+      "niche": "Online Marketing · E-commerce · Beauty",
+      "city": "Quận 2, TP. Hồ Chí Minh",
+      "email": "thucanh.ttn@gmail.com",
+      "phone": "(+84) 797 038 080",
+      "intro": "Hơn 3 năm làm marketing online và thương mại điện tử trong ngành beauty. Tôi lên kế hoạch ra mắt sản phẩm, vận hành gian hàng và dẫn dắt các đội đa chức năng — từ ý tưởng đến con số cuối tháng.",
+      "bio": [
+        "Tôi bắt đầu công việc như một livestreamer - nơi tôi được thấy phản ứng của khách hàng từng phút. Làm việc trong ngành làm đẹp ở mảng marketing và thương mại điện tử, tại cả tập đoàn lớn và local brand, tôi tin mình có đầy đủ các kĩ năng và kinh nghiệm để thực hiện những thử thách sắp tới.",
+        "Châm ngôn của tôi là \"Go with the flow\". Tuy làm việc trong môi trường luôn thay đổi cực kỳ nhanh chóng, điều tôi rèn luyện hằng ngày không chỉ là kiến thức, kĩ năng, mà còn là cách để cân bằng giữa công việc và con người tôi, làm việc bằng cả khối óc và con tim,... Vì tôi luôn hướng tới một sự phát triển bền vững cho cả công việc và chính bản thân mình.",
+        "Những gì tôi đã làm nằm ở phía dưới. Mời bạn kéo xuống xem."
+      ],
+      "stats": [
+        {
+          "v": "3+",
+          "k": "năm kinh nghiệm"
+        },
+        {
+          "v": "150%",
+          "k": "tăng lượng video Shopee"
+        },
+        {
+          "v": "125%",
+          "k": "KPI doanh số cao nhất"
+        },
+        {
+          "v": "9K+",
+          "k": "follower TikTok đã xây"
+        }
+      ],
+      "brands": [
+        "L'Oréal Professionnel",
+        "Kérastase",
+        "Matrix",
+        "Estée Lauder",
+        "Clinique",
+        "Baresoul Cosme"
+      ],
+      "skills": [
+        {
+          "h": "Chuyên môn",
+          "i": [
+            "Kế hoạch chiến dịch online",
+            "Vận hành sàn TMĐT",
+            "Ra mắt sản phẩm & sự kiện",
+            "Quản lý KOL / KOC & affiliate",
+            "Livestream bán hàng",
+            "Điều phối sản xuất nội dung"
+          ]
+        },
+        {
+          "h": "Kỹ năng",
+          "i": [
+            "Quản lý dự án",
+            "Làm việc đa chức năng",
+            "Giải quyết vấn đề",
+            "Tư duy sáng tạo",
+            "Thích ứng nhanh"
+          ]
+        },
+        {
+          "h": "Công cụ",
+          "i": [
+            "Microsoft Excel",
+            "Google Sheets",
+            "Canva",
+            "Nền tảng CEM / CRM",
+            "Shopee & TikTok Seller Center"
+          ]
+        }
+      ],
+      "edu": {
+        "school": "Đại học Kinh tế – Tài chính TP.HCM (UEF)",
+        "deg": "Cử nhân Quản trị Kinh doanh · GPA 3.7/4.0",
+        "years": "2021 — 2025",
+        "notes": [
+          "Á khoa ngành Quản trị Kinh doanh 2021–2025",
+          "Học bổng 50% liên tục 4 năm",
+          "Top 1 Học bổng Tài năng 2023–2024 · GPA 4.0/4.0"
+        ]
+      },
+      "awards": [
+        "Á khoa ngành QTKD — UEF",
+        "Top 1 Học bổng Tài năng 2023–2024",
+        "Sinh viên 5 tốt cấp Trường 2022–2023 & 2023–2024",
+        "Giấy khen đóng góp hoạt động ngoại khoá UEF 2021–2025",
+        "Top 20 Hackathon 48H 2021 — RE-Organization",
+        "Top 20 Z-Marketer 2023",
+        "Dự án Đổi mới Xuất sắc — Project Design UEF 2023"
+      ],
+      "cv": [
+        {
+          "y": "06/2025 — 07/2026",
+          "r": "Project Marketing Executive — Online MKT",
+          "c": "L'Oréal Việt Nam (Kérastase & L'Oréal Professionnel)",
+          "d": [
+            "Quản lý toàn bộ quy trình sản xuất quà tặng với nhà cung cấp và listing trên sàn, giữ 100% tính toàn vẹn danh mục.",
+            "Điều phối ~40 tài sản hình ảnh mỗi tháng (SIS, PDP, CPAS, banner) với đội thiết kế, tuân thủ 100% brand guideline.",
+            "Lên kế hoạch và tối ưu 100% CEM/CRM, kế hoạch video Shopee, hiển thị trên sàn — đóng góp 3–5% GMV mỗi tháng."
+          ],
+          "link": ""
+        },
+        {
+          "y": "11/2024 — 04/2025",
+          "r": "Hospitality Intern",
+          "c": "Joetsu Skiing Resort, Nhật Bản",
+          "d": [
+            "Tối ưu quy trình nhà hàng và phối hợp liên bộ phận trong cao điểm để đảm bảo trải nghiệm khách hàng."
+          ],
+          "link": ""
+        },
+        {
+          "y": "05/2024 — 11/2024",
+          "r": "Cloud (Ecom) Beauty Advisor — Freelance BA",
+          "c": "Estée Lauder Companies",
+          "d": [
+            "Dẫn livestream hằng ngày cho các thương hiệu thuộc Estée Lauder Companies — Estée Lauder và Clinique — đạt 100–130% KPI tháng.",
+            "Phối hợp đội Ecommerce & Marketing để đồng bộ nội dung livestream với chiến dịch theo mùa và ra mắt sản phẩm mới."
+          ],
+          "link": "https://drive.google.com/drive/folders/1xRFDR-yjMHYfx4TmJT3YZ-onXHxNxU2z"
+        },
+        {
+          "y": "11/2023 — 02/2024",
+          "r": "Brand Ambassador Livestreamer — TikTok",
+          "c": "L'Oréal Việt Nam",
+          "d": [
+            "Đồng sản xuất video khuyến mãi và dẫn livestream TikTok, đạt KPI doanh số nhóm đầu (125% tháng 11, 120% tháng 12)."
+          ],
+          "link": ""
+        },
+        {
+          "y": "11/2022 — 10/2023",
+          "r": "Online Marketing & Key Account Staff",
+          "c": "Baresoul Cosme",
+          "d": [
+            "Xây kênh TikTok lên 9K+ follower; quản lý hợp tác KOL/KOC và chiến dịch affiliate, đạt 120% KPI.",
+            "Phát triển pipeline 80–100 khách B2B; đàm phán hợp đồng và quản lý phân phối cho Hasaki, Watsons, Guardian.",
+            "Dẫn livestream hằng tháng trên TikTok và Shopee, luôn đạt trên 100% chỉ tiêu."
+          ],
+          "link": ""
+        }
+      ],
+      "linkedin": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222",
+      "linkedinLabel": "thuc-anh-tran-ton-nu",
+      "facebook": "https://www.facebook.com/thucanhtrantonnu/",
+      "facebookLabel": "thucanhtrantonnu",
+      "instagram": "https://www.instagram.com/thucanhtrantonnu/",
+      "instagramLabel": "thucanhtrantonnu"
+    },
+    "CAMPAIGNS": [
+      {
+        "id": "ppd",
+        "n": "01",
+        "title": "Quảng bá hình ảnh team PPD",
+        "brand": "L'Oréal Việt Nam — Professional Products Division",
+        "year": "2026",
+        "tag": "Employer branding · Video",
+        "kpi": "People Prize · Clip 100% AI",
+        "summary": "Hai clip dài kể câu chuyện con người và cách làm việc của team PPD — một clip dựng hoàn toàn bằng AI, và dự án được ghi nhận bằng giải People Prize.",
+        "goal": "Team PPD cần một hình ảnh gần gũi và rõ nét trong nội bộ L'Oréal Việt Nam, thay cho những bản tin thông báo quen thuộc.",
+        "did": [
+          "Lên ý tưởng và kịch bản cho hai clip dài về con người, nhịp làm việc và tinh thần của team.",
+          "Tự học và ứng dụng công cụ AI để dựng trọn một clip 100% bằng AI — từ hình ảnh, giọng đọc đến hậu kỳ, không cần ekip quay.",
+          "Tổ chức quay, phỏng vấn và điều phối nhân sự tham gia trong lịch làm việc thực tế.",
+          "Phối hợp cùng team GenZ để hoàn thành dự án trong thời gian ngắn."
+        ],
+        "res": [
+          {
+            "v": "People Prize",
+            "k": "giải thưởng nhận được"
+          },
+          {
+            "v": "100% AI",
+            "k": "một clip dựng hoàn toàn bằng AI"
+          },
+          {
+            "v": "02",
+            "k": "clip dài đã sản xuất"
+          }
+        ],
+        "vids": [
+          {
+            "id": "a",
+            "l": "Clip 1 — bản tin thời sự nội bộ",
+            "src": "https://youtu.be/xv5W7UcBLl8"
+          },
+          {
+            "id": "b",
+            "l": "Clip 2 — dựng 100% bằng AI",
+            "src": "https://youtu.be/3JWJoCS2yFs"
+          }
+        ],
+        "shots": [
+          "Khoảnh khắc nhận giải"
+        ],
+        "outcomes": true
+      },
+      {
+        "id": "newsletter",
+        "n": "02",
+        "title": "Newsletter — bức tranh đối thủ ngành haircare",
+        "brand": "L'Oréal Việt Nam — Professional Products Division",
+        "year": "2026",
+        "tag": "Market intelligence · Nội bộ",
+        "kpi": "Bản tin hàng tháng",
+        "summary": "Bản tin hàng tháng theo dõi động thái của các thương hiệu haircare trên thị trường, gói lại thành thứ đội ngũ đọc hết trong vài phút.",
+        "goal": "Thông tin về đối thủ nằm rải rác khắp mạng xã hội và sàn thương mại điện tử; team cần một bản tổng hợp gọn, đều đặn để ra quyết định nhanh hơn.",
+        "did": [
+          "Theo dõi hoạt động của các thương hiệu haircare: ra mắt sản phẩm, giá, khuyến mãi, chiến dịch và nội dung nổi bật.",
+          "Chọn lọc và diễn giải dữ liệu thành các ghi nhận có thể hành động, thay vì liệt kê thông tin.",
+          "Thiết kế và phát hành bản tin theo một format thống nhất, đúng hạn mỗi tháng."
+        ],
+        "res": [
+          {
+            "v": "Hàng tháng",
+            "k": "tần suất phát hành"
+          },
+          {
+            "v": "Multi-brand",
+            "k": "phạm vi theo dõi"
+          },
+          {
+            "v": "Vài phút",
+            "k": "thời gian đọc"
+          }
+        ],
+        "shots": [],
+        "archive": [
+          {
+            "m": "05/2026",
+            "src": "images/nl-may.webp"
+          },
+          {
+            "m": "03/2026",
+            "src": "images/nl-mar.webp"
+          },
+          {
+            "m": "02/2026",
+            "src": "images/nl-feb.webp"
+          },
+          {
+            "m": "01/2026",
+            "src": "images/nl-jan.webp"
+          }
+        ],
+        "outcomes": false
+      },
+      {
+        "id": "matrix",
+        "n": "03",
+        "title": "Ra mắt gian hàng Matrix trên Shopee",
+        "brand": "Matrix (L'Oréal Việt Nam)",
+        "year": "07/2026",
+        "tag": "Ra mắt · E-commerce",
+        "kpi": "Dự án chủ trì",
+        "summary": "Đưa Matrix lên Shopee từ con số 0: gian hàng, thông tin sản phẩm và toàn bộ bộ hình cho ngày mở bán.",
+        "goal": "Một thương hiệu chưa có dấu chân số tại Việt Nam cần xuất hiện đầy đủ và đồng nhất ngay từ ngày đầu lên sàn.",
+        "did": [
+          "Thiết lập gian hàng và chuẩn hoá thông tin cho toàn bộ danh mục sản phẩm.",
+          "Chuẩn bị bộ hình ảnh, video và chương trình khuyến mãi cho ngày mở bán.",
+          "Phối hợp đội nội dung, thiết kế và vận hành sàn theo một mốc thời gian chung."
+        ],
+        "res": [
+          {
+            "v": "07/2026",
+            "k": "thời điểm mở bán"
+          },
+          {
+            "v": "100%",
+            "k": "đồng nhất brand guideline"
+          },
+          {
+            "v": "Full",
+            "k": "danh mục lên sàn"
+          }
+        ],
+        "shots": [
+          "Gian hàng Shopee",
+          "Bộ hình ra mắt",
+          "Video giới thiệu sản phẩm"
+        ],
+        "shotSrc": [
+          "images/matrix-shopee-store.webp"
+        ],
+        "shotFit": "contain",
+        "shotRatio": "624/1006",
+        "outcomes": false
+      },
+      {
+        "id": "serioxyl",
+        "n": "04",
+        "title": "Serioxyl — Độ tóc tốc độ",
+        "brand": "L'Oréal Professionnel — Serioxyl",
+        "year": "04/2026",
+        "tag": "Sự kiện ra mắt",
+        "kpi": "Ý tưởng & video",
+        "summary": "Concept sáng tạo và video cho sự kiện ra mắt Serioxyl — một buổi giới thiệu có ngôn ngữ riêng thay vì format quen thuộc.",
+        "goal": "Đưa một dòng chăm sóc tóc chuyên sâu đến gần nhóm khách trẻ bằng cách kể chuyện khác đi ngay từ tên gọi của sự kiện.",
+        "did": [
+          "Phát triển concept và đặt tên cho sự kiện ra mắt.",
+          "Viết kịch bản và sản xuất video trình chiếu trong sự kiện.",
+          "Bàn giao tuyến nội dung và tài sản hình ảnh cho đội vận hành."
+        ],
+        "res": [
+          {
+            "v": "04/2026",
+            "k": "thời điểm tổ chức"
+          },
+          {
+            "v": "Concept",
+            "k": "vai trò ý tưởng"
+          },
+          {
+            "v": "Video",
+            "k": "hạng mục sản xuất"
+          }
+        ],
+        "shots": [
+          "Không gian sự kiện",
+          "Bản brief ý tưởng sự kiện — Big idea của tôi: “Độ tóc tốc độ”",
+          "Background livestream"
+        ],
+        "shotSrc": [
+          "images/serioxyl-event-kv.webp",
+          "images/serioxyl-brief.webp",
+          "images/serioxyl-livestream.webp"
+        ],
+        "shotFit": "contain",
+        "shotRatio": "2/1",
+        "shotRatio2": "1179/1964",
+        "shotSpan": true,
+        "outcomes": false
+      },
+      {
+        "id": "gloss",
+        "n": "05",
+        "title": "Gloss Absolu — Kérastase",
+        "brand": "Kérastase",
+        "year": "02/2026",
+        "tag": "Sự kiện · Livestream",
+        "kpi": "Content & visual",
+        "summary": "Tuyến nội dung và toàn bộ vật liệu hình ảnh cho sự kiện Gloss Absolu, gồm cả background phiên livestream.",
+        "goal": "Sự kiện cần một mạch nội dung thống nhất giữa sân khấu offline và phiên livestream chạy song song.",
+        "did": [
+          "Viết tuyến nội dung cho sự kiện và kịch bản phiên livestream.",
+          "Thiết kế và điều phối background cùng bộ vật liệu hình ảnh cho livestream.",
+          "Giữ hình ảnh nhất quán giữa điểm chạm offline và online."
+        ],
+        "res": [
+          {
+            "v": "02/2026",
+            "k": "thời điểm tổ chức"
+          },
+          {
+            "v": "1",
+            "k": "phiên livestream đồng hành"
+          },
+          {
+            "v": "100%",
+            "k": "nhất quán hình ảnh"
+          }
+        ],
+        "shots": [
+          "Sân khấu sự kiện",
+          "Background livestream",
+          "Bộ vật liệu hình ảnh"
+        ],
+        "outcomes": false,
+        "shotSrc": [
+          "images/gloss-event-stage.webp",
+          "",
+          ""
+        ],
+        "shotRatio": "2376/1783",
+        "shotSet": {
+          "0": {
+            "srcset": "images/gloss-event-stage-1188.webp 1188w, images/gloss-event-stage-2376.webp 2376w",
+            "sizes": "(max-width:900px) calc(100vw - 44px), (max-width:1280px) calc(100vw - 92px), 1188px"
+          }
+        }
+      },
+      {
+        "id": "pickleball",
+        "n": "06",
+        "title": "The Pickleball Tournament 2025 — Kérastase",
+        "brand": "Kérastase",
+        "year": "11/2025",
+        "tag": "Kích hoạt thương hiệu",
+        "kpi": "Sự kiện thể thao",
+        "summary": "Giải pickleball quy tụ hàng chục KOLs với thông điệp \"Tóc mượt mà, kháng nhiệt tối đa\" từ Kérastase cùng dòng sản phẩm Elixir Ultime, làm nổi bật khả năng chống nhiệt của sản phẩm.",
+        "goal": "Tìm một bối cảnh đời thường để nói về khả năng kháng nhiệt và độ mượt của tóc, thay vì chỉ nói trong không gian salon.",
+        "did": [
+          "Gắn thông điệp sản phẩm vào ngôn ngữ của môn thể thao đang được cộng đồng theo đuổi.",
+          "Chuẩn bị nội dung, vật liệu hình ảnh và hạng mục trải nghiệm tại sân.",
+          "Ghi hình và biên tập nội dung hậu sự kiện cho các kênh online."
+        ],
+        "res": [
+          {
+            "v": "11/2025",
+            "k": "thời điểm tổ chức"
+          },
+          {
+            "v": "Offline",
+            "k": "trải nghiệm tại sân"
+          },
+          {
+            "v": "Đa kênh",
+            "k": "nội dung hậu sự kiện"
+          }
+        ],
+        "shots": [
+          "Toàn cảnh giải đấu",
+          "Khu trải nghiệm thương hiệu",
+          "Khoảnh khắc người chơi"
+        ],
+        "outcomes": false
+      }
+    ],
+    "EXTRA": [
+      {
+        "y": "2022",
+        "r": "Student Brand Ambassador",
+        "o": "AIESEC — Southern YouthSpeak",
+        "d": "Hỗ trợ ban tổ chức kết nối sinh viên TP.HCM đến hội nghị; góp phần thu hút hơn 1000 người tham dự."
+      },
+      {
+        "y": "2021",
+        "r": "Top 20 — Hackathon 48H",
+        "o": "RE-Organization",
+        "d": "Đội vào top 20 vòng chung kết sau 48 giờ xây dựng và bảo vệ giải pháp."
+      },
+      {
+        "y": "2023",
+        "r": "Top 20 — Z-Marketer",
+        "o": "Cuộc thi marketing sinh viên",
+        "d": "Xây dựng kế hoạch marketing hoàn chỉnh và trình bày trước hội đồng chuyên môn."
+      },
+      {
+        "y": "2023",
+        "r": "Dự án Đổi mới Xuất sắc",
+        "o": "Project Design — UEF",
+        "d": "Dự án được hội đồng đánh giá xuất sắc về tính đổi mới."
+      }
+    ],
+    "VIDEOS": [
+      {
+        "id": "v1",
+        "l": "Kérastase — 11.11 trên TikTok Shop",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/W1Nh9tGX5Dc"
+      },
+      {
+        "id": "v2",
+        "l": "Kérastase — sản phẩm tại salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/Ur9IqW5OQgM"
+      },
+      {
+        "id": "v3",
+        "l": "Kérastase — KOL tại sự kiện",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/J5Dm--5n2VE"
+      },
+      {
+        "id": "v4",
+        "l": "L'Oréal Pro — Serioxyl tại salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/fRzedKXy36w"
+      },
+      {
+        "id": "v5",
+        "l": "L'Oréal Pro — serum Serioxyl",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/xQlXPngldt0"
+      },
+      {
+        "id": "v6",
+        "l": "L'Oréal Pro — ưu đãi Serioxyl",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/qINvSJZ-ueQ"
+      },
+      {
+        "id": "v7",
+        "l": "L'Oréal Pro — thể lệ minigame",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/2Zp3mIdFY-A"
+      }
+    ],
+    "XFILE": [
+      {
+        "k": "Đàn tranh",
+        "d": "Theo học nhạc cụ truyền thống nhiều năm — thứ dạy tôi sự kiên nhẫn và cảm giác về nhịp."
+      },
+      {
+        "k": "MC / dẫn chương trình",
+        "d": "Dẫn các sự kiện của trường và của thương hiệu; thoải mái với micro và khán giả trước mặt."
+      },
+      {
+        "k": "Livestreamer",
+        "d": "Hàng trăm giờ lên sóng bán hàng — đọc phản ứng người xem theo từng phút."
+      },
+      {
+        "k": "Sản xuất nội dung",
+        "d": "Tự lên ý tưởng, quay, dựng và viết caption cho một video hoàn chỉnh."
+      }
+    ],
+    "F": {
+      "about": {
+        "t": "Giới thiệu",
+        "n": "Liên hệ · Kỹ năng · CV"
+      },
+      "cv": {
+        "t": "Kinh nghiệm làm việc",
+        "n": "L'Oréal · Estée Lauder · Baresoul"
+      },
+      "education": {
+        "t": "Học vấn",
+        "n": "UEF · GPA 3.7"
+      },
+      "work": {
+        "t": "Chiến dịch & dự án",
+        "n": "6 chiến dịch chọn lọc"
+      },
+      "extra": {
+        "t": "Hoạt động ngoại khoá",
+        "n": "AIESEC · Hackathon · Z-Marketer"
+      },
+      "awards": {
+        "t": "Thành tích",
+        "n": "7 giải thưởng & học bổng"
+      },
+      "xfile": {
+        "t": "Tài lẻ",
+        "n": "Những thứ không nằm trong CV"
+      }
+    },
+    "T": {
+      "arcTitle": "Các số khác",
+      "arcNote": "Bản tin ra hàng tháng — dưới đây là các số gần nhất, để ở dạng xem tổng thể vì nội dung là tài liệu nội bộ.",
+      "xfileDriveKicker": "Bộ sưu tập ngoài giờ",
+      "xfileDriveTitle": "Album ảnh & video tài lẻ",
+      "xfileDriveBtn": "Mở Google Drive →",
+      "xfileDriveUrl": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY",
+      "pick": "Chọn một thư mục để mở →",
+      "open": "Mở →",
+      "back": "↑ Về mục lục",
+      "cvBtn": "Tải CV (PDF)",
+      "copy": "Sao chép email",
+      "copied": "Đã sao chép email",
+      "contact": "Liên hệ",
+      "brandsLabel": "Thương hiệu đã làm việc cùng",
+      "aboutKicker": "About me",
+      "aboutTitle": "Giới thiệu",
+      "aboutEm": "& liên hệ",
+      "aboutQuote": [
+        "Con số là điều mọi doanh nghiệp cần. Điều tôi luôn quan tâm là ",
+        "“làm thế nào để đạt được con số đó?”"
+      ],
+      "eduTitle": "Học vấn",
+      "cvTitle": "Kinh nghiệm",
+      "cvEm": "làm việc",
+      "workTitle": "Chiến dịch",
+      "workEm": "& dự án",
+      "videosLabel": "Video tôi đã thực hiện",
+      "videosNote": "Tôi lên hình trong sáu trên bảy — clip thứ ba là KOL tại sự kiện Kérastase.",
+      "playVideo": "Phát video",
+      "extraTitle": "Hoạt động",
+      "extraEm": "ngoại khoá",
+      "awardsTitle": "Thành tích",
+      "awardsEm": "& giải thưởng",
+      "portraitLabel": "Chân dung (tách nền)",
+      "xfileTitle": "Tài lẻ",
+      "xfileEm": "ngoài CV",
+      "xfileIntro": "",
+      "thanks": "Cảm ơn bạn đã ghé",
+      "openTo": "Tôi đang mở cho các vị trí marketing online, e-commerce và dự án ra mắt sản phẩm ngành beauty.",
+      "cEmail": "Email",
+      "cPhone": "Điện thoại / Zalo",
+      "cAddr": "Địa chỉ",
+      "cCv": "CV",
+      "cCvVal": "Tải bản PDF",
+      "vid": "Video",
+      "ctx": "Bối cảnh & mục tiêu",
+      "did": "Tôi đã làm",
+      "res": "Kết quả",
+      "allWork": "← Tất cả chiến dịch",
+      "nextWork": "Chiến dịch tiếp theo →",
+      "close": "Đóng ✕",
+      "scope": "Phạm vi & vai trò",
+      "cvNav": "Tải CV",
+      "samples": "Xem sản phẩm đã làm →",
+      "cLinkedin": "LinkedIn",
+      "cSocial": "Mạng xã hội",
+      "cFacebook": "Facebook",
+      "cInstagram": "Instagram"
+    }
+  },
+  "en": {
+    "P": {
+      "name": "Trần Tôn Nữ",
+      "name2": "Thục Anh",
+      "role": "Project Marketing Executive",
+      "niche": "Online Marketing · E-commerce · Beauty",
+      "city": "District 2, Ho Chi Minh City",
+      "email": "thucanh.ttn@gmail.com",
+      "phone": "(+84) 797 038 080",
+      "intro": "3+ years in online marketing and e-commerce across the beauty industry. I plan product launches, run marketplace storefronts and lead cross-functional teams — from first concept to the numbers at month end.",
+      "bio": [
+        "I started out as a livestreamer — where I could see customer reaction minute by minute. Working in beauty across marketing and e-commerce, at both large corporations and local brands, I believe I have the skills and experience for the challenges ahead.",
+        "My motto is \"Go with the flow\". Working in an environment that changes at speed, what I practise daily is not only knowledge and skill, but how to keep a balance between the work and the person doing it — working with both head and heart. Because what I am after is sustainable growth, for the work and for myself.",
+        "What I have made is below. Please scroll on."
+      ],
+      "stats": [
+        {
+          "v": "3+",
+          "k": "years of experience"
+        },
+        {
+          "v": "150%",
+          "k": "growth in Shopee videos"
+        },
+        {
+          "v": "125%",
+          "k": "peak monthly sales KPI"
+        },
+        {
+          "v": "9K+",
+          "k": "TikTok followers built"
+        }
+      ],
+      "brands": [
+        "L'Oréal Professionnel",
+        "Kérastase",
+        "Matrix",
+        "Estée Lauder",
+        "Clinique",
+        "Baresoul Cosme"
+      ],
+      "skills": [
+        {
+          "h": "Expertise",
+          "i": [
+            "Online campaign planning",
+            "E-commerce operations",
+            "Product launches & events",
+            "KOL / KOC & affiliate management",
+            "Livestream selling",
+            "Content production coordination"
+          ]
+        },
+        {
+          "h": "Skills",
+          "i": [
+            "Project management",
+            "Cross-functional collaboration",
+            "Problem solving",
+            "Creative thinking",
+            "Adaptability"
+          ]
+        },
+        {
+          "h": "Tools",
+          "i": [
+            "Microsoft Excel",
+            "Google Sheets",
+            "Canva",
+            "CEM / CRM platforms",
+            "Shopee & TikTok Seller Center"
+          ]
+        }
+      ],
+      "edu": {
+        "school": "University of Economics and Finance, Ho Chi Minh City (UEF)",
+        "deg": "Bachelor of Business Administration · GPA 3.7/4.0",
+        "years": "2021 — 2025",
+        "notes": [
+          "Second-ranked graduate, Business Administration",
+          "50% scholarship for 4 consecutive years",
+          "Top 1 Merit Scholarship 2023–2024 · GPA 4.0/4.0"
+        ]
+      },
+      "awards": [
+        "Second-ranked graduate in Business Administration — UEF",
+        "Top 1 Merit Scholarship 2023–2024",
+        "Student of 5 Merits, University level 2022–2023 & 2023–2024",
+        "Certificate of outstanding contribution to UEF extracurricular activities 2021–2025",
+        "Top 20 — 48H Hackathon 2021, RE-Organization",
+        "Top 20 — Z-Marketer 2023",
+        "Excellent Innovation Project — Project Design UEF 2023"
+      ],
+      "cv": [
+        {
+          "y": "Jun 2025 — Jul 2026",
+          "r": "Project Marketing Executive — Online MKT",
+          "c": "L'Oréal Vietnam (Kérastase & L'Oréal Professionnel)",
+          "d": [
+            "Managed end-to-end merchandise production with vendors and marketplace listings, maintaining 100% catalog integrity.",
+            "Coordinated ~40 monthly visual assets (SIS, PDP, CPAS, banners) with design teams, ensuring 100% brand guideline compliance.",
+            "Planned and optimized 100% of CEM/CRM, Shopee video plans and marketplace visibility, driving 3–5% GMV per month."
+          ],
+          "link": ""
+        },
+        {
+          "y": "Nov 2024 — Apr 2025",
+          "r": "Hospitality Intern",
+          "c": "Joetsu Skiing Resort, Japan",
+          "d": [
+            "Optimized restaurant workflows and collaborated cross-functionally during peak seasons to ensure seamless guest experiences."
+          ],
+          "link": ""
+        },
+        {
+          "y": "May 2024 — Nov 2024",
+          "r": "Cloud (Ecom) Beauty Advisor — Freelance BA",
+          "c": "Estée Lauder Companies",
+          "d": [
+            "Hosted daily livestream sessions for Estée Lauder Companies brands — Estée Lauder and Clinique — consistently achieving 100–130% of monthly KPIs.",
+            "Partnered with the E-commerce and Marketing teams to align livestream content with seasonal campaigns and new launches."
+          ],
+          "link": "https://drive.google.com/drive/folders/1xRFDR-yjMHYfx4TmJT3YZ-onXHxNxU2z"
+        },
+        {
+          "y": "Nov 2023 — Feb 2024",
+          "r": "Brand Ambassador Livestreamer — TikTok",
+          "c": "L'Oréal Vietnam",
+          "d": [
+            "Co-created promotional videos and hosted TikTok livestreams, achieving top-tier sales KPIs (125% in Nov, 120% in Dec)."
+          ],
+          "link": ""
+        },
+        {
+          "y": "Nov 2022 — Oct 2023",
+          "r": "Online Marketing & Key Account Staff",
+          "c": "Baresoul Cosme",
+          "d": [
+            "Grew TikTok to 9K+ followers; managed KOL/KOC partnerships and affiliate campaigns, achieving 120% KPI.",
+            "Developed an 80–100 client B2B pipeline; negotiated contracts and managed distribution for Hasaki, Watsons, Guardian.",
+            "Hosted monthly livestreams on TikTok and Shopee, consistently delivering 100%+ of sales targets."
+          ],
+          "link": ""
+        }
+      ],
+      "linkedin": "https://www.linkedin.com/in/thuc-anh-tran-ton-nu-8b0419222",
+      "linkedinLabel": "thuc-anh-tran-ton-nu",
+      "facebook": "https://www.facebook.com/thucanhtrantonnu/",
+      "facebookLabel": "thucanhtrantonnu",
+      "instagram": "https://www.instagram.com/thucanhtrantonnu/",
+      "instagramLabel": "thucanhtrantonnu"
+    },
+    "CAMPAIGNS": [
+      {
+        "id": "ppd",
+        "n": "01",
+        "title": "Branding for the PPD team",
+        "brand": "L'Oréal Vietnam — Professional Products Division",
+        "year": "2026",
+        "tag": "Employer branding · Video",
+        "kpi": "People Prize · 100% AI film",
+        "summary": "Two long-form films about the people and working rhythm of the PPD team — one built entirely with AI, and the project was recognised with the People Prize.",
+        "goal": "The PPD team needed a warmer, sharper internal image than the usual announcement posts could give it.",
+        "did": [
+          "Developed the idea and script for two long-form films about the team's people and way of working.",
+          "Taught myself AI production tools and built one film 100% with AI — visuals, voice and post, with no shooting crew.",
+          "Ran the shoot and interviews, coordinating colleagues around live working schedules.",
+          "Worked closely with a GenZ team to deliver the whole project on a tight timeline."
+        ],
+        "res": [
+          {
+            "v": "People Prize",
+            "k": "award received"
+          },
+          {
+            "v": "100% AI",
+            "k": "one film built entirely with AI"
+          },
+          {
+            "v": "02",
+            "k": "long-form films produced"
+          }
+        ],
+        "vids": [
+          {
+            "id": "a",
+            "l": "Film 1 — internal news-style report",
+            "src": "https://youtu.be/xv5W7UcBLl8"
+          },
+          {
+            "id": "b",
+            "l": "Film 2 — built 100% with AI",
+            "src": "https://youtu.be/3JWJoCS2yFs"
+          }
+        ],
+        "shots": [
+          "Award moment"
+        ],
+        "outcomes": true
+      },
+      {
+        "id": "newsletter",
+        "n": "02",
+        "title": "Monthly haircare competitor newsletter",
+        "brand": "L'Oréal Vietnam — Professional Products Division",
+        "year": "2026",
+        "tag": "Market intelligence · Internal",
+        "kpi": "Published every month",
+        "summary": "A monthly newsletter tracking what haircare brands are doing in the market, packaged so the team reads all of it in a few minutes.",
+        "goal": "Competitor information sat scattered across social channels and marketplaces; the team needed one short, regular digest to decide faster.",
+        "did": [
+          "Tracked haircare brand activity: launches, pricing, promotions, campaigns and standout content.",
+          "Filtered and interpreted the data into actionable observations rather than a list of facts.",
+          "Designed and published the newsletter in one consistent format, on time every month."
+        ],
+        "res": [
+          {
+            "v": "Monthly",
+            "k": "publishing cadence"
+          },
+          {
+            "v": "Multi-brand",
+            "k": "tracking scope"
+          },
+          {
+            "v": "Minutes",
+            "k": "to read"
+          }
+        ],
+        "shots": [],
+        "archive": [
+          {
+            "m": "05/2026",
+            "src": "images/nl-may.webp"
+          },
+          {
+            "m": "03/2026",
+            "src": "images/nl-mar.webp"
+          },
+          {
+            "m": "02/2026",
+            "src": "images/nl-feb.webp"
+          },
+          {
+            "m": "01/2026",
+            "src": "images/nl-jan.webp"
+          }
+        ],
+        "outcomes": false
+      },
+      {
+        "id": "matrix",
+        "n": "03",
+        "title": "Shopee store launch — Matrix",
+        "brand": "Matrix (L'Oréal Vietnam)",
+        "year": "Jul 2026",
+        "tag": "Launch · E-commerce",
+        "kpi": "Project lead",
+        "summary": "Took Matrix onto Shopee from zero: storefront, product information and the full visual set for opening day.",
+        "goal": "A brand with no digital footprint in Vietnam had to appear complete and consistent from its very first day on the platform.",
+        "did": [
+          "Set up the storefront and standardised information across the full product catalogue.",
+          "Prepared the visual set, videos and opening-day promotion mechanics.",
+          "Aligned content, design and marketplace operations on a single timeline."
+        ],
+        "res": [
+          {
+            "v": "Jul 2026",
+            "k": "launch date"
+          },
+          {
+            "v": "100%",
+            "k": "brand guideline consistency"
+          },
+          {
+            "v": "Full",
+            "k": "catalogue listed"
+          }
+        ],
+        "shots": [
+          "Shopee storefront",
+          "Launch visual set",
+          "Product video"
+        ],
+        "shotSrc": [
+          "images/matrix-shopee-store.webp"
+        ],
+        "shotFit": "contain",
+        "shotRatio": "624/1006",
+        "outcomes": false
+      },
+      {
+        "id": "serioxyl",
+        "n": "04",
+        "title": "Serioxyl “Độ tóc tốc độ” event — L'Oréal Pro",
+        "brand": "L'Oréal Professionnel — Serioxyl",
+        "year": "Apr 2026",
+        "tag": "Launch event",
+        "kpi": "Concept & video",
+        "summary": "The creative concept and event film for the Serioxyl launch — a launch with its own language instead of the familiar format.",
+        "goal": "Bring a clinical haircare line closer to a younger audience by telling the story differently, starting with the event name itself.",
+        "did": [
+          "Developed the creative concept and named the launch event.",
+          "Wrote and produced the film screened during the event.",
+          "Handed the content line and visual assets over to the event operations team."
+        ],
+        "res": [
+          {
+            "v": "Apr 2026",
+            "k": "event date"
+          },
+          {
+            "v": "Concept",
+            "k": "my role in the idea"
+          },
+          {
+            "v": "Video",
+            "k": "production scope"
+          }
+        ],
+        "shots": [
+          "Event space",
+          "Event idea brief — my big idea: \"Độ tóc tốc độ\" (the hair speed race)",
+          "Livestream background"
+        ],
+        "shotSrc": [
+          "images/serioxyl-event-kv.webp",
+          "images/serioxyl-brief.webp",
+          "images/serioxyl-livestream.webp"
+        ],
+        "shotFit": "contain",
+        "shotRatio": "2/1",
+        "shotRatio2": "1179/1964",
+        "shotSpan": true,
+        "outcomes": false
+      },
+      {
+        "id": "gloss",
+        "n": "05",
+        "title": "Gloss Absolu launch event — Kérastase",
+        "brand": "Kérastase",
+        "year": "Feb 2026",
+        "tag": "Event · Livestream",
+        "kpi": "Content & visuals",
+        "summary": "The content line and every visual asset for the Gloss Absolu event, including the livestream background.",
+        "goal": "The event needed one coherent story across the offline stage and the livestream running alongside it.",
+        "did": [
+          "Wrote the event content line and the livestream script.",
+          "Designed and coordinated the livestream background and visual material set.",
+          "Kept the look consistent between offline and online touchpoints."
+        ],
+        "res": [
+          {
+            "v": "Feb 2026",
+            "k": "event date"
+          },
+          {
+            "v": "1",
+            "k": "parallel livestream session"
+          },
+          {
+            "v": "100%",
+            "k": "visual consistency"
+          }
+        ],
+        "shots": [
+          "Event stage",
+          "Livestream background",
+          "Visual material set"
+        ],
+        "outcomes": false,
+        "shotSrc": [
+          "images/gloss-event-stage.webp",
+          "",
+          ""
+        ],
+        "shotRatio": "2376/1783",
+        "shotSet": {
+          "0": {
+            "srcset": "images/gloss-event-stage-1188.webp 1188w, images/gloss-event-stage-2376.webp 2376w",
+            "sizes": "(max-width:900px) calc(100vw - 44px), (max-width:1280px) calc(100vw - 92px), 1188px"
+          }
+        }
+      },
+      {
+        "id": "pickleball",
+        "n": "06",
+        "title": "The Pickleball Tournament 2025 — Kérastase",
+        "brand": "Kérastase",
+        "year": "Nov 2025",
+        "tag": "Brand activation",
+        "kpi": "Sports event",
+        "summary": "A pickleball tournament bringing together dozens of KOLs under the Kérastase message “Tóc mượt mà, kháng nhiệt tối đa” — smooth hair, maximum heat resistance — built around Elixir Ultime to show what the range does against heat.",
+        "goal": "Find an everyday setting to talk about heat protection and smoothness, rather than talking about it only inside a salon.",
+        "did": [
+          "Tied the product message to the language of a sport the community is currently obsessed with.",
+          "Prepared content, visual material and the on-court brand experience.",
+          "Filmed and edited post-event content for online channels."
+        ],
+        "res": [
+          {
+            "v": "Nov 2025",
+            "k": "event date"
+          },
+          {
+            "v": "Offline",
+            "k": "on-court experience"
+          },
+          {
+            "v": "Multi-channel",
+            "k": "post-event content"
+          }
+        ],
+        "shots": [
+          "Tournament overview",
+          "Brand experience zone",
+          "Player moment"
+        ],
+        "outcomes": false
+      }
+    ],
+    "EXTRA": [
+      {
+        "y": "2022",
+        "r": "Student Brand Ambassador",
+        "o": "AIESEC — Southern YouthSpeak",
+        "d": "Supported the organizers in engaging students across HCMC; contributed to attracting 1000+ participants."
+      },
+      {
+        "y": "2021",
+        "r": "Top 20 — 48H Hackathon",
+        "o": "RE-Organization",
+        "d": "Reached the top 20 finals after 48 hours of building and defending a solution."
+      },
+      {
+        "y": "2023",
+        "r": "Top 20 — Z-Marketer",
+        "o": "National student marketing competition",
+        "d": "Built a full marketing plan and presented it to an industry jury."
+      },
+      {
+        "y": "2023",
+        "r": "Excellent Innovation Project",
+        "o": "Project Design — UEF",
+        "d": "Project rated excellent for innovation by the faculty panel."
+      }
+    ],
+    "VIDEOS": [
+      {
+        "id": "v1",
+        "l": "Kérastase — 11.11 on TikTok Shop",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/W1Nh9tGX5Dc"
+      },
+      {
+        "id": "v2",
+        "l": "Kérastase — products in salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/Ur9IqW5OQgM"
+      },
+      {
+        "id": "v3",
+        "l": "Kérastase — KOL at the event",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/J5Dm--5n2VE"
+      },
+      {
+        "id": "v4",
+        "l": "L'Oréal Pro — Serioxyl in salon",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/fRzedKXy36w"
+      },
+      {
+        "id": "v5",
+        "l": "L'Oréal Pro — Serioxyl serum",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/xQlXPngldt0"
+      },
+      {
+        "id": "v6",
+        "l": "L'Oréal Pro — Serioxyl offer",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/qINvSJZ-ueQ"
+      },
+      {
+        "id": "v7",
+        "l": "L'Oréal Pro — minigame rules",
+        "r": "9/16",
+        "src": "https://youtube.com/shorts/2Zp3mIdFY-A"
+      }
+    ],
+    "XFILE": [
+      {
+        "k": "Đàn tranh (Vietnamese zither)",
+        "d": "Years of training on a traditional instrument — it taught me patience and a feel for rhythm."
+      },
+      {
+        "k": "Event host / MC",
+        "d": "Hosted university and brand events; comfortable with a mic and an audience in front of me."
+      },
+      {
+        "k": "Livestreamer",
+        "d": "Hundreds of hours selling live — reading viewer reaction minute by minute."
+      },
+      {
+        "k": "Content production",
+        "d": "Idea, shoot, edit, caption — I can carry a video from start to finish on my own."
+      }
+    ],
+    "F": {
+      "about": {
+        "t": "About me",
+        "n": "Contact · Skills · CV"
+      },
+      "cv": {
+        "t": "Work experience",
+        "n": "L'Oréal · Estée Lauder · Baresoul"
+      },
+      "education": {
+        "t": "Education",
+        "n": "UEF · GPA 3.7"
+      },
+      "work": {
+        "t": "Campaigns & projects",
+        "n": "6 selected campaigns"
+      },
+      "extra": {
+        "t": "Extracurricular",
+        "n": "AIESEC · Hackathon · Z-Marketer"
+      },
+      "awards": {
+        "t": "Achievements",
+        "n": "7 awards & scholarships"
+      },
+      "xfile": {
+        "t": "Side talents",
+        "n": "The things a CV leaves out"
+      }
+    },
+    "T": {
+      "arcTitle": "Past issues",
+      "arcNote": "The newsletter comes out monthly. Recent issues are shown as overviews only, since the content is internal.",
+      "xfileDriveKicker": "After-hours collection",
+      "xfileDriveTitle": "Photo & video album",
+      "xfileDriveBtn": "Open Google Drive →",
+      "xfileDriveUrl": "https://drive.google.com/drive/folders/1eRe98GgmxOvXPUkp-DpNgiSSk0DV4TBY",
+      "pick": "Pick a folder to open →",
+      "open": "Open →",
+      "back": "↑ Back to index",
+      "cvBtn": "Download CV (PDF)",
+      "copy": "Copy email",
+      "copied": "Email copied",
+      "contact": "Contact",
+      "brandsLabel": "Brands I have worked with",
+      "aboutKicker": "About me",
+      "aboutTitle": "About me",
+      "aboutEm": "& contact",
+      "aboutQuote": [
+        "Numbers are what every business needs. What I care about is ",
+        "“how do we get to that number?”"
+      ],
+      "eduTitle": "Education",
+      "cvTitle": "Work",
+      "cvEm": "experience",
+      "workTitle": "Campaigns",
+      "workEm": "& projects",
+      "videosLabel": "Video work I produced",
+      "videosNote": "On camera in six of the seven — the third is a KOL at a Kérastase event.",
+      "playVideo": "Play video",
+      "extraTitle": "Extracurricular",
+      "extraEm": "activities",
+      "awardsTitle": "Achievements",
+      "awardsEm": "& awards",
+      "portraitLabel": "Portrait (cut-out)",
+      "xfileTitle": "Side",
+      "xfileEm": "talents",
+      "xfileIntro": "",
+      "thanks": "Thank you for visiting",
+      "openTo": "Open to online marketing, e-commerce and product launch roles in beauty.",
+      "cEmail": "Email",
+      "cPhone": "Phone / Zalo",
+      "cAddr": "Location",
+      "cCv": "CV",
+      "cCvVal": "Download PDF",
+      "vid": "Video",
+      "ctx": "Context & objective",
+      "did": "What I did",
+      "res": "Results",
+      "allWork": "← All campaigns",
+      "nextWork": "Next campaign →",
+      "close": "Close ✕",
+      "scope": "Scope & role",
+      "cvNav": "Download CV",
+      "samples": "View work samples →",
+      "cLinkedin": "LinkedIn",
+      "cSocial": "Social",
+      "cFacebook": "Facebook",
+      "cInstagram": "Instagram"
+    }
+  }
+}

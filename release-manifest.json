@@ -1,6 +1,11 @@
 {
   "generations": [
     {
+      "css": "index.32e849e6.css",
+      "js": "index.37b28453.js",
+      "config": "config.7e45ebc1.json"
+    },
+    {
       "css": "index.ede95581.css",
       "js": "index.1cfaf7ff.js",
       "config": "config.c7cb03b9.json"

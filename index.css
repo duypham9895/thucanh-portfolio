@@ -223,6 +223,9 @@ image-slot{display:block;width:100%;height:100%}
 /* Two lines are reserved at every width. The captions are one line on a desktop cell and two on a
    phone cell, and an unreserved box leaves a row's captions ragged under frames that are not. */
 .vidcap{margin-top:9px;line-height:1.45;min-height:2.9em}
+/* One line under the strip heading. `.vidlabel` carries the 20px margin-bottom that used to sit
+   against the grid, so this takes it over and gives the grid its own. */
+.vidnote{font-size:14.5px;margin:-10px 0 24px;max-width:46em}
 
 /* the click-to-play facade */
 .vfacade{position:absolute;inset:0;display:block;width:100%;padding:0;background:#2B2A25;cursor:pointer}
