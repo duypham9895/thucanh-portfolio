@@ -90,14 +90,30 @@ image-slot{display:block;width:100%;height:100%}
 .frame{position:relative;background:var(--paper);border:1px solid var(--line);overflow:hidden}
 /* folder stack */
 .stack{display:flex;flex-direction:column;position:relative;min-width:0;width:100%}
-.folder{--off:var(--off-instance,0px);position:relative;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .3s;margin-top:-16px}
+/* Hit-testing follows what is painted, not the button's box.
+   `.folder` is pulled up 16px so the tiles overlap like paper, but the button is full width and
+   its box starts at its own tab's top — so the bottom 16px of every tile's body sat UNDER the
+   next button. Measured against the painted pixel at nine widths in both languages: 75,516 of
+   399,700 probes (18.9%) routed to the tile below the one you can see; hovering the lower edge of
+   "Education" lifted "Work experience". `pointer-events` on the two painted children instead of
+   the button makes the hit region exactly the tab plus the body: 0 of 399,700.
+   `.folder:hover` still matches, because hover propagates from the child to its ancestors. */
+.folder{--off:var(--off-instance,0px);position:relative;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .3s;margin-top:-16px;pointer-events:none}
 .clip + .folder{margin-top:0}
 .folder:hover{transform:translateY(-12px)}
 .folder:hover .tab{filter:brightness(1.06)}
-.tab{height:44px;width:max-content;max-width:calc(100% - var(--off));margin-left:var(--off);border-radius:14px 20px 0 0;display:flex;align-items:center;gap:12px;padding:0 20px;box-shadow:0 -1px 0 rgba(0,0,0,.05)}
+.tab{height:44px;width:max-content;max-width:calc(100% - var(--off));margin-left:var(--off);border-radius:14px 20px 0 0;display:flex;align-items:center;gap:12px;padding:0 20px;box-shadow:0 -1px 0 rgba(0,0,0,.05);pointer-events:auto}
 .tabname{font-family:var(--disp);font-size:16.5px;letter-spacing:.03em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* was 86px, carrying a repeated label above the note */
-.folder-body{height:56px;border-radius:0 10px 2px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.folder-body{height:56px;border-radius:0 10px 2px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);pointer-events:auto;position:relative}
+/* The lift moves the body out from under the cursor. Point at the bottom 12px of a body, the tile
+   rises 12px, the pointer is now below it, and it un-hovers — and stays un-hovered, because hit
+   testing is re-evaluated on pointer movement, not on layout change. Measured with a real mouse:
+   `pointer-events` alone turned 44 wrong-tile points into 67 DEAD ones, which is worse. This skirt
+   stands still in the 12px the lifted body vacated, so the pointer stays inside the tile it is
+   pointing at. It exists only while hovered, so it never takes a hit from the tile below.
+   `elementFromPoint` cannot see any of this — it hit-tests a page that is not being hovered. */
+.folder:hover .folder-body::after{content:'';position:absolute;left:0;right:0;top:100%;height:12px}
 .fnote{font-size:12.5px;letter-spacing:.05em}
 .fgo{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;transition:opacity .3s,transform .35s}
 .folder:hover .fgo{transform:translateX(6px)}

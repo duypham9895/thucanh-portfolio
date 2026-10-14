@@ -604,3 +604,52 @@ three has one the row is absent rather than an empty box.
 The Instagram URL was supplied with a `?mdxt=…` share-tracking parameter. It identifies the share,
 not the profile, and it is stripped — a CV should not carry a referral token from the message that
 delivered the link.
+
+---
+
+## D22 — the folder stack points at what you can see
+
+The tiles overlap by 16px (`.folder{margin-top:-16px}`) so the stack reads as paper in a drawer.
+But `.folder` is a full-width `<button>` whose box starts at its own tab's top, so **the bottom
+16px of every tile's body sat underneath the next button.** Hovering the lower edge of "Education"
+lifted "Work experience".
+
+Measured against the painted pixel — each folder has its own background colour, so an exact colour
+match names the tile that is visually there — at nine widths in both documents:
+
+| | misrouted | dead |
+|---|---|---|
+| before | **75,516 of 399,700 (18.9%)** | 0 |
+| `pointer-events` only | 0 | **67 real-mouse points** |
+| shipped | **0** | **0** |
+
+18.9% is not a coincidence: a tile is 100px tall and overlaps by 16, so 16/84 of every tile was
+mis-targeted.
+
+**The fix is `pointer-events` on the two painted children rather than on the button.** The hit
+region becomes exactly the tab plus the body, which is the shape you can see. `.folder:hover` still
+matches, because hover propagates from the child up to its ancestors, and keyboard focus is
+untouched — `pointer-events` does not apply to it.
+
+**That alone made things worse, and a second rule was needed.** `.folder:hover` lifts the tile 12px.
+Point at the bottom 12px of a body and the tile rises out from under the cursor, un-hovers, and
+*stays* un-hovered — hit testing is re-evaluated on pointer movement, not on layout change. Measured
+with a real mouse: `pointer-events` alone traded 44 wrong-tile points for **67 dead ones**. The
+shipped rule adds a stationary skirt, `.folder:hover .folder-body::after`, 12px tall, in exactly the
+space the lifted body vacates. It exists only while hovered, so it never takes a hit from the tile
+below.
+
+**Why no gate caught this for so long.** `elementFromPoint` hit-tests a page that is not being
+hovered, so it cannot see an element move away from the cursor; the only oracle that sees it is a
+real mouse. An earlier review of this same stack measured hit routing with `elementFromPoint`,
+concluded `pointer-events` alone was sufficient, and would have shipped the dead strip. A
+rectangle-based oracle is also wrong in the other direction — it reported 686 false positives on
+rounded corners before the painted pixel replaced it.
+
+`tools/visual-qa/folders-v3.mjs` now gates both halves and exits non-zero. Verified to fail:
+removing `pointer-events` reports 24 problems, removing the skirt reports 6, and the message for
+the second names the cause — *"the pointer hovers NOTHING — the lift moved it away"*.
+
+Unchanged by all of this: 49 keyboard-reachable controls, zero clickable-but-unfocusable, the
+cursor still `pointer` on tab and body (it is inherited, so `pointer-events:none` does not drop it),
+click and Enter still navigate, and the decorative paperclip is still not a hit target.

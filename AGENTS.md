@@ -162,6 +162,8 @@ node smoke-v3.mjs                    # both documents: sections, counts, overflo
 node a11y-v3.mjs [url]               # contrast (alpha+opacity composited), keyboard, modal
                                      # run it TWICE — it only tests the URL you give it
 node videos-v3.mjs [url]             # video strip: column ladder, posters, srcset rungs, play
+node folders-v3.mjs [enUrl] [viUrl] # folder stack: every painted pixel routes to the tile it
+                                     # shows, checked twice — by colour and by a REAL mouse
 node perf-v3.mjs                     # throttled desktop and mobile timings
 node sections-v3.mjs                 # per-section screenshots into out/v3/
 node shots-v3.mjs                    # full-page + every campaign sheet at 390
@@ -169,6 +171,11 @@ node shots-v3.mjs                    # full-page + every campaign sheet at 390
 
 **smoke-v3 and a11y-v3 exit non-zero on failure**, so they can gate a deploy. They did not until
 the pre-deploy review pointed out that a check which cannot fail cannot gate anything.
+
+**`folders-v3` drives a real mouse, and that is the point.** `elementFromPoint` hit-tests a page
+that is not being hovered, so it cannot see an element move out from under the cursor — which is
+exactly how the stack's 18.9% misrouting (D22) survived every other gate. It is slower than the
+rest; run it anyway when anything touches `.folder`, `.tab` or `.folder-body`.
 
 **Nothing in the suite checks `@media print`.** No gate calls `emulateMedia`, so D9's print tier is
 verified by hand or not at all — `page.emulateMedia({media:'print'})` plus a real

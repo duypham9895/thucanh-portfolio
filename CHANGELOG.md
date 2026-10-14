@@ -15,6 +15,57 @@ safety markers taken *before* large changes, not releases. They are left alone.
 
 ---
 
+## [1.2.2] — 2026-10-14
+
+### Fixed
+
+- **The folder stack lifted the wrong tile.** The tiles overlap by 16px so the stack reads as paper
+  in a drawer, but `.folder` is a full-width `<button>` whose box starts at its own tab's top — so
+  the bottom 16px of every tile's body sat underneath the *next* button. Hovering the lower edge of
+  "Education" lifted "Work experience". Measured against the painted pixel at nine widths in both
+  documents: **75,516 of 399,700 probes (18.9%) routed to the tile below the one on screen.** That
+  figure is structural, not incidental — a tile is 100px tall and overlaps by 16, so 16/84 of every
+  tile was mis-targeted.
+
+  Fixed by putting `pointer-events` on the two painted children instead of on the button, so the
+  hit region is exactly the tab plus the body. `.folder:hover` still matches — hover propagates
+  from a child to its ancestors — and keyboard focus is untouched.
+
+- **…and the obvious fix, alone, was worse than the bug.** `.folder:hover` lifts the tile 12px.
+  Point at the bottom 12px of a body and the tile rises out from under the cursor, un-hovers, and
+  *stays* un-hovered, because hit testing is re-evaluated on pointer movement rather than on layout
+  change. Measured with a real mouse: `pointer-events` on its own traded 44 wrong-tile points for
+  **67 dead ones**. Shipped with a stationary 12px skirt, `.folder:hover .folder-body::after`, in
+  exactly the space the lifted body vacates. It exists only while hovered, so it never takes a hit
+  from the tile below. Final: **0 misrouted, 0 dead.**
+
+### Added
+
+- **`tools/visual-qa/folders-v3.mjs`** — a gate for the stack, exiting non-zero. It checks hit
+  routing against the painted pixel (each folder has its own background colour, so a colour match
+  names the tile that is visually there) and then **drives a real mouse down every body**, because
+  `elementFromPoint` hit-tests a page that is not being hovered and therefore cannot see an element
+  move away from the cursor. Verified to fail on each half of the fix independently: removing
+  `pointer-events` reports 24 problems, removing the skirt reports 6 and names the cause.
+
+### Documentation
+
+`DEVIATIONS.md` gains **D22**, including why no existing gate could see this and why two different
+wrong oracles were discarded on the way — a rectangle-based one that reported 686 false positives
+on rounded corners, and `elementFromPoint`, which would have shipped the dead strip. `AGENTS.md`
+registers the new gate and says plainly why it drives a real mouse.
+
+### Verified
+
+Both documents: `folders-v3` (399,700 painted pixels, plus a real mouse over every visible body at
+1440/900/390 — cursor still `pointer`, click still navigates, folders still take keyboard focus,
+Enter still navigates, the paperclip still is not a hit target), `smoke-v3`, `a11y-v3` EN and VI
+(zero contrast failures, **49** keyboard-reachable controls — unchanged — zero
+clickable-but-unfocusable), `videos-v3` EN and VI, `check-font-coverage`,
+`make-video-posters --check`, `release.mjs --check`. The v1.2.1 band fix still holds at every width.
+
+---
+
 ## [1.2.1] — 2026-10-14
 
 ### Fixed

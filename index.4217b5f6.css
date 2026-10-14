@@ -1,0 +1,594 @@
+/* Trần Tôn Nữ Thục Anh — portfolio
+   Design source: Claude Design project b8e2e5a4-1ed4-444a-81a6-089830b12b02 — "Portfolio v3.html"
+   Frozen source + hash pins: docs/design/v3-source/  (PROVENANCE.md, BASELINE.sha256)
+   Approved deviations from the design: docs/design/v3-source/DEVIATIONS.md
+
+   Order of this file:
+     1. @font-face      self-hosted subsets, no Google Fonts request
+     2. design system   verbatim from template.html, except the D1 contrast tokens
+     3. components      inline React styles lifted to classes — see the note below
+     4. responsive      the design's own 900/760/620 tiers, plus the tier it lacks
+
+   WHY THE INLINE STYLES HAD TO BE LIFTED
+   React writes layout as inline styles, and **a media query cannot override an inline style**.
+   Every grid the design declares inline is therefore frozen at its desktop track list on a phone —
+   which is exactly how the previous design shipped a 208px horizontal overflow at 375px. Each one
+   below is the same declaration the design makes, moved to a class so the responsive tier can
+   reach it. Values are unchanged at desktop width; only their reachability changes.
+*/
+
+/* Self-hosted subsets extracted from the artifact bundle (OFL).
+   Dropped, each verified against the actual content rather than assumed:
+     - cyrillic / cyrillic-ext : unreachable for Vietnamese/English copy
+     - latin-ext               : ZERO characters in config.json need it once `vietnamese` is
+                                 declared last. Google's ranges overlap (latin-ext covers
+                                 U+0100-02AF and U+1EF2-1EFF; vietnamese covers U+0102-0103,
+                                 U+0110-0111, U+01A0-01B0, U+1EA0-1EF9), and the LATER rule wins —
+                                 so shipping latin-ext after vietnamese made it win for core
+                                 Vietnamese letters (ă Đ đ ũ ơ ư ỳ ỹ) and forced a whole extra
+                                 subset per family.
+     - Be Vietnam Pro 200/500  : declared but never fetched; nothing on the page uses them.
+   `vietnamese` is declared LAST so it wins any remaining overlap.
+   Verify coverage after a content change: node tools/check-font-coverage.mjs */
+/* latin */
+@font-face{font-family:'Be Vietnam Pro';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/bevietnampro-300-normal-latin.d23f082c.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Be Vietnam Pro';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/bevietnampro-300-normal-vietnamese.4d600669.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Be Vietnam Pro';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/bevietnampro-400-normal-latin.a5945d17.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Be Vietnam Pro';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/bevietnampro-400-normal-vietnamese.a028294b.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300;font-display:swap;src:url('fonts/cormorantgaramond-300-italic-latin.8f9b723a.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:300;font-display:swap;src:url('fonts/cormorantgaramond-300-italic-vietnamese.f39e8fe5.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/cormorantgaramond-300-normal-latin.2976ad9f.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url('fonts/cormorantgaramond-300-normal-vietnamese.5f546b43.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/cormorantgaramond-300-italic-latin.8f9b723a.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/cormorantgaramond-300-italic-vietnamese.f39e8fe5.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/cormorantgaramond-300-normal-latin.2976ad9f.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/cormorantgaramond-300-normal-vietnamese.5f546b43.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/cormorantgaramond-300-normal-latin.2976ad9f.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/cormorantgaramond-300-normal-vietnamese.5f546b43.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+/* latin */
+@font-face{font-family:'Italianno';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/italianno-400-normal-latin.49ce10e1.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* vietnamese */
+@font-face{font-family:'Italianno';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/italianno-400-normal-vietnamese.9d670d2d.woff2') format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB}
+
+/* ═══ 2. design system — verbatim from template.html, except where marked D1 ═══ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F4F2ED;--paper:#FBFAF6;--ink:#2B2A25;--soft:#686657;--line:#DAD5C7;--pink:#AE5E6C;--pink-ink:#9B4D5B;--rose:#893941;--olive:#5E6623;--citron:#D4D994;--beige:#D0A583;--accent:var(--pink);--accent2:var(--olive);--disp:"Cormorant Garamond",Georgia,serif;--sans:"Be Vietnam Pro","Helvetica Neue",Helvetica,sans-serif;--script:"Italianno",cursive;--scale:1}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:none;transition:color .25s}
+a:hover{color:var(--pink-ink)}
+::selection{background:var(--citron);color:var(--ink)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{max-width:1280px;margin:0 auto;padding:0 46px}
+.eyebrow{font-family:var(--sans);font-weight:400;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+.disp{font-family:var(--disp);font-weight:300;line-height:1.02;letter-spacing:-.005em}
+.it{font-style:italic}
+.script{font-family:var(--script);font-weight:400;line-height:.85}
+.body{font-size:15px;line-height:1.8;letter-spacing:.002em;color:var(--soft)}
+.rule{height:1px;background:var(--line);border:0}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:12px 24px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;transition:all .3s}
+.btn:hover{border-color:var(--accent);color:var(--pink-ink)}
+.btn-solid{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-solid:hover{background:var(--rose);border-color:var(--rose);color:#fff}
+.pill{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+image-slot{display:block;width:100%;height:100%}
+.frame{position:relative;background:var(--paper);border:1px solid var(--line);overflow:hidden}
+/* folder stack */
+.stack{display:flex;flex-direction:column;position:relative;min-width:0;width:100%}
+/* Hit-testing follows what is painted, not the button's box.
+   `.folder` is pulled up 16px so the tiles overlap like paper, but the button is full width and
+   its box starts at its own tab's top — so the bottom 16px of every tile's body sat UNDER the
+   next button. Measured against the painted pixel at nine widths in both languages: 75,516 of
+   399,700 probes (18.9%) routed to the tile below the one you can see; hovering the lower edge of
+   "Education" lifted "Work experience". `pointer-events` on the two painted children instead of
+   the button makes the hit region exactly the tab plus the body: 0 of 399,700.
+   `.folder:hover` still matches, because hover propagates from the child to its ancestors. */
+.folder{--off:var(--off-instance,0px);position:relative;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .3s;margin-top:-16px;pointer-events:none}
+.clip + .folder{margin-top:0}
+.folder:hover{transform:translateY(-12px)}
+.folder:hover .tab{filter:brightness(1.06)}
+.tab{height:44px;width:max-content;max-width:calc(100% - var(--off));margin-left:var(--off);border-radius:14px 20px 0 0;display:flex;align-items:center;gap:12px;padding:0 20px;box-shadow:0 -1px 0 rgba(0,0,0,.05);pointer-events:auto}
+.tabname{font-family:var(--disp);font-size:16.5px;letter-spacing:.03em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* was 86px, carrying a repeated label above the note */
+.folder-body{height:56px;border-radius:0 10px 2px 2px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 30px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14);pointer-events:auto;position:relative}
+/* The lift moves the body out from under the cursor. Point at the bottom 12px of a body, the tile
+   rises 12px, the pointer is now below it, and it un-hovers — and stays un-hovered, because hit
+   testing is re-evaluated on pointer movement, not on layout change. Measured with a real mouse:
+   `pointer-events` alone turned 44 wrong-tile points into 67 DEAD ones, which is worse. This skirt
+   stands still in the 12px the lifted body vacated, so the pointer stays inside the tile it is
+   pointing at. It exists only while hovered, so it never takes a hit from the tile below.
+   `elementFromPoint` cannot see any of this — it hit-tests a page that is not being hovered. */
+.folder:hover .folder-body::after{content:'';position:absolute;left:0;right:0;top:100%;height:12px}
+.fnote{font-size:12.5px;letter-spacing:.05em}
+.fgo{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;transition:opacity .3s,transform .35s}
+.folder:hover .fgo{transform:translateX(6px)}
+.clip{width:16px;height:52px;border-radius:9px;border:3px solid #B9B3A4;position:absolute;right:44px;top:-20px;background:transparent;z-index:3}
+.sechead{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding-bottom:16px;border-bottom:2px solid var(--sc);margin-bottom:40px;flex-wrap:wrap}
+.crow{display:grid;grid-template-columns:56px 1fr 210px 130px;gap:26px;align-items:start;padding:32px 0;border-top:1px solid var(--line);cursor:pointer;transition:padding-left .4s cubic-bezier(.2,.7,.2,1)}
+.crow:hover{padding-left:16px}
+.crow:hover .ct{color:var(--accent)}
+.ct{font-family:var(--disp);font-weight:300;font-size:calc(42px * var(--scale));line-height:1.05;transition:color .3s}
+.ccard{cursor:pointer}
+.ccard:hover .ct{color:var(--accent)}
+.sheet{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;animation:rise .55s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{transform:translateY(2.5%);opacity:0}to{transform:none;opacity:1}}
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%);z-index:80;background:var(--ink);color:var(--bg);padding:13px 22px;border-radius:999px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;animation:rise .3s}
+.certstage{position:relative;height:clamp(660px,92vw,900px);margin-top:40px}
+.certportrait{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:clamp(180px,27vw,330px);z-index:5}
+.cert{position:absolute;width:clamp(104px,13.5vw,168px);z-index:8}
+.certimg{transform:rotate(var(--r));transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;box-shadow:0 12px 34px rgba(43,42,37,.14)}
+.cert:hover{z-index:30}
+.cert:hover .certimg{transform:translateY(-12px) rotate(0deg) scale(1.06);box-shadow:0 28px 62px rgba(43,42,37,.26)}
+.certcap{display:block;margin-top:10px;font-size:clamp(9.5px,1.05vw,11.5px);line-height:1.4;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);text-align:center;text-wrap:pretty}
+.certcap b{font-weight:400;color:var(--pink-ink);margin-right:5px}
+@media (max-width:620px){.certstage{height:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 18px;align-items:start}.certportrait{position:static;transform:none;width:100%;grid-column:1/-1;max-width:300px;margin:0 auto 6px}.cert{position:static!important;width:auto}.certimg{transform:none!important}}
+.brandwall{display:flex;flex-wrap:wrap;align-items:center;gap:26px 40px}
+.brandwall span{font-family:var(--disp);font-size:clamp(19px,2.1vw,30px);padding:0}
+.blogo{width:auto;object-fit:contain;opacity:.9}
+.brandwall span:nth-child(even){font-style:italic;color:var(--olive)}
+.backtop{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+@media (max-width:900px){.wrap{padding:0 22px}.crow{grid-template-columns:34px 1fr;gap:14px}.crow .cmeta,.crow .ckpi{display:none}.tab{max-width:none}.folder-body{height:76px;padding:0 20px}.fnote{display:none}.clip{display:none}}
+@media (max-width:760px){.gcol2{grid-template-columns:1fr!important;gap:34px!important}.jobrow{grid-template-columns:1fr!important;gap:8px!important}.stack{margin-top:0!important}}
+/* ═══ 3. components — the design's inline styles, lifted so media queries can reach them ═══ */
+
+/* Every `repeat(auto-fit,minmax(Npx,1fr))` below keeps the design's N, but wraps it in
+   `min(N,100%)`. auto-fit does NOT collapse a track whose minimum exceeds the container: at 320px
+   the .wrap leaves 276px, so a bare minmax(300px,1fr) overflows by 24px while still reporting one
+   column. Clamping the minimum to the container makes it genuinely single-column exactly when it
+   has to be, and leaves desktop untouched. */
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;border-bottom:1px solid transparent;transition:background .4s,border-color .4s,backdrop-filter .4s}
+.nav.stuck{background:color-mix(in oklab,var(--bg) 90%,transparent);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+.nav-inner{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-brand{font-size:21px}
+.nav-brand strong{font-weight:500}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang{display:flex;gap:7px}
+.lang button{padding:7px 13px;border-radius:999px;font-size:10.5px;letter-spacing:.16em;border:1px solid var(--line);background:transparent;color:var(--soft);transition:background .3s,color .3s,border-color .3s}
+.lang button[aria-pressed="true"]{border-color:transparent;background:var(--ink);color:var(--bg)}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;padding:12px 20px;background:var(--ink);color:var(--bg);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.skip:focus{left:0}
+
+/* opening */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 0 60px}
+.herogrid{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;width:100%}
+.heroname{font-size:clamp(30px,4vw,60px);font-weight:400;letter-spacing:.05em;text-transform:uppercase;margin-top:14px;color:var(--rose)}
+.heroname strong{font-weight:500}
+.herotitle{font-size:clamp(56px,8.6vw,124px);margin-top:18px;padding-bottom:8px}
+/* 8px is a safety margin for the case where Italianno fails to load and a fallback with different
+   metrics takes its place. It used to be clamp(18px,3.4vw,50px), sized to a 40px "overlap" I had
+   measured with getBoundingClientRect — which returns the inline box, not the ink, and Italianno's
+   box extends far below its glyphs. The real collision was a symptom of the missing uppercase
+   Vietnamese glyphs: those four letters fell back to a system serif whose metrics did collide.
+   Fixing the subset cured it; the padding was treating a cured disease and left a dead gap. */
+.herotitle .script{color:var(--accent);font-size:1.28em;margin-left:.02em}
+.heropills{display:flex;gap:9px;flex-wrap:wrap;margin-top:26px}
+
+/* section heads */
+.sec{padding:100px 0;border-top:1px solid var(--line)}
+.sectitle{font-size:clamp(32px,4.4vw,58px);margin-top:12px}
+
+/* about */
+.gcol2{display:grid;grid-template-columns:1.2fr minmax(250px,.8fr);gap:64px;align-items:start}
+.aboutquote{font-size:clamp(26px,3.4vw,44px);max-width:19em}
+.bio{display:grid;gap:16px;margin-top:28px;max-width:44em}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:32px;margin-top:46px;padding-top:30px;border-top:1px solid var(--line)}
+.skills ul{list-style:none;display:grid;gap:8px}
+.skills li{font-size:14.5px;line-height:1.45}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:26px;margin-top:46px;padding-top:28px;border-top:1px solid var(--line)}
+.statv{font-size:clamp(34px,3.8vw,52px)}
+.card{margin-top:26px;padding:24px 24px 26px;border-radius:2px;color:#fff}
+/* D1c: the design sets this at 86% white, which lands at 3.82:1 on the card. */
+.card .eyebrow{color:#fff}
+.cardlinks{display:grid;gap:12px;margin-top:14px}
+.cardlinks a,.cardlinks span{color:#fff;font-size:15px}
+.cardlinks a{text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:3px}
+.cardlinks a:hover{color:#fff;text-decoration-color:#fff}
+.cardbtns{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.cardbtns .btn{border-color:rgba(255,255,255,.55);color:#fff}
+/* Lightening this surface composited white text down to 4.1:1. Darken instead: the same
+   affordance, and white rises rather than falls. */
+.cardbtns .btn:hover{border-color:#fff;color:#fff;background:rgba(0,0,0,.14)}
+.brands{margin-top:80px}
+
+/* education */
+.edugrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:50px;align-items:start}
+.eduschool{font-size:clamp(28px,3.4vw,44px);line-height:1.1}
+.edunotes{list-style:none;display:grid;gap:0}
+.edunotes li{font-family:var(--disp);font-size:20px;line-height:1.35;padding:16px 0;border-top:1px solid var(--line)}
+
+/* cv */
+.jobrow{display:grid;grid-template-columns:190px 1fr;gap:34px;padding:28px 0;border-top:1px solid var(--line)}
+.jobrole{font-family:var(--disp);font-weight:400;font-size:26px;line-height:1.2}
+.jobdo{list-style:none;display:grid;gap:9px;margin-top:14px;max-width:52em}
+.jobdo li{font-size:14.5px;line-height:1.7}
+
+/* work — list */
+.cmeta,.ckpi{min-width:0}
+.ckpi{padding-top:8px;text-align:right}
+.ckpi p{font-size:26px}
+.csum{margin-top:10px;max-width:40em;font-size:14.5px}
+.peek{position:fixed;width:258px;pointer-events:none;z-index:40;box-shadow:0 26px 70px rgba(43,42,37,.2)}
+
+/* videos — D20.
+   Declared column counts, not auto-fit. The 230px floor was authored for a mixed 4:3 / 9:16 strip
+   holding one clip; a set of seven 9/16 verticals breaks it. auto-fit cannot express the ladder
+   this needs: reaching two columns at 320px (content 276) requires a track minimum of <=127px, and
+   a 127px minimum overshoots to FOUR columns at 620px. A minimum that is right at the bottom of
+   the phone tier is wrong at the top of it.
+   `minmax(0,1fr)` rather than `minmax(min(N,100%),1fr)` because a 0 minimum can always shrink —
+   there is no width at which a declared track can overflow its container (D4). */
+.vidgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;align-items:start}
+.vidlabel{font-family:var(--disp);font-size:20px;font-weight:500;color:var(--olive);line-height:1;margin:70px 0 20px;letter-spacing:0;text-transform:none}
+/* `videos()` gives this section `border-top:0;padding-top:0` so the strip reads as a continuation
+   of the work band rather than as a new section. That also left `.vidlabel`'s top margin with
+   nothing to stop it: it collapsed out through `.wrap` (no top padding, no top border), out through
+   the section, and became the SECTION's own top margin. Measured before this rule, at 1440/900/390:
+   70/48/48px of page background between two bands of the same tint, with the heading 0px from the
+   top edge of the lower one. A block formatting context keeps the margin on the box it was written
+   for, so the 70/48 split stays in `.vidlabel`'s own two rules instead of being copied onto a
+   third — and the inline `padding-top:0`, which outranks every stylesheet rule including the <=900
+   and print tiers, is left alone. D20. */
+.vidsec{display:flow-root}
+
+/* Two lines are reserved at every width. The captions are one line on a desktop cell and two on a
+   phone cell, and an unreserved box leaves a row's captions ragged under frames that are not. */
+.vidcap{margin-top:9px;line-height:1.45;min-height:2.9em}
+
+/* the click-to-play facade */
+.vfacade{position:absolute;inset:0;display:block;width:100%;padding:0;background:#2B2A25;cursor:pointer}
+.vposter{width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.vembed{width:100%;height:100%;border:0;display:block;background:#2B2A25}
+/* The disc holds no text, so it may use a scrim; the duration chip holds text over an arbitrary
+   photograph and may not — a11y-v3's bgOf() composites background-COLOR only and would score that
+   text against the frame's paper, i.e. report a pass it cannot actually see. Opaque ink removes
+   the question: #FBFAF6 on #2B2A25 is 13.8:1 whatever the still underneath happens to be. */
+.vplay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;
+  background:color-mix(in oklab,var(--ink) 72%,transparent);border:1px solid var(--paper);transition:background .25s,transform .25s}
+.vplay::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);width:0;height:0;
+  border-left:16px solid var(--paper);border-top:10px solid transparent;border-bottom:10px solid transparent}
+.vdur{position:absolute;right:8px;bottom:8px;padding:3px 7px;background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-weight:400;font-size:9.5px;letter-spacing:.08em;line-height:1.3}
+@media (hover:hover){.vfacade:hover .vplay{background:var(--olive);transform:translate(-50%,-50%) scale(1.06)}}
+/* `.frame` is overflow:hidden, so an outward ring would be clipped away. Inset it. */
+/* Two-tone, and INSET. `:focus-visible` at the bottom of this file supplies an outer 5px halo,
+   but `.frame{overflow:hidden}` clips it away entirely, leaving a single #2B2A25 hairline over an
+   arbitrary video still — and over `.vfacade`'s own #2B2A25 background while the poster is still
+   decoding, where it is literally invisible. `.folder:focus-visible .folder-body` solved this
+   first; this is the same inset halo, for the same reason. */
+/* The halo must be a LAYER, not a shadow. `box-shadow:inset` on the button paints beneath the
+   button's own children, and `.vposter` covers the box edge to edge — sampling the focused element
+   found no halo pixels at all. A positioned ::before with a z-index paints above the poster, the
+   play disc and the duration chip, which is the whole point of a focus ring. */
+.vfacade:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+.vfacade:focus-visible::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  border:4px solid rgba(255,255,255,.95)}
+.vfacade:focus-visible .vplay{background:var(--olive)}
+
+/* social marks — one row of three in both contact surfaces. Monochrome and `currentColor`, so
+   each row inherits its surface: white on the About card, ink in the contact grid, ink on paper
+   when printed. The <a> is 32px square for a comfortable touch target while the mark itself stays
+   18px, which is the size the surrounding 15px text wants beside it. */
+.social{display:flex;align-items:center;gap:10px;margin-left:-7px}
+.sico{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;color:var(--ink);text-decoration:none;transition:color .25s}
+.sico svg{width:18px;height:18px;display:block}
+/* The marks sit in a 32px box for the touch target while the glyph is 18px, so their optical
+   centre lands 6px below the baseline band of the text cells beside them. Pull the row back onto
+   that band without shrinking the target. */
+.cgrid .social{margin-top:-6px;margin-bottom:-6px}
+/* `--ink` at 18px measured 12.97:1 against the contact tint — more than four times what WCAG
+   1.4.11 asks of a graphic, and it showed: three SOLID 18px glyphs carry far more ink than the
+   15px letterforms around them, so the marks out-ranked the email address above them. Matching
+   PERCEIVED weight means dropping value and size, not hue: `--soft` at 16px measures 5.22:1,
+   still comfortably above 3:1, and puts the marks level with the "Social" label they sit under.
+   Rose on hover is the page's own convention for every other link. */
+/* Hover moves LIGHTNESS as well as hue. `--soft` -> `--pink-ink` measured 1.01:1 between the two
+   states, i.e. the state change was invisible to anyone who cannot resolve hue; ink -> rose is a
+   real luminance step. */
+.sico:hover,.sico:focus-visible{color:var(--pink-ink)}
+/* On the card the surface is already the accent, so the rose hover would be invisible against it
+   and the file's other card links hover to plain white. Match them. */
+.cardsocial{margin-top:2px}
+.cardsocial .sico,.cardsocial .sico:hover{color:#fff}
+.cardsocial .sico:hover{opacity:.78}
+
+/* extra + awards + xfile share a two-column reading list */
+.listgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:0 44px}
+.xgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:0 44px}
+.awardrow{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:22px 0;border-top:1px solid var(--line);align-items:start}
+.awardrow span:last-child{font-size:20px;line-height:1.35}
+.xnum{font-size:24px}
+.xhead{display:flex;align-items:baseline;gap:12px}
+.xdrive{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:52px;padding:30px 34px;border-radius:2px}
+.xdrive:hover{color:inherit;filter:brightness(1.04)}
+.xdrivetitle{display:block;font-size:clamp(24px,2.6vw,34px);line-height:1.2;margin-top:8px}
+/* .eyebrow carries color:var(--soft); inside the tinted Drive panel that reads 3.28:1.
+   The panel already sets a readable colour — inherit it instead of overriding. */
+.xdrivebtn{color:inherit;border:1px solid rgba(67,66,59,.5);padding:12px 20px;white-space:nowrap}
+
+/* contact */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:26px;margin-top:52px;padding-top:28px;border-top:1px solid var(--line)}
+.cgrid a,.cgrid span:last-child{font-size:15.5px}
+.cgrid a{text-decoration:underline;text-decoration-color:color-mix(in oklab,currentColor 35%,transparent);text-underline-offset:3px}
+.thanks{font-size:clamp(52px,9vw,118px);color:var(--accent)}
+
+/* campaign sheet */
+.sheet-head{position:sticky;top:0;z-index:5;background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.sheet-head .wrap{height:74px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sheet-body{padding-top:66px;padding-bottom:110px}
+.sheet-title{font-size:clamp(38px,6.6vw,90px);max-width:15em;margin-top:16px}
+.sheet-sum{font-size:clamp(20px,2.2vw,30px);line-height:1.45;margin-top:22px;max-width:24em}
+.shots{display:grid;gap:24px;align-items:start;margin-top:54px}
+.shots.two{grid-template-columns:1fr 1fr}
+.shots.one{grid-template-columns:1fr}
+.shots .span{grid-column:1/-1}
+.sheet-vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px}
+.sheet-ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:56px;margin:74px 0}
+.sheet-res{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:34px}
+.resv{font-size:clamp(38px,5vw,64px);color:var(--rose)}
+.arcgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.arcgrid img{width:100%;display:block}
+.didlist{list-style:none;display:grid;gap:15px}
+/* 30px 1fr — the nested track the previous port missed. min-width:0 on the text cell is what
+   actually stops a long unbroken string forcing the row wider than its container. */
+.didrow{display:grid;grid-template-columns:30px 1fr;gap:10px;font-size:15.5px;line-height:1.7}
+.didrow > :last-child{min-width:0;overflow-wrap:anywhere}
+.sheet-foot{margin-top:90px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* Semantic swap safety. .folder/.crow/.ccard are clickable <div>s in the design, which no keyboard
+   can reach. They become real <button>s here, so the UA button styles have to be restated or the
+   layout changes underneath them. */
+.folder,.crow,.ccard{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0}
+/* `border:0` above is needed to drop the UA button frame, but it also drops the design's own
+   hairline between campaign rows. Restate it after the reset, not inside it. */
+.crow{display:grid;border-top:1px solid var(--line)}
+/* A single-hue ring is invisible wherever the surface shares that hue: --rose on the Work
+   experience tile measured 1.00:1. Two-tone survives any background — a dark ring with a white
+   halo — and needs no per-surface tokens. The folder ring sits inside its own tile, so the halo
+   goes on the outside of the dark line rather than the inside. */
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 5px rgba(255,255,255,.95)}
+/* navTo() stamps tabindex="-1" on the section it scrolls to and focuses it so a keyboard user's
+   focus follows the viewport. Chrome scores that programmatic focus as keyboard-initiated, so the
+   ring painted a 2px outline and a white halo around a whole page section. Only real controls
+   should show it. */
+[tabindex="-1"]:focus-visible,[tabindex="-1"]:focus{outline:none;box-shadow:none}
+.folder:focus-visible{outline:none;box-shadow:none}
+.folder:focus-visible .folder-body{outline:2px solid var(--ink);outline-offset:-3px;box-shadow:inset 0 0 0 6px rgba(255,255,255,.95)}
+.folder:focus-visible .tab{outline:2px solid var(--ink);outline-offset:-3px}
+
+/* Any grid or flex child that can hold long content. A track minimum alone does not stop a child
+   from forcing the track wider. */
+.crow > *,.gcol2 > *,.listgrid > *,.xgrid > *,.cgrid > *,.sheet-ctx > *,.sheet-res > *,.skills > *,.stats > *,.edugrid > *,.jobrow > *{min-width:0}
+
+/* ═══ 4. responsive ═══ */
+
+/* the design's own tiers, kept verbatim */
+/* The disc follows the CELL, and the cell is narrowest just above the 900 breakpoint, not below
+   it: four columns start at 901 and do not recover a 900px-wide cell until ~1065. Leaving the 44px
+   rule at <=900 made the disc 31% of the cell at 901 and 16% at 900 — louder on the smaller frame. */
+@media (max-width:1064px){
+  .vplay{width:44px;height:44px}
+  .vplay::after{border-left-width:12px;border-top-width:7.5px;border-bottom-width:7.5px}
+}
+@media (max-width:900px){
+  .wrap{padding:0 22px}
+  .crow{grid-template-columns:34px 1fr;gap:14px}
+  .crow .cmeta,.crow .ckpi{display:none}
+  .tab{max-width:none}
+  .folder-body{height:76px;padding:0 20px}
+  .fnote{display:none}
+  .clip{display:none}
+}
+@media (max-width:760px){
+  .gcol2{grid-template-columns:1fr;gap:34px}
+  .jobrow{grid-template-columns:1fr;gap:8px}
+  .stack{margin-top:0}
+}
+
+/* the tier the design does not have. Below 900 the hero is a single column, the folder stagger
+   collapses, and the sheet's two-up shot grid stops being two-up. */
+@media (max-width:900px){
+  .herogrid{grid-template-columns:1fr;gap:44px}
+  .hero{min-height:auto;padding:104px 0 56px}
+  .shots.two{grid-template-columns:1fr}
+  .arcgrid{grid-template-columns:1fr}
+  .sheet-body{padding-top:44px;padding-bottom:84px}
+  .sheet-ctx{margin:52px 0;gap:38px}
+  .peek{display:none}
+  .vidlabel{margin-top:48px}
+  /* 4 -> 3. Three columns hold a >=150px cell down to a ~538px viewport, so the step to two
+     belongs at the repo's 620 tier, not here.
+     Known and accepted: the ladder is not monotonic across 900. Four columns at 901 give a
+     185.75px cell where three at 900 gave 270.7px, and four do not recover 768's cell until
+     ~1065 — so a 1024px laptop renders 216.5px cells where a 768px tablet renders 226.7px. Four
+     columns still clear the 150px legibility floor everywhere and fit the reel in two rows
+     instead of three, which is the trade; a fifth breakpoint to smooth it is not worth the rule. */
+  .vidgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  /* 44px for this tier is set by the <=1064 block above, which is where the narrowest cell is. */
+  .sec{padding:72px 0}
+  .brands{margin-top:56px}
+  /* --off is the folder stagger. It is written as --off-instance inline and consumed through this
+     indirection, because a media query CANNOT override an inline custom property. */
+  .folder{--off:0px}
+}
+@media (max-width:620px){
+  .xdrive{padding:24px 22px}
+  .awardrow{grid-template-columns:32px 1fr;gap:10px}
+  .didrow{grid-template-columns:26px 1fr}
+  .thanks{font-size:clamp(44px,13vw,64px)}
+  /* 3 -> 2. One column of seven 9/16 clips is a 4,400px wall at 390px — five screenfuls of the
+     same shape. Two columns is also the shape every vertical-video grid a visitor has already
+     seen, so it reads as an index rather than as a feed. */
+  .vidgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .vdur{right:6px;bottom:6px;padding:2px 5px;font-size:9px}
+}
+
+/* The reveal animation hides content until it scrolls into view. Disabling only the transition
+   would leave every block permanently at opacity:0 — the content must be forced visible. */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  /* Neutralise only the hover SCALE. `.vplay`'s translate is what centres it, so the blanket
+     `transform:none` used for `.reveal` would knock the disc off the poster. */
+  .vfacade:hover .vplay{transform:translate(-50%,-50%)}
+}
+
+/* A recruiter may print this. Without forcing .reveal visible, every one of them prints blank. */
+@media print{
+  /* Print dialogs ship with "Background graphics" OFF, which discards background colours and
+     keeps `color`. Every white-on-surface node — the whole contact card, every folder tile —
+     therefore printed white on white, including her email, phone and city. Do not rely on a
+     surface that will not be there. */
+  .card,.card *,.tab,.tab *,.folder-body,.folder-body *,.xdrive,.xdrive *,.btn-solid{
+    color:#2B2A25!important;background:transparent!important}
+  .card,.folder-body,.tab,.xdrive{border:1px solid #B9B3A4!important}
+  .cardlinks a{text-decoration-color:#2B2A25!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .nav,.lang,.skip,.peek,.backtop,.sheet,.toast,.cardbtns,.sheet-foot,.stack,.cgo,.fgo,.vplay,.vdur,.vembed{display:none!important}
+  /* The strip prints as a contact sheet, not as seven full-width stills. Print sets
+     `.wrap{padding:0}`, so four columns on A4 (794px, 12px gaps) give a 189.5px cell and the whole
+     strip costs 762px — about two thirds of a page. The evidence survives, the paper bill does
+     not. The play disc, the duration chip and any embed the reader opened before printing are
+     hidden above: none of them means anything on paper, and `.vembed` would print as a dark slab.
+     `.vopen` keeps the poster hidden too, so a played clip prints as its caption alone. */
+  .vidgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .vidcap{min-height:0}
+  .vopen{display:none}
+  body{background:#fff}
+  /* Sections are taller than an A4 page, so break-inside:avoid on them pushed each to a fresh
+     page and overflowed anyway — 13 pages, six of them 40-70% blank. Keep it on the atoms. */
+  .sec,.hero{padding:24px 0;min-height:0}
+  .jobrow,.crow,.awardrow{break-inside:avoid}
+  .wrap{max-width:none;padding:0}
+  /* A printed URL belongs after a text link, not inside a 32px icon box — there it overflows the
+     box and overprints whatever the contact block put beside it. The marks print as the handle
+     instead, which is the part a reader can actually use on paper. */
+  a[href^="http"]:not(.sico)::after{content:" (" attr(href) ")";font-size:9px;color:#555;word-break:break-all}
+  .social{gap:14px}
+  .sico{width:auto;height:auto}
+  .sico svg{display:none}
+  .sico::after{content:attr(aria-label);font-size:9.5px;letter-spacing:.04em;color:#2B2A25}
+  .frame,.folder{break-inside:avoid}
+}
+
+/* A single surviving clip must not be stretched across a full auto-fit row: a 9/16 phone cut
+   blown up to 1188px wide is a black slab with a stamp of video in the middle. */
+.vidgrid.single{grid-template-columns:minmax(0,320px)}
+
+/* Proof above the fold. The section order follows the design, which puts About first and the
+   campaigns fourth — so without this the evidence a recruiter scans for in ~7 seconds does not
+   appear until around screen four. */
+.proof{margin-top:34px;padding-top:26px;border-top:1px solid var(--line)}
+.proofstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(112px,100%),1fr));gap:20px 18px}
+.proofstats > div{display:flex;flex-direction:column;gap:4px;min-width:0}
+.proofv{font-size:clamp(26px,2.6vw,34px);line-height:1;color:var(--pink-ink)}
+.proofk{line-height:1.3;text-transform:none;letter-spacing:.04em}
+.proofbrands{margin-top:22px;line-height:1.7;text-transform:none;letter-spacing:.04em;color:var(--soft)}
+
+/* The nav gains a permanent CV button, so the bar now holds three things and has to survive a
+   narrow phone. Both the name and the button were wrapping to two lines at 390px, which made the
+   bar look broken. Neither may wrap: the name sheds her family names instead, and the button
+   keeps its full label because that label is the whole point of the button. */
+.nav-cv{min-height:38px;padding:9px 16px;font-size:10px;letter-spacing:.14em;white-space:nowrap}
+.nav-brand{white-space:nowrap}
+@media (max-width:620px){
+  .nav-inner{gap:12px}
+  .nav-brand{font-size:18px}
+  .nav-given{display:none}   /* "Trần Tôn Nữ " — the given name alone still identifies the page */
+  .nav-cv{padding:8px 13px;letter-spacing:.1em}
+  .lang button{padding:6px 10px}
+}
+@media (max-width:400px){
+  .nav-brand{font-size:16px}
+  .nav-cv{padding:8px 11px;font-size:9.5px;letter-spacing:.08em}
+  .lang button{padding:6px 9px;font-size:10px}
+  /* Column-gap trades directly against poster width — every 2px of gutter costs 1px off each of
+     two cells — while row-gap trades against nothing. Return 4px to each poster at the width
+     where the poster is smallest: at 320px the cell goes 127 -> 131. 14px is already this file's
+     small-screen gap, not a new number. */
+  .vidgrid{column-gap:14px}
+  /* `.eyebrow` tracks at .2em, which costs ~2px per character — at a 131px cell that is most of
+     a word. Measured: at .2em three EN captions and one VI caption take a third line here; at
+     .13em every caption in both languages fits the two lines the box reserves. Tightening the
+     tracking is cheaper than reserving a third line on every phone, because the third line is
+     only ever used below ~342px while the reservation would cost 14.5px of dead space at 360,
+     375, 390 and 393 — which is where the phones actually are. */
+  .vidcap{letter-spacing:.13em}
+  .vplay{width:36px;height:36px}
+  .vplay::after{border-left-width:10px;border-top-width:6px;border-bottom-width:6px}
+}
+
+/* Evidence link on a role. Understated — it is a footnote to the bullets, not a call to action. */
+.joblink{display:inline-block;margin-top:14px;color:var(--pink-ink);text-transform:none;letter-spacing:.06em;font-size:11.5px;text-decoration:underline;text-decoration-color:color-mix(in oklab,currentColor 35%,transparent);text-underline-offset:3px}
+.joblink:hover{color:var(--pink-ink);text-decoration-color:currentColor}
+
+/* Local-preview only: meta.showPlaceholders. Never true in a deployed build — an empty labelled
+   frame is exactly the "unfinished" signal D7 exists to avoid. */
+.slot-empty{display:grid;place-items:center;padding:16px;text-align:center;border-style:dashed;background:var(--paper);color:var(--soft)}
+
+/* A persistent open cue on campaign rows. Every other signal that these are interactive is
+   pointer-only (padding shift, accent title, hover peek) or hidden below 900px (.cmeta, .ckpi),
+   so on a phone the six strongest items on the page read as static CV rows. */
+.cgo{grid-column:2;justify-self:start;margin-top:12px;color:var(--pink-ink);text-transform:uppercase;letter-spacing:.2em;font-size:10.5px;transition:transform .35s}
+.crow:hover .cgo{transform:translateX(6px)}
+@media (max-width:900px){
+  /* the brand, the date and the KPI were display:none — six anonymous titles on a phone */
+  .crow{grid-template-columns:34px 1fr;gap:14px 14px}
+  .crow .cmeta{display:block;grid-column:2;padding-top:0;margin-top:12px}
+  .crow .cmeta img{height:20px!important}
+  .crow .ckpi{display:block;grid-column:2;text-align:left;padding-top:0;margin-top:8px}
+  .crow .ckpi p{font-size:20px}
+  .cgo{margin-top:14px}
+}
+@media (prefers-reduced-motion:reduce){.crow:hover .cgo{transform:none}}
+
+/* The note is now the tile's only line of body copy, so it carries the weight the repeated
+   title used to. It stays a note in tone — this is an index, not a heading. */
+.fnote-lead{font-size:17px;line-height:1.2;letter-spacing:.01em}
+@media (max-width:900px){
+  .folder-body{height:52px;padding:0 20px}
+  /* the note was hidden on mobile because the tile had no room; it has room now, and a tile
+     that says only what its tab already says is worth nothing on a phone */
+  .fnote-lead{display:block;font-size:15px}
+  .fnote{display:none}
+}
+
+/* A short laptop viewport is the case the folder stack has to survive: it is the page's index,
+   and an index that hides an entry is not doing its job. Only the hero's own padding moves. */
+@media (min-width:901px) and (max-height:780px){
+  .hero{padding:64px 0 40px}
+  .heropills{margin-top:18px}
+  .proof{margin-top:24px;padding-top:20px}
+}
+
+/* MOBILE RUNWAY. At 390 the stack began at y=845 in an 844px viewport — the index missed the
+   first screen by one pixel, and the cue "Pick a folder to open →" sat above a stack that was
+   not there yet. The stack itself fits; the hero above it was 1.96 screenfuls. Trim the hero,
+   never the index. */
+@media (max-width:620px){
+  .hero{padding:84px 0 44px}
+  /* Both pills repeat verbatim in the About section and the contact grid below. */
+  .heropills{display:none}
+  .proof{margin-top:22px;padding-top:18px}
+  .proofstats{gap:14px 16px}
+  .proofv{font-size:24px}
+  .proofk{font-size:9.5px;letter-spacing:.06em}
+  .proofbrands{margin-top:14px;font-size:9.5px;line-height:1.6}
+}
